@@ -108,7 +108,7 @@ class StudyStore extends ChangeNotifier {
 
   final List<ExamItem> exams = [ExamItem('Esame Mobile', 'Programmazione Mobile', DateTime.now().add(const Duration(days: 18)), 'Alta', 'Futuro'), ExamItem('Consegna progetto', 'Ingegneria del Software', DateTime.now().add(const Duration(days: 7)), 'Alta', 'Futuro'), ExamItem('Database', 'Basi di Dati', DateTime.now().add(const Duration(days: 34)), 'Media', 'Futuro')];
 
-  final List<StudySession> sessions = [];
+  final List<StudySession> sessions = [StudySession('Studio widget Flutter', 'Programmazione Mobile', DateTime.now(), 90, false), StudySession('Esercizi SQL', 'Basi di Dati', DateTime.now().add(const Duration(days: 1)), 120, false), StudySession('Ripasso UML', 'Ingegneria del Software', DateTime.now().add(const Duration(days: 2)), 60, false)];
 
   final List<TaskGoal> tasks = [];
 
@@ -194,6 +194,7 @@ class _ShellScreenState extends State<ShellScreen> {
       _Section('Home', Icons.dashboard_outlined, Icons.dashboard, HomeScreen(onNavigate: _goTo)),
       _Section('Corsi', Icons.menu_book_outlined, Icons.menu_book, CoursesScreen(store: store)),
       _Section('Esami', Icons.event_outlined, Icons.event, ExamsScreen(store: store)),
+      _Section('Calendario', Icons.calendar_month_outlined, Icons.calendar_month, PlannerScreen(store: store)),
     ];
   }
 
@@ -332,6 +333,34 @@ class ExamsScreen extends StatelessWidget {
             ],
           ),
         )).toList(),
+      ),
+    );
+  }
+}
+
+class PlannerScreen extends StatelessWidget {
+  final StudyStore store;
+
+  const PlannerScreen({super.key, required this.store});
+
+  @override
+  Widget build(BuildContext context) {
+    return PageFrame(
+      title: 'Calendario',
+      subtitle: 'Sessioni pianificate e attività giornaliere.',
+      actions: [FilledButton.icon(onPressed: () => showTextDialog(context, 'Nuova sessione', store.addSession), icon: const Icon(Icons.add), label: const Text('Aggiungi'))],
+      child: ListView(
+        children: [
+          
+          ...store.sessions.map((session) => AppCard(
+            child: Row(
+              children: [
+                Checkbox(value: session.completed, onChanged: null),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(session.title, style: const TextStyle(fontWeight: FontWeight.w900)), Text('${session.course} • ${dateLabel(session.date)} • ${minutesLabel(session.minutes)}') ])),
+              ],
+            ),
+          )),
+        ],
       ),
     );
   }
