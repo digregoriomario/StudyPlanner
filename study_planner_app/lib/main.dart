@@ -12,17 +12,17 @@ class StudyPlannerApp extends StatefulWidget {
 }
 
 class _StudyPlannerAppState extends State<StudyPlannerApp> {
-  
+  late final StudyStore store;
 
   @override
   void initState() {
     super.initState();
-    
+    store = StudyStore();
   }
 
   @override
   void dispose() {
-    
+    store.dispose();
     super.dispose();
   }
 
@@ -47,8 +47,109 @@ class _StudyPlannerAppState extends State<StudyPlannerApp> {
         ),
       ),
 
-      home: const ShellScreen(),
+      home: StoreScope(notifier: store, child: const ShellScreen()),
     );
+  }
+}
+
+class StoreScope extends InheritedNotifier<StudyStore> {
+  const StoreScope({super.key, required super.notifier, required super.child});
+
+  static StudyStore of(BuildContext context) {
+    final scope = context.dependOnInheritedWidgetOfExactType<StoreScope>();
+    return scope!.notifier!;
+  }
+}
+
+class Course {
+  final String name;
+  final String teacher;
+  final int cfu;
+  final String status;
+
+  Course(this.name, this.teacher, this.cfu, this.status);
+}
+
+class ExamItem {
+  final String title;
+  final String course;
+  final DateTime date;
+  final String priority;
+  final String status;
+
+  ExamItem(this.title, this.course, this.date, this.priority, this.status);
+}
+
+class StudySession {
+  final String title;
+  final String course;
+  final DateTime date;
+  final int minutes;
+  bool completed;
+
+  StudySession(this.title, this.course, this.date, this.minutes, this.completed);
+}
+
+class TaskGoal {
+  final String title;
+  final String course;
+  final String priority;
+  bool completed;
+
+  TaskGoal(this.title, this.course, this.priority, this.completed);
+}
+
+class StudyStore extends ChangeNotifier {
+  final List<Course> courses = [
+    Course('Programmazione Mobile', 'Prof. Rossi', 9, 'In corso'),
+    Course('Basi di Dati', 'Prof.ssa Bianchi', 6, 'In corso'),
+    Course('Ingegneria del Software', 'Prof. Verdi', 9, 'Da iniziare'),
+  ];
+
+  final List<ExamItem> exams = [];
+
+  final List<StudySession> sessions = [];
+
+  final List<TaskGoal> tasks = [];
+
+  void addCourse(String name) {
+    courses.add(Course(name, 'Docente da definire', 6, 'Da iniziare'));
+    notifyListeners();
+  }
+
+  void addExam(String title) {
+    exams.add(ExamItem(title, courses.first.name, DateTime.now().add(const Duration(days: 14)), 'Media', 'Futuro'));
+    notifyListeners();
+  }
+
+  void addSession(String title) {
+    sessions.add(StudySession(title, courses.first.name, DateTime.now(), 60, false));
+    notifyListeners();
+  }
+
+  void addTask(String title) {
+    tasks.add(TaskGoal(title, courses.first.name, 'Media', false));
+    notifyListeners();
+  }
+
+  void toggleSession(StudySession session) {
+    session.completed = !session.completed;
+    notifyListeners();
+  }
+
+  void toggleTask(TaskGoal task) {
+    task.completed = !task.completed;
+    notifyListeners();
+  }
+
+  int automaticSuggestionCount() {
+    final urgentExams = exams.where((exam) => exam.date.difference(DateTime.now()).inDays <= 30 && exam.status == 'Futuro').length;
+    final openTasks = tasks.where((task) => !task.completed).length;
+    final plannedMinutes = sessions.fold<int>(0, (sum, session) => sum + session.minutes);
+    var value = urgentExams;
+    if (openTasks > 0) value++;
+    if (plannedMinutes < 240 && urgentExams > 0) value++;
+    return value;
   }
 }
 
@@ -88,9 +189,10 @@ class _ShellScreenState extends State<ShellScreen> {
   }
 
   List<_Section> get sections {
-    
+    final store = StoreScope.of(context);
     return [
       _Section('Home', Icons.dashboard_outlined, Icons.dashboard, HomeScreen(onNavigate: _goTo)),
+      _Section('Corsi', Icons.menu_book_outlined, Icons.menu_book, CoursesScreen(store: store)),
     ];
   }
 
@@ -156,7 +258,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    final store = StoreScope.of(context);
 
     return PageFrame(
       title: 'Home',
@@ -164,6 +266,43 @@ class HomeScreen extends StatelessWidget {
       child: ListView(
         children: [
           const AppCard(child: Text('StudyPlanner organizza corsi, esami, sessioni e obiettivi in un unico spazio.')),
+        ],
+      ),
+    );
+  }
+}
+
+class CoursesScreen extends StatefulWidget {
+  final StudyStore store;
+
+  const CoursesScreen({super.key, required this.store});
+
+  @override
+  State<CoursesScreen> createState() => _CoursesScreenState();
+}
+
+class _CoursesScreenState extends State<CoursesScreen> {
+  String query = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final data = widget.store.courses.where((course) => course.name.toLowerCase().contains(query.toLowerCase())).toList();
+    return PageFrame(
+      title: 'Corsi',
+      subtitle: 'Elenco degli insegnamenti con stato, docente e CFU.',
+      actions: [const SizedBox.shrink()],
+      child: ListView(
+        children: [
+          
+          ...data.map((course) => AppCard(
+            child: Row(
+              children: [
+                const Icon(Icons.menu_book_rounded),
+                const SizedBox(width: 12),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(course.name, style: const TextStyle(fontWeight: FontWeight.w900)), Text('${course.teacher} • ${course.cfu} CFU • ${course.status}')])),
+              ],
+            ),
+          )),
         ],
       ),
     );
