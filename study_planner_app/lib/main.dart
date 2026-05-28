@@ -290,7 +290,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
     return PageFrame(
       title: 'Corsi',
       subtitle: 'Elenco degli insegnamenti con stato, docente e CFU.',
-      actions: [const SizedBox.shrink()],
+      actions: [FilledButton.icon(onPressed: () => showTextDialog(context, 'Nuovo corso', widget.store.addCourse), icon: const Icon(Icons.add), label: const Text('Aggiungi'))],
       child: ListView(
         children: [
           
