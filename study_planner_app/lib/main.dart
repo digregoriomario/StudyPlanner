@@ -320,7 +320,7 @@ class ExamsScreen extends StatelessWidget {
     return PageFrame(
       title: 'Esami',
       subtitle: 'Appelli, consegne e scadenze ordinate per data.',
-      actions: [const SizedBox.shrink()],
+      actions: [FilledButton.icon(onPressed: () => showTextDialog(context, 'Nuovo esame', store.addExam), icon: const Icon(Icons.add), label: const Text('Aggiungi'))],
       child: ListView(
         children: store.exams.map((exam) => AppCard(
           child: Row(
