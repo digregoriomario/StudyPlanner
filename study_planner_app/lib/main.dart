@@ -102,7 +102,7 @@ class TaskGoal {
 class StudyStore extends ChangeNotifier {
   final List<Course> courses = [
     Course('Programmazione Mobile', 'Prof. Rossi', 9, 'In corso'),
-    Course('Basi di Dati', 'Prof.ssa Bianchi', 6, 'In corso'),
+    Course('Basi di Dati', 'Prof.ssa Bianchi', 6, 'Da ripassare'),
     Course('Ingegneria del Software', 'Prof. Verdi', 9, 'Da iniziare'),
   ];
 
@@ -327,7 +327,7 @@ class ExamsScreen extends StatelessWidget {
             children: [
               const Icon(Icons.event_rounded),
               const SizedBox(width: 12),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(exam.title, style: const TextStyle(fontWeight: FontWeight.w900)), Text('${exam.course} • ${dateLabel(exam.date)}') ])),
+              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(exam.title, style: const TextStyle(fontWeight: FontWeight.w900)), Text('${exam.course} • ${dateLabel(exam.date)} • ${exam.status}') ])),
               Text(exam.priority, style: const TextStyle(fontWeight: FontWeight.w800)),
             ],
           ),
