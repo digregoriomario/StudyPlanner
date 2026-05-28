@@ -106,7 +106,7 @@ class StudyStore extends ChangeNotifier {
     Course('Ingegneria del Software', 'Prof. Verdi', 9, 'Da iniziare'),
   ];
 
-  final List<ExamItem> exams = [];
+  final List<ExamItem> exams = [ExamItem('Esame Mobile', 'Programmazione Mobile', DateTime.now().add(const Duration(days: 18)), 'Alta', 'Futuro'), ExamItem('Consegna progetto', 'Ingegneria del Software', DateTime.now().add(const Duration(days: 7)), 'Alta', 'Futuro'), ExamItem('Database', 'Basi di Dati', DateTime.now().add(const Duration(days: 34)), 'Media', 'Futuro')];
 
   final List<StudySession> sessions = [];
 
@@ -193,6 +193,7 @@ class _ShellScreenState extends State<ShellScreen> {
     return [
       _Section('Home', Icons.dashboard_outlined, Icons.dashboard, HomeScreen(onNavigate: _goTo)),
       _Section('Corsi', Icons.menu_book_outlined, Icons.menu_book, CoursesScreen(store: store)),
+      _Section('Esami', Icons.event_outlined, Icons.event, ExamsScreen(store: store)),
     ];
   }
 
@@ -304,6 +305,33 @@ class _CoursesScreenState extends State<CoursesScreen> {
             ),
           )),
         ],
+      ),
+    );
+  }
+}
+
+class ExamsScreen extends StatelessWidget {
+  final StudyStore store;
+
+  const ExamsScreen({super.key, required this.store});
+
+  @override
+  Widget build(BuildContext context) {
+    return PageFrame(
+      title: 'Esami',
+      subtitle: 'Appelli, consegne e scadenze ordinate per data.',
+      actions: [const SizedBox.shrink()],
+      child: ListView(
+        children: store.exams.map((exam) => AppCard(
+          child: Row(
+            children: [
+              const Icon(Icons.event_rounded),
+              const SizedBox(width: 12),
+              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(exam.title, style: const TextStyle(fontWeight: FontWeight.w900)), Text('${exam.course} • ${dateLabel(exam.date)}') ])),
+              Text(exam.priority, style: const TextStyle(fontWeight: FontWeight.w800)),
+            ],
+          ),
+        )).toList(),
       ),
     );
   }
