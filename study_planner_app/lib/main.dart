@@ -355,7 +355,7 @@ class PlannerScreen extends StatelessWidget {
           ...store.sessions.map((session) => AppCard(
             child: Row(
               children: [
-                Checkbox(value: session.completed, onChanged: null),
+                Checkbox(value: session.completed, onChanged: (value) => store.toggleSession(session)),
                 Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(session.title, style: const TextStyle(fontWeight: FontWeight.w900)), Text('${session.course} • ${dateLabel(session.date)} • ${minutesLabel(session.minutes)}') ])),
               ],
             ),
