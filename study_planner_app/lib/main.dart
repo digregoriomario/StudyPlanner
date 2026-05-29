@@ -296,7 +296,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
       actions: [FilledButton.icon(onPressed: () => showTextDialog(context, 'Nuovo corso', widget.store.addCourse), icon: const Icon(Icons.add), label: const Text('Aggiungi'))],
       child: ListView(
         children: [
-          
+          TextField(decoration: const InputDecoration(labelText: 'Cerca corso'), onChanged: (value) => setState(() => query = value)), const SizedBox(height: 12),
           ...data.map((course) => AppCard(
             child: Row(
               children: [
