@@ -399,7 +399,7 @@ class PlannerScreen extends StatelessWidget {
       actions: [FilledButton.icon(onPressed: () => showTextDialog(context, 'Nuova sessione', store.addSession), icon: const Icon(Icons.add), label: const Text('Aggiungi'))],
       child: ListView(
         children: [
-          
+          SimpleCalendar(sessions: store.sessions), const SizedBox(height: 12),
           ...store.sessions.map((session) => AppCard(
             child: Row(
               children: [
@@ -434,6 +434,36 @@ class TasksScreen extends StatelessWidget {
             ],
           ),
         )).toList(),
+      ),
+    );
+  }
+}
+
+class SimpleCalendar extends StatelessWidget {
+  final List<StudySession> sessions;
+
+  const SimpleCalendar({super.key, required this.sessions});
+
+  @override
+  Widget build(BuildContext context) {
+    final now = DateTime.now();
+    final first = DateTime(now.year, now.month, 1);
+    final days = DateTime(now.year, now.month + 1, 0).day;
+    return AppCard(
+      child: GridView.count(
+        crossAxisCount: 7,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        children: List.generate(days, (index) {
+          final day = first.add(Duration(days: index));
+          final count = sessions.where((session) => sameDay(session.date, day)).length;
+          return Container(
+            margin: const EdgeInsets.all(3),
+            decoration: BoxDecoration(border: Border.all(color: AppStyle.line), borderRadius: BorderRadius.circular(12)),
+            child: Center(child: Text(count == 0 ? '${day.day}' : '${day.day}
+$count', textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w800))),
+          );
+        }),
       ),
     );
   }
