@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -196,6 +197,7 @@ class _ShellScreenState extends State<ShellScreen> {
       _Section('Esami', Icons.event_outlined, Icons.event, ExamsScreen(store: store)),
       _Section('Calendario', Icons.calendar_month_outlined, Icons.calendar_month, PlannerScreen(store: store)),
       _Section('Obiettivi', Icons.task_alt_outlined, Icons.task_alt, TasksScreen(store: store)),
+      _Section('Pomodoro', Icons.timer_outlined, Icons.timer, const PomodoroScreen()),
     ];
   }
 
@@ -464,6 +466,65 @@ class SimpleCalendar extends StatelessWidget {
 $count', textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.w800))),
           );
         }),
+      ),
+    );
+  }
+}
+
+class PomodoroScreen extends StatefulWidget {
+  const PomodoroScreen({super.key});
+
+  @override
+  State<PomodoroScreen> createState() => _PomodoroScreenState();
+}
+
+class _PomodoroScreenState extends State<PomodoroScreen> {
+  static const totalSeconds = 1500;
+  int remaining = totalSeconds;
+  Timer? timer;
+
+  void toggle() {
+    if (timer == null) {
+      timer = Timer.periodic(const Duration(seconds: 1), (_) {
+        if (remaining <= 0) {
+          timer?.cancel();
+          timer = null;
+        } else {
+          setState(() => remaining--);
+        }
+      });
+    } else {
+      timer?.cancel();
+      timer = null;
+    }
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final minutes = (remaining ~/ 60).toString().padLeft(2, '0');
+    final seconds = (remaining % 60).toString().padLeft(2, '0');
+    return PageFrame(
+      title: 'Pomodoro',
+      subtitle: 'Timer per sessioni di studio concentrate.',
+      child: Center(
+        child: AppCard(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('🍅', style: TextStyle(fontSize: 64)),
+              Text('$minutes:$seconds', style: const TextStyle(fontSize: 72, fontWeight: FontWeight.w900)),
+              const SizedBox(height: 16),
+              FilledButton(onPressed: toggle, child: Text(timer == null ? 'Avvia' : 'Pausa')),
+            ],
+          ),
+        ),
       ),
     );
   }
