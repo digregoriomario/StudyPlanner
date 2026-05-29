@@ -263,13 +263,60 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = StoreScope.of(context);
 
+    final cards = <Widget>[
+      StatCard(label: 'Corsi totali', value: '${store.courses.length}', icon: Icons.menu_book_rounded, onTap: () => onNavigate('Corsi')),
+      StatCard(label: 'Esami futuri', value: '${store.exams.length}', icon: Icons.event_rounded, onTap: () => onNavigate('Esami')),
+      StatCard(label: 'Studio pianificato', value: minutesLabel(store.sessions.fold<int>(0, (sum, session) => sum + session.minutes)), icon: Icons.schedule_rounded, onTap: () => onNavigate('Calendario')),
+      StatCard(label: 'Obiettivi aperti', value: '${store.tasks.where((task) => !task.completed).length}', icon: Icons.task_alt_rounded, onTap: () => onNavigate('Obiettivi')),
+      StatCard(label: 'CFU inseriti', value: '${store.courses.fold<int>(0, (sum, course) => sum + course.cfu)}', icon: Icons.school_rounded, onTap: () => onNavigate('Corsi')),
+    ];
+
     return PageFrame(
       title: 'Home',
-      subtitle: 'Struttura iniziale dell\'app con navigazione e schermata principale.',
+      subtitle: 'Riepilogo dello studio, delle scadenze e degli obiettivi.',
       child: ListView(
         children: [
-          const AppCard(child: Text('StudyPlanner organizza corsi, esami, sessioni e obiettivi in un unico spazio.')),
+          
+            GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              childAspectRatio: 1.6,
+              children: cards,
+            ),
+
         ],
+      ),
+    );
+  }
+}
+
+class StatCard extends StatelessWidget {
+  final String label;
+  final String value;
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const StatCard({super.key, required this.label, required this.value, required this.icon, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(22),
+      onTap: onTap,
+      child: AppCard(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [Icon(icon), const Spacer(), const Icon(Icons.arrow_forward_rounded, size: 18)]),
+            const Spacer(),
+            Text(value, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900)),
+            const SizedBox(height: 4),
+            Text(label, style: const TextStyle(color: AppStyle.muted, fontWeight: FontWeight.w700)),
+          ],
+        ),
       ),
     );
   }
