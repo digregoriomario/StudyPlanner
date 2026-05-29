@@ -110,7 +110,7 @@ class StudyStore extends ChangeNotifier {
 
   final List<StudySession> sessions = [StudySession('Studio widget Flutter', 'Programmazione Mobile', DateTime.now(), 90, false), StudySession('Esercizi SQL', 'Basi di Dati', DateTime.now().add(const Duration(days: 1)), 120, false), StudySession('Ripasso UML', 'Ingegneria del Software', DateTime.now().add(const Duration(days: 2)), 60, false)];
 
-  final List<TaskGoal> tasks = [];
+  final List<TaskGoal> tasks = [TaskGoal('Completare mockup', 'Programmazione Mobile', 'Alta', false), TaskGoal('Ripassare normalizzazione', 'Basi di Dati', 'Media', false), TaskGoal('Preparare schema UML', 'Ingegneria del Software', 'Alta', false)];
 
   void addCourse(String name) {
     courses.add(Course(name, 'Docente da definire', 6, 'Da iniziare'));
@@ -195,6 +195,7 @@ class _ShellScreenState extends State<ShellScreen> {
       _Section('Corsi', Icons.menu_book_outlined, Icons.menu_book, CoursesScreen(store: store)),
       _Section('Esami', Icons.event_outlined, Icons.event, ExamsScreen(store: store)),
       _Section('Calendario', Icons.calendar_month_outlined, Icons.calendar_month, PlannerScreen(store: store)),
+      _Section('Obiettivi', Icons.task_alt_outlined, Icons.task_alt, TasksScreen(store: store)),
     ];
   }
 
@@ -361,6 +362,31 @@ class PlannerScreen extends StatelessWidget {
             ),
           )),
         ],
+      ),
+    );
+  }
+}
+
+class TasksScreen extends StatelessWidget {
+  final StudyStore store;
+
+  const TasksScreen({super.key, required this.store});
+
+  @override
+  Widget build(BuildContext context) {
+    return PageFrame(
+      title: 'Obiettivi',
+      subtitle: 'Attività e obiettivi di studio collegati ai corsi.',
+      actions: [FilledButton.icon(onPressed: () => showTextDialog(context, 'Nuovo obiettivo', store.addTask), icon: const Icon(Icons.add), label: const Text('Aggiungi'))],
+      child: ListView(
+        children: store.tasks.map((task) => AppCard(
+          child: Row(
+            children: [
+              Checkbox(value: task.completed, onChanged: (value) => store.toggleTask(task)),
+              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(task.title, style: const TextStyle(fontWeight: FontWeight.w900)), Text('${task.course} • Priorità ${task.priority}') ])),
+            ],
+          ),
+        )).toList(),
       ),
     );
   }
