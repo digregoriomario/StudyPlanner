@@ -161,8 +161,8 @@ class AppStyle {
   static const Color ink = Color(0xFF111111);
   static const Color muted = Color(0xFF6F6F6F);
   static const Color line = Color(0xFFE8E4DA);
-  static const double buttonHeight = 46;
-  static const double buttonRadius = 14;
+  static const double buttonHeight = 52;
+  static const double buttonRadius = 18;
 }
 
 class _Section {
