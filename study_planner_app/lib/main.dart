@@ -202,7 +202,7 @@ class _ShellScreenState extends State<ShellScreen> {
   @override
   Widget build(BuildContext context) {
     final items = sections;
-    const wide = false;
+    final wide = MediaQuery.of(context).size.width >= 920;
     if (wide) {
       return Scaffold(
         body: Row(
