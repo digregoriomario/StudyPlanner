@@ -271,6 +271,7 @@ class HomeScreen extends StatelessWidget {
       StatCard(label: 'Studio pianificato', value: minutesLabel(store.sessions.fold<int>(0, (sum, session) => sum + session.minutes)), icon: Icons.schedule_rounded, onTap: () => onNavigate('Calendario')),
       StatCard(label: 'Obiettivi aperti', value: '${store.tasks.where((task) => !task.completed).length}', icon: Icons.task_alt_rounded, onTap: () => onNavigate('Obiettivi')),
       StatCard(label: 'CFU inseriti', value: '${store.courses.fold<int>(0, (sum, course) => sum + course.cfu)}', icon: Icons.school_rounded, onTap: () => onNavigate('Corsi')),
+      StatCard(label: 'Suggerimenti automatici', value: '${store.automaticSuggestionCount()}', icon: Icons.tips_and_updates_rounded, onTap: () => onNavigate('Calendario')),
     ];
 
     return PageFrame(
