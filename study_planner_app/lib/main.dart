@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
@@ -42,21 +41,27 @@ class _StudyPlannerAppState extends State<StudyPlannerApp> {
     );
 
     final materialTheme = foruiTheme.toApproximateMaterialTheme().copyWith(
-          useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: AppStyle.ink,
+            seedColor: AppStyle.primary,
             brightness: Brightness.light,
           ),
           scaffoldBackgroundColor: AppStyle.background,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: baseTextTheme.copyWith(
-            displayLarge: baseTextTheme.displayLarge?.copyWith(fontWeight: FontWeight.w800, letterSpacing: -1.2),
-            displayMedium: baseTextTheme.displayMedium?.copyWith(fontWeight: FontWeight.w800, letterSpacing: -1.0),
-            headlineLarge: baseTextTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w900, letterSpacing: -0.8),
-            headlineMedium: baseTextTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w900, letterSpacing: -0.7),
-            headlineSmall: baseTextTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w900, letterSpacing: -0.4),
-            titleLarge: baseTextTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800, letterSpacing: -0.25),
-            titleMedium: baseTextTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+            displayLarge: baseTextTheme.displayLarge
+                ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: 0),
+            displayMedium: baseTextTheme.displayMedium
+                ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: 0),
+            headlineLarge: baseTextTheme.headlineLarge
+                ?.copyWith(fontWeight: FontWeight.w900, letterSpacing: 0),
+            headlineMedium: baseTextTheme.headlineMedium
+                ?.copyWith(fontWeight: FontWeight.w900, letterSpacing: 0),
+            headlineSmall: baseTextTheme.headlineSmall
+                ?.copyWith(fontWeight: FontWeight.w900, letterSpacing: 0),
+            titleLarge: baseTextTheme.titleLarge
+                ?.copyWith(fontWeight: FontWeight.w800, letterSpacing: 0),
+            titleMedium: baseTextTheme.titleMedium
+                ?.copyWith(fontWeight: FontWeight.w800),
             bodyLarge: baseTextTheme.bodyLarge?.copyWith(height: 1.45),
             bodyMedium: baseTextTheme.bodyMedium?.copyWith(height: 1.42),
           ),
@@ -69,51 +74,62 @@ class _StudyPlannerAppState extends State<StudyPlannerApp> {
           inputDecorationTheme: InputDecorationTheme(
             filled: true,
             fillColor: AppStyle.surface,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-            hintStyle: const TextStyle(color: AppStyle.muted, fontWeight: FontWeight.w600),
-            labelStyle: const TextStyle(color: AppStyle.subtle, fontWeight: FontWeight.w700),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(18), borderSide: const BorderSide(color: AppStyle.line)),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+            hintStyle: const TextStyle(
+                color: AppStyle.muted, fontWeight: FontWeight.w600),
+            labelStyle: const TextStyle(
+                color: AppStyle.subtle, fontWeight: FontWeight.w700),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: const BorderSide(color: AppStyle.line)),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: const BorderSide(color: AppStyle.line),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
-              borderSide: const BorderSide(color: AppStyle.ink, width: 1.4),
+              borderSide: const BorderSide(color: AppStyle.primary, width: 1.4),
             ),
           ),
           navigationBarTheme: NavigationBarThemeData(
             elevation: 0,
             height: 74,
             backgroundColor: AppStyle.surface,
-            indicatorColor: AppStyle.ink,
+            indicatorColor: AppStyle.primary,
             labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-            labelTextStyle: WidgetStateProperty.all(const TextStyle(fontWeight: FontWeight.w800, fontSize: 12)),
+            labelTextStyle: WidgetStateProperty.all(
+                const TextStyle(fontWeight: FontWeight.w800, fontSize: 12)),
             iconTheme: WidgetStateProperty.resolveWith((states) {
               final selected = states.contains(WidgetState.selected);
-              return IconThemeData(color: selected ? Colors.white : AppStyle.subtle, size: 22);
+              return IconThemeData(
+                  color: selected ? Colors.white : AppStyle.subtle, size: 22);
             }),
           ),
           chipTheme: const ChipThemeData(
             backgroundColor: AppStyle.surfaceAlt,
             side: BorderSide(color: AppStyle.line),
             shape: StadiumBorder(),
-            labelStyle: TextStyle(fontWeight: FontWeight.w800, color: AppStyle.ink),
+            labelStyle:
+                TextStyle(fontWeight: FontWeight.w800, color: AppStyle.ink),
           ),
           dropdownMenuTheme: DropdownMenuThemeData(
             inputDecorationTheme: InputDecorationTheme(
               filled: true,
               fillColor: AppStyle.surface,
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(18), borderSide: const BorderSide(color: AppStyle.line)),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                  borderSide: const BorderSide(color: AppStyle.line)),
             ),
           ),
           filledButtonTheme: FilledButtonThemeData(
             style: FilledButton.styleFrom(
               minimumSize: const Size(0, AppStyle.buttonHeight),
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-              backgroundColor: AppStyle.ink,
+              backgroundColor: AppStyle.primary,
               foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
               textStyle: const TextStyle(fontWeight: FontWeight.w800),
             ),
           ),
@@ -121,9 +137,10 @@ class _StudyPlannerAppState extends State<StudyPlannerApp> {
             style: OutlinedButton.styleFrom(
               minimumSize: const Size(0, AppStyle.buttonHeight),
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-              foregroundColor: AppStyle.ink,
+              foregroundColor: AppStyle.primary,
               side: const BorderSide(color: AppStyle.lineStrong),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
               textStyle: const TextStyle(fontWeight: FontWeight.w800),
             ),
           ),
@@ -131,22 +148,27 @@ class _StudyPlannerAppState extends State<StudyPlannerApp> {
             style: TextButton.styleFrom(
               minimumSize: const Size(0, AppStyle.buttonHeight),
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-              foregroundColor: AppStyle.ink,
+              foregroundColor: AppStyle.primary,
               textStyle: const TextStyle(fontWeight: FontWeight.w800),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
             ),
           ),
           cardTheme: CardThemeData(
             color: AppStyle.surface,
             elevation: 0,
             margin: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(26), side: const BorderSide(color: AppStyle.line)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(26),
+                side: const BorderSide(color: AppStyle.line)),
           ),
           dialogTheme: DialogThemeData(
             backgroundColor: AppStyle.surface,
             surfaceTintColor: Colors.transparent,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
-            titleTextStyle: baseTextTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900, color: AppStyle.ink),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+            titleTextStyle: baseTextTheme.titleLarge
+                ?.copyWith(fontWeight: FontWeight.w900, color: AppStyle.ink),
           ),
           bottomSheetTheme: const BottomSheetThemeData(
             backgroundColor: AppStyle.surface,
@@ -160,7 +182,9 @@ class _StudyPlannerAppState extends State<StudyPlannerApp> {
         debugShowCheckedModeBanner: false,
         title: 'StudyPlanner',
         supportedLocales: FLocalizations.supportedLocales,
-        localizationsDelegates: const [...FLocalizations.localizationsDelegates],
+        localizationsDelegates: const [
+          ...FLocalizations.localizationsDelegates
+        ],
         theme: materialTheme,
         builder: (context, child) => FTheme(
           data: foruiTheme,
@@ -184,6 +208,10 @@ class StudyScope extends InheritedNotifier<StudyStore> {
 
 class StudyStore extends ChangeNotifier {
   static const storageKey = 'study_planner_state_v1';
+  static const _legacyDemoCourseIds = {'c1', 'c2', 'c3'};
+  static const _legacyDemoExamIds = {'e1', 'e2', 'e3'};
+  static const _legacyDemoSessionIds = {'s1', 's2', 's3'};
+  static const _legacyDemoTaskIds = {'t1', 't2', 't3'};
 
   List<Course> courses = [];
   List<ExamItem> exams = [];
@@ -194,54 +222,79 @@ class StudyStore extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     final raw = prefs.getString(storageKey);
     if (raw == null) {
-      _seed();
+      _resetToEmpty();
       await save();
       notifyListeners();
       return;
     }
-    final json = jsonDecode(raw) as Map<String, dynamic>;
-    courses = (json['courses'] as List).map((e) => Course.fromJson(e)).toList();
-    exams = (json['exams'] as List).map((e) => ExamItem.fromJson(e)).toList();
-    sessions = (json['sessions'] as List).map((e) => StudySession.fromJson(e)).toList();
-    tasks = (json['tasks'] as List).map((e) => TaskGoal.fromJson(e)).toList();
+    try {
+      final json = jsonDecode(raw) as Map<String, dynamic>;
+      courses = (json['courses'] as List? ?? [])
+          .map((e) => Course.fromJson(e))
+          .toList();
+      exams = (json['exams'] as List? ?? [])
+          .map((e) => ExamItem.fromJson(e))
+          .toList();
+      sessions = (json['sessions'] as List? ?? [])
+          .map((e) => StudySession.fromJson(e))
+          .toList();
+      tasks = (json['tasks'] as List? ?? [])
+          .map((e) => TaskGoal.fromJson(e))
+          .toList();
+      if (_removeLegacyDemoData()) await save();
+    } catch (_) {
+      _resetToEmpty();
+      await save();
+    }
     notifyListeners();
   }
 
   Future<void> save() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(storageKey, jsonEncode({
-      'courses': courses.map((e) => e.toJson()).toList(),
-      'exams': exams.map((e) => e.toJson()).toList(),
-      'sessions': sessions.map((e) => e.toJson()).toList(),
-      'tasks': tasks.map((e) => e.toJson()).toList(),
-    }));
+    await prefs.setString(
+        storageKey,
+        jsonEncode({
+          'courses': courses.map((e) => e.toJson()).toList(),
+          'exams': exams.map((e) => e.toJson()).toList(),
+          'sessions': sessions.map((e) => e.toJson()).toList(),
+          'tasks': tasks.map((e) => e.toJson()).toList(),
+        }));
   }
 
-  void _seed() {
-    final now = DateTime.now();
-    courses = [
-      Course(id: 'c1', name: 'Programmazione Mobile', teacher: 'Prof. Rossi', semester: 'II semestre', cfu: 9, status: CourseStatus.inProgress, desiredGrade: 28, notes: 'Flutter, navigazione, stato e persistenza.'),
-      Course(id: 'c2', name: 'Basi di Dati', teacher: 'Prof.ssa Bianchi', semester: 'I semestre', cfu: 6, status: CourseStatus.review, desiredGrade: 27, notes: 'SQL, modellazione ER e normalizzazione.'),
-      Course(id: 'c3', name: 'Ingegneria del Software', teacher: 'Prof. Verdi', semester: 'Annuale', cfu: 9, status: CourseStatus.toStart, desiredGrade: 30, notes: 'Analisi, UML, testing e pattern.'),
-    ];
-    exams = [
-      ExamItem(id: 'e1', title: 'Esame Mobile', courseId: 'c1', date: now.add(const Duration(days: 18)), type: ExamType.exam, priority: Priority.high, status: ItemStatus.future, notes: 'Ripassare gestione stato e storage.'),
-      ExamItem(id: 'e2', title: 'Consegna progetto DB', courseId: 'c2', date: now.add(const Duration(days: 7)), type: ExamType.deadline, priority: Priority.medium, status: ItemStatus.future, notes: 'Completare relazione e schema logico.'),
-      ExamItem(id: 'e3', title: 'Parziale Software', courseId: 'c3', date: now.subtract(const Duration(days: 14)), type: ExamType.exam, priority: Priority.medium, status: ItemStatus.completed, result: 26, notes: 'Superato.'),
-    ];
-    sessions = [
-      StudySession(id: 's1', title: 'Studio widget Flutter', courseId: 'c1', date: now, minutesPlanned: 90, minutesDone: 70, kind: StudyKind.study, completed: false),
-      StudySession(id: 's2', title: 'Esercizi SQL', courseId: 'c2', date: now.add(const Duration(days: 1)), minutesPlanned: 120, minutesDone: 0, kind: StudyKind.exercise, completed: false),
-      StudySession(id: 's3', title: 'Ripasso UML', courseId: 'c3', date: now.add(const Duration(days: 2)), minutesPlanned: 60, minutesDone: 0, kind: StudyKind.review, completed: false),
-    ];
-    tasks = [
-      TaskGoal(id: 't1', title: 'Rifinire schermate principali', description: 'Organizzare il flusso tra dashboard, calendario e obiettivi.', courseId: 'c1', dueDate: now.add(const Duration(days: 3)), priority: Priority.high, status: ItemStatus.future, estimatedMinutes: 120, actualMinutes: 40),
-      TaskGoal(id: 't2', title: 'Schema ER', description: 'Rifinire entità, relazioni e vincoli.', courseId: 'c2', dueDate: now.add(const Duration(days: 4)), priority: Priority.medium, status: ItemStatus.future, estimatedMinutes: 90, actualMinutes: 0),
-      TaskGoal(id: 't3', title: 'Leggere capitolo testing', description: 'Annotare concetti chiave.', courseId: 'c3', dueDate: now.add(const Duration(days: 8)), priority: Priority.low, status: ItemStatus.completed, estimatedMinutes: 60, actualMinutes: 60),
-    ];
+  void _resetToEmpty() {
+    courses = [];
+    exams = [];
+    sessions = [];
+    tasks = [];
   }
 
-  String courseName(String? id) => courses.where((c) => c.id == id).map((c) => c.name).firstOrNull ?? 'Nessun corso';
+  bool _removeLegacyDemoData() {
+    final removedCourseIds = courses
+        .where((course) => _legacyDemoCourseIds.contains(course.id))
+        .map((course) => course.id)
+        .toSet();
+    final beforeCount =
+        courses.length + exams.length + sessions.length + tasks.length;
+
+    courses.removeWhere((course) => _legacyDemoCourseIds.contains(course.id));
+    exams.removeWhere((exam) =>
+        _legacyDemoExamIds.contains(exam.id) ||
+        removedCourseIds.contains(exam.courseId));
+    sessions.removeWhere((session) =>
+        _legacyDemoSessionIds.contains(session.id) ||
+        removedCourseIds.contains(session.courseId));
+    tasks.removeWhere((task) =>
+        _legacyDemoTaskIds.contains(task.id) ||
+        removedCourseIds.contains(task.courseId));
+
+    final afterCount =
+        courses.length + exams.length + sessions.length + tasks.length;
+    return beforeCount != afterCount;
+  }
+
+  String courseName(String? id) =>
+      courses.where((c) => c.id == id).map((c) => c.name).firstOrNull ??
+      'Nessun corso';
 
   Future<void> upsertCourse(Course course) async {
     final index = courses.indexWhere((e) => e.id == course.id);
@@ -313,7 +366,6 @@ class StudyStore extends ChangeNotifier {
     await save();
     notifyListeners();
   }
-
 }
 
 extension FirstOrNull<T> on Iterable<T> {
@@ -321,47 +373,249 @@ extension FirstOrNull<T> on Iterable<T> {
 }
 
 String id() => DateTime.now().microsecondsSinceEpoch.toString();
-String dateLabel(DateTime d) => '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}/${d.year}';
-String shortDateLabel(DateTime d) => '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}';
-String weekdayLabel(DateTime d) => const ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'][d.weekday - 1];
+String dateLabel(DateTime d) =>
+    '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}/${d.year}';
+String shortDateLabel(DateTime d) =>
+    '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}';
+String weekdayLabel(DateTime d) =>
+    const ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'][d.weekday - 1];
 String minutesLabel(int minutes) => '${minutes ~/ 60}h ${minutes % 60}min';
-String timeLabel(DateTime d) => '${d.hour.toString().padLeft(2, '0')}:${d.minute.toString().padLeft(2, '0')}';
+String timeLabel(DateTime d) =>
+    '${d.hour.toString().padLeft(2, '0')}:${d.minute.toString().padLeft(2, '0')}';
+int? optionalInt(String value) {
+  final trimmed = value.trim();
+  if (trimmed.isEmpty) return null;
+  return int.tryParse(trimmed);
+}
+
+int positiveIntOrFallback(String value, int fallback) {
+  final parsed = int.tryParse(value.trim());
+  if (parsed == null || parsed < 0) return fallback;
+  return parsed;
+}
+
+void showAppMessage(BuildContext context, String message) {
+  final route = ModalRoute.of(context);
+  if (route is PopupRoute) {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Controlla i dati'),
+        content: Text(message),
+        actions: [
+          AppButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+    return;
+  }
+
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(
+        SnackBar(content: Text(message), behavior: SnackBarBehavior.floating));
+}
+
+Future<bool> confirmDestructiveAction(
+  BuildContext context, {
+  required String title,
+  required String message,
+  String confirmLabel = 'Elimina',
+}) async {
+  return await showDialog<bool>(
+        context: context,
+        builder: (dialogContext) => AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(dialogContext, false),
+                child: const Text('Annulla')),
+            FilledButton.icon(
+              onPressed: () => Navigator.pop(dialogContext, true),
+              icon: const Icon(Icons.delete_outline_rounded),
+              label: Text(confirmLabel),
+              style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFFDC2626)),
+            ),
+          ],
+        ),
+      ) ??
+      false;
+}
+
+Future<DateTime?> showAppDatePicker(
+  BuildContext context, {
+  required DateTime initialDate,
+  DateTime? firstDate,
+  DateTime? lastDate,
+}) {
+  final first = firstDate ?? DateTime(2020);
+  final last = lastDate ?? DateTime(2035);
+  final safeInitial = initialDate.isBefore(first)
+      ? first
+      : initialDate.isAfter(last)
+          ? last
+          : initialDate;
+
+  return showDatePicker(
+    context: context,
+    firstDate: first,
+    lastDate: last,
+    initialDate: safeInitial,
+    initialEntryMode: DatePickerEntryMode.calendarOnly,
+    helpText: 'Seleziona data',
+    cancelText: 'Annulla',
+    confirmText: 'Conferma',
+    builder: (pickerContext, child) {
+      final base = Theme.of(pickerContext);
+      return Theme(
+        data: base.copyWith(
+          colorScheme: base.colorScheme.copyWith(
+            primary: AppStyle.primary,
+            onPrimary: Colors.white,
+            surface: AppStyle.surface,
+            onSurface: AppStyle.ink,
+          ),
+          datePickerTheme: DatePickerThemeData(
+            backgroundColor: AppStyle.surface,
+            surfaceTintColor: Colors.transparent,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(28),
+                side: const BorderSide(color: AppStyle.line)),
+            headerBackgroundColor: AppStyle.primary,
+            headerForegroundColor: Colors.white,
+            headerHeadlineStyle: base.textTheme.headlineMedium?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 0),
+            headerHelpStyle: base.textTheme.labelLarge?.copyWith(
+                color: Colors.white.withValues(alpha: .86),
+                fontWeight: FontWeight.w800),
+            weekdayStyle: const TextStyle(
+                color: AppStyle.subtle, fontWeight: FontWeight.w800),
+            dayForegroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) return Colors.white;
+              if (states.contains(WidgetState.disabled)) return AppStyle.muted;
+              return AppStyle.ink;
+            }),
+            dayBackgroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
+                return AppStyle.primary;
+              }
+              if (states.contains(WidgetState.hovered) ||
+                  states.contains(WidgetState.focused)) {
+                return AppStyle.primarySoft;
+              }
+              return null;
+            }),
+            todayForegroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) return Colors.white;
+              return AppStyle.primary;
+            }),
+            todayBorder: const BorderSide(color: AppStyle.primary, width: 1.4),
+            yearForegroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) return Colors.white;
+              return AppStyle.ink;
+            }),
+            yearBackgroundColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
+                return AppStyle.primary;
+              }
+              if (states.contains(WidgetState.hovered) ||
+                  states.contains(WidgetState.focused)) {
+                return AppStyle.primarySoft;
+              }
+              return null;
+            }),
+            cancelButtonStyle:
+                TextButton.styleFrom(foregroundColor: AppStyle.subtle),
+            confirmButtonStyle:
+                TextButton.styleFrom(foregroundColor: AppStyle.primary),
+          ),
+        ),
+        child: child!,
+      );
+    },
+  );
+}
+
 String monthLabel(DateTime d) {
-  const months = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+  const months = [
+    'Gennaio',
+    'Febbraio',
+    'Marzo',
+    'Aprile',
+    'Maggio',
+    'Giugno',
+    'Luglio',
+    'Agosto',
+    'Settembre',
+    'Ottobre',
+    'Novembre',
+    'Dicembre'
+  ];
   return '${months[d.month - 1]} ${d.year}';
 }
+
 DateTime dayOnly(DateTime d) => DateTime(d.year, d.month, d.day);
 DateTime monthOnly(DateTime d) => DateTime(d.year, d.month);
-bool sameDay(DateTime a, DateTime b) => a.year == b.year && a.month == b.month && a.day == b.day;
-bool sameMonth(DateTime a, DateTime b) => a.year == b.year && a.month == b.month;
-int daysUntil(DateTime d) => dayOnly(d).difference(dayOnly(DateTime.now())).inDays;
+bool sameDay(DateTime a, DateTime b) =>
+    a.year == b.year && a.month == b.month && a.day == b.day;
+bool sameMonth(DateTime a, DateTime b) =>
+    a.year == b.year && a.month == b.month;
+int daysUntil(DateTime d) =>
+    dayOnly(d).difference(dayOnly(DateTime.now())).inDays;
+DateTime suggestedStudyDate(DateTime examDate, int daysLeft) {
+  final now = DateTime.now();
+  final targetDay = daysLeft <= 1
+      ? dayOnly(now)
+      : daysLeft <= 3
+          ? dayOnly(examDate).subtract(const Duration(days: 1))
+          : dayOnly(now).add(const Duration(days: 1));
+  return DateTime(targetDay.year, targetDay.month, targetDay.day, 9);
+}
+
 List<DateTime> calendarDaysForMonth(DateTime month) {
   final first = DateTime(month.year, month.month, 1);
   final last = DateTime(month.year, month.month + 1, 0);
   final start = first.subtract(Duration(days: first.weekday - 1));
   final end = last.add(Duration(days: 7 - last.weekday));
-  return List.generate(end.difference(start).inDays + 1, (index) => DateTime(start.year, start.month, start.day + index));
+  return List.generate(end.difference(start).inDays + 1,
+      (index) => DateTime(start.year, start.month, start.day + index));
 }
 
 class AutomaticStudySuggestion {
   final String title;
+  final String examTitle;
+  final String courseId;
   final String courseName;
   final String reason;
   final int recommendedMinutes;
   final int daysLeft;
   final Priority priority;
   final DateTime examDate;
+  final DateTime suggestedDate;
 
   const AutomaticStudySuggestion({
     required this.title,
+    required this.examTitle,
+    required this.courseId,
     required this.courseName,
     required this.reason,
     required this.recommendedMinutes,
     required this.daysLeft,
     required this.priority,
     required this.examDate,
+    required this.suggestedDate,
   });
 }
+
+const automaticSuggestionWindowDays = 21;
 
 List<AutomaticStudySuggestion> buildAutomaticSuggestions({
   required StudyStore store,
@@ -370,10 +624,11 @@ List<AutomaticStudySuggestion> buildAutomaticSuggestions({
   final suggestions = <AutomaticStudySuggestion>[];
   final relevantExams = upcomingExams.where((exam) {
     final days = daysUntil(exam.date);
-    return days >= 0 && days <= 30;
+    return days >= 0 && days <= automaticSuggestionWindowDays;
   }).toList()
     ..sort((a, b) {
-      final priority = _priorityRank(b.priority).compareTo(_priorityRank(a.priority));
+      final priority =
+          _priorityRank(b.priority).compareTo(_priorityRank(a.priority));
       if (priority != 0) return priority;
       return a.date.compareTo(b.date);
     });
@@ -398,7 +653,9 @@ List<AutomaticStudySuggestion> buildAutomaticSuggestions({
             ? 90
             : 60;
     final gap = minimumTarget - plannedBeforeExam;
-    final recommendedMinutes = gap > 0 ? gap.clamp(45, 180).toInt() : (openTasksBeforeExam > 0 ? 45 : 0);
+    final recommendedMinutes = gap > 0
+        ? gap.clamp(45, 180).toInt()
+        : (openTasksBeforeExam > 0 ? 45 : 0);
 
     if (recommendedMinutes == 0 && days > 7) continue;
 
@@ -408,16 +665,22 @@ List<AutomaticStudySuggestion> buildAutomaticSuggestions({
             ? 'Sessione prioritaria'
             : 'Piano di avvicinamento';
     final dayText = days == 0 ? 'oggi' : 'tra $days giorni';
-    final taskText = openTasksBeforeExam == 1 ? '1 obiettivo aperto' : '$openTasksBeforeExam obiettivi aperti';
+    final taskText = openTasksBeforeExam == 1
+        ? '1 obiettivo aperto'
+        : '$openTasksBeforeExam obiettivi aperti';
 
     suggestions.add(AutomaticStudySuggestion(
       title: title,
+      examTitle: exam.title,
+      courseId: exam.courseId,
       courseName: courseName,
-      reason: '${exam.title} $dayText: ${minutesLabel(plannedBeforeExam)} pianificati, $taskText.',
+      reason:
+          '${exam.title} $dayText: ${minutesLabel(plannedBeforeExam)} pianificati, $taskText.',
       recommendedMinutes: recommendedMinutes == 0 ? 45 : recommendedMinutes,
       daysLeft: days,
       priority: days <= 3 ? Priority.high : exam.priority,
       examDate: exam.date,
+      suggestedDate: suggestedStudyDate(exam.date, days),
     ));
   }
 
@@ -457,14 +720,19 @@ Color courseAccent(String id) {
     Color(0xFFEC4899),
     Color(0xFF8B5CF6),
   ];
-  final index = id.codeUnits.fold<int>(0, (sum, value) => sum + value) % colors.length;
+  final index =
+      id.codeUnits.fold<int>(0, (sum, value) => sum + value) % colors.length;
   return colors[index];
 }
 
 enum CourseStatus { toStart, inProgress, review, completed, passed }
+
 enum ExamType { exam, deadline, project, other }
+
 enum Priority { low, medium, high }
+
 enum ItemStatus { future, completed, cancelled }
+
 enum StudyKind { study, review, exercise, reading, project }
 
 extension Labels on Enum {
@@ -493,7 +761,8 @@ extension Labels on Enum {
       };
 }
 
-T enumByName<T extends Enum>(List<T> values, String name, T fallback) => values.where((e) => e.name == name).firstOrNull ?? fallback;
+T enumByName<T extends Enum>(List<T> values, String name, T fallback) =>
+    values.where((e) => e.name == name).firstOrNull ?? fallback;
 
 class Course {
   final String id;
@@ -506,9 +775,27 @@ class Course {
   final int? finalGrade;
   final String notes;
 
-  Course({required this.id, required this.name, required this.teacher, required this.semester, required this.cfu, required this.status, this.desiredGrade, this.finalGrade, required this.notes});
+  Course(
+      {required this.id,
+      required this.name,
+      required this.teacher,
+      required this.semester,
+      required this.cfu,
+      required this.status,
+      this.desiredGrade,
+      this.finalGrade,
+      required this.notes});
 
-  Course copyWith({String? name, String? teacher, String? semester, int? cfu, CourseStatus? status, int? desiredGrade, int? finalGrade, String? notes}) => Course(
+  Course copyWith(
+          {String? name,
+          String? teacher,
+          String? semester,
+          int? cfu,
+          CourseStatus? status,
+          int? desiredGrade,
+          int? finalGrade,
+          String? notes}) =>
+      Course(
         id: id,
         name: name ?? this.name,
         teacher: teacher ?? this.teacher,
@@ -520,8 +807,28 @@ class Course {
         notes: notes ?? this.notes,
       );
 
-  Map<String, dynamic> toJson() => {'id': id, 'name': name, 'teacher': teacher, 'semester': semester, 'cfu': cfu, 'status': status.name, 'desiredGrade': desiredGrade, 'finalGrade': finalGrade, 'notes': notes};
-  factory Course.fromJson(Map<String, dynamic> json) => Course(id: json['id'], name: json['name'], teacher: json['teacher'], semester: json['semester'], cfu: json['cfu'], status: enumByName(CourseStatus.values, json['status'], CourseStatus.toStart), desiredGrade: json['desiredGrade'], finalGrade: json['finalGrade'], notes: json['notes']);
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'teacher': teacher,
+        'semester': semester,
+        'cfu': cfu,
+        'status': status.name,
+        'desiredGrade': desiredGrade,
+        'finalGrade': finalGrade,
+        'notes': notes
+      };
+  factory Course.fromJson(Map<String, dynamic> json) => Course(
+      id: json['id'],
+      name: json['name'],
+      teacher: json['teacher'],
+      semester: json['semester'],
+      cfu: json['cfu'],
+      status:
+          enumByName(CourseStatus.values, json['status'], CourseStatus.toStart),
+      desiredGrade: json['desiredGrade'],
+      finalGrade: json['finalGrade'],
+      notes: json['notes']);
 }
 
 class ExamItem {
@@ -535,9 +842,37 @@ class ExamItem {
   final String notes;
   final int? result;
 
-  ExamItem({required this.id, required this.title, required this.courseId, required this.date, required this.type, required this.priority, required this.status, required this.notes, this.result});
-  Map<String, dynamic> toJson() => {'id': id, 'title': title, 'courseId': courseId, 'date': date.toIso8601String(), 'type': type.name, 'priority': priority.name, 'status': status.name, 'notes': notes, 'result': result};
-  factory ExamItem.fromJson(Map<String, dynamic> json) => ExamItem(id: json['id'], title: json['title'], courseId: json['courseId'], date: DateTime.parse(json['date']), type: enumByName(ExamType.values, json['type'], ExamType.exam), priority: enumByName(Priority.values, json['priority'], Priority.medium), status: enumByName(ItemStatus.values, json['status'], ItemStatus.future), notes: json['notes'], result: json['result']);
+  ExamItem(
+      {required this.id,
+      required this.title,
+      required this.courseId,
+      required this.date,
+      required this.type,
+      required this.priority,
+      required this.status,
+      required this.notes,
+      this.result});
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'courseId': courseId,
+        'date': date.toIso8601String(),
+        'type': type.name,
+        'priority': priority.name,
+        'status': status.name,
+        'notes': notes,
+        'result': result
+      };
+  factory ExamItem.fromJson(Map<String, dynamic> json) => ExamItem(
+      id: json['id'],
+      title: json['title'],
+      courseId: json['courseId'],
+      date: DateTime.parse(json['date']),
+      type: enumByName(ExamType.values, json['type'], ExamType.exam),
+      priority: enumByName(Priority.values, json['priority'], Priority.medium),
+      status: enumByName(ItemStatus.values, json['status'], ItemStatus.future),
+      notes: json['notes'],
+      result: json['result']);
 }
 
 class StudySession {
@@ -550,9 +885,34 @@ class StudySession {
   final StudyKind kind;
   final bool completed;
 
-  StudySession({required this.id, required this.title, required this.courseId, required this.date, required this.minutesPlanned, required this.minutesDone, required this.kind, required this.completed});
-  Map<String, dynamic> toJson() => {'id': id, 'title': title, 'courseId': courseId, 'date': date.toIso8601String(), 'minutesPlanned': minutesPlanned, 'minutesDone': minutesDone, 'kind': kind.name, 'completed': completed};
-  factory StudySession.fromJson(Map<String, dynamic> json) => StudySession(id: json['id'], title: json['title'], courseId: json['courseId'], date: DateTime.parse(json['date']), minutesPlanned: json['minutesPlanned'], minutesDone: json['minutesDone'], kind: enumByName(StudyKind.values, json['kind'], StudyKind.study), completed: json['completed']);
+  StudySession(
+      {required this.id,
+      required this.title,
+      required this.courseId,
+      required this.date,
+      required this.minutesPlanned,
+      required this.minutesDone,
+      required this.kind,
+      required this.completed});
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'courseId': courseId,
+        'date': date.toIso8601String(),
+        'minutesPlanned': minutesPlanned,
+        'minutesDone': minutesDone,
+        'kind': kind.name,
+        'completed': completed
+      };
+  factory StudySession.fromJson(Map<String, dynamic> json) => StudySession(
+      id: json['id'],
+      title: json['title'],
+      courseId: json['courseId'],
+      date: DateTime.parse(json['date']),
+      minutesPlanned: json['minutesPlanned'],
+      minutesDone: json['minutesDone'],
+      kind: enumByName(StudyKind.values, json['kind'], StudyKind.study),
+      completed: json['completed']);
 }
 
 class TaskGoal {
@@ -566,45 +926,80 @@ class TaskGoal {
   final int estimatedMinutes;
   final int actualMinutes;
 
-  TaskGoal({required this.id, required this.title, required this.description, required this.courseId, required this.dueDate, required this.priority, required this.status, required this.estimatedMinutes, required this.actualMinutes});
-  Map<String, dynamic> toJson() => {'id': id, 'title': title, 'description': description, 'courseId': courseId, 'dueDate': dueDate.toIso8601String(), 'priority': priority.name, 'status': status.name, 'estimatedMinutes': estimatedMinutes, 'actualMinutes': actualMinutes};
-  factory TaskGoal.fromJson(Map<String, dynamic> json) => TaskGoal(id: json['id'], title: json['title'], description: json['description'], courseId: json['courseId'], dueDate: DateTime.parse(json['dueDate']), priority: enumByName(Priority.values, json['priority'], Priority.medium), status: enumByName(ItemStatus.values, json['status'], ItemStatus.future), estimatedMinutes: json['estimatedMinutes'], actualMinutes: json['actualMinutes']);
+  TaskGoal(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.courseId,
+      required this.dueDate,
+      required this.priority,
+      required this.status,
+      required this.estimatedMinutes,
+      required this.actualMinutes});
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'description': description,
+        'courseId': courseId,
+        'dueDate': dueDate.toIso8601String(),
+        'priority': priority.name,
+        'status': status.name,
+        'estimatedMinutes': estimatedMinutes,
+        'actualMinutes': actualMinutes
+      };
+  factory TaskGoal.fromJson(Map<String, dynamic> json) => TaskGoal(
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      courseId: json['courseId'],
+      dueDate: DateTime.parse(json['dueDate']),
+      priority: enumByName(Priority.values, json['priority'], Priority.medium),
+      status: enumByName(ItemStatus.values, json['status'], ItemStatus.future),
+      estimatedMinutes: json['estimatedMinutes'],
+      actualMinutes: json['actualMinutes']);
 }
 
-
 class AppStyle {
-  static const Color background = Color(0xFFF6F5F1);
+  static const Color background = Color(0xFFF4F7FB);
   static const Color surface = Color(0xFFFFFFFF);
-  static const Color surfaceAlt = Color(0xFFF8F7F3);
+  static const Color surfaceAlt = Color(0xFFF8FAFC);
   static const Color ink = Color(0xFF111111);
+  static const Color primary = Color(0xFF2563EB);
+  static const Color primaryDark = Color(0xFF1D4ED8);
+  static const Color primarySoft = Color(0xFFEFF6FF);
+  static const Color danger = Color(0xFFDC2626);
+  static const Color dangerDark = Color(0xFFB91C1C);
+  static const Color dangerSoft = Color(0xFFFEF2F2);
   static const Color muted = Color(0xFF8A8A8A);
   static const Color subtle = Color(0xFF5F6368);
-  static const Color line = Color(0xFFE8E4DA);
-  static const Color lineStrong = Color(0xFFD8D2C4);
-  static const Color darkSurface = Color(0xFF151515);
-  static const Color darkSurfaceSoft = Color(0xFF242424);
-  static const Color warm = Color(0xFFEDE7D8);
+  static const Color line = Color(0xFFE2E8F0);
+  static const Color lineStrong = Color(0xFFCBD5E1);
+  static const Color darkSurface = primaryDark;
+  static const Color darkSurfaceSoft = primary;
+  static const Color warm = Color(0xFFEFF6FF);
   static const double maxPageWidth = 1240;
   static const double sidebarWidth = 292;
   static const double buttonHeight = 48;
   static const double buttonRadius = 16;
 
   static BoxShadow get softShadow => BoxShadow(
-        color: Colors.black.withOpacity(.045),
+        color: Colors.black.withValues(alpha: .045),
         blurRadius: 28,
         offset: const Offset(0, 14),
       );
 
   static BoxShadow get liftShadow => BoxShadow(
-        color: Colors.black.withOpacity(.075),
+        color: Colors.black.withValues(alpha: .075),
         blurRadius: 34,
         offset: const Offset(0, 18),
       );
 }
 
 class Responsive {
-  static bool mobile(BuildContext context) => MediaQuery.of(context).size.width < 620;
-  static bool tablet(BuildContext context) => MediaQuery.of(context).size.width < 980;
+  static bool mobile(BuildContext context) =>
+      MediaQuery.of(context).size.width < 620;
+  static bool tablet(BuildContext context) =>
+      MediaQuery.of(context).size.width < 980;
 }
 
 class ShellScreen extends StatefulWidget {
@@ -627,11 +1022,12 @@ class _ShellScreenState extends State<ShellScreen> {
       const TasksScreen(),
       const PomodoroScreen(),
     ];
-    final items = const [
+    const items = [
       _NavItem(Icons.dashboard_outlined, Icons.dashboard, 'Home'),
       _NavItem(Icons.menu_book_outlined, Icons.menu_book, 'Corsi'),
       _NavItem(Icons.event_outlined, Icons.event, 'Esami'),
-      _NavItem(Icons.calendar_month_outlined, Icons.calendar_month, 'Calendario'),
+      _NavItem(
+          Icons.calendar_month_outlined, Icons.calendar_month, 'Calendario'),
       _NavItem(Icons.task_alt_outlined, Icons.task_alt, 'Obiettivi'),
       _NavItem(Icons.timer_outlined, Icons.timer, 'Pomodoro'),
     ];
@@ -646,18 +1042,28 @@ class _ShellScreenState extends State<ShellScreen> {
                 items: items,
                 onSelected: (value) => setState(() => selected = value),
               ),
-              Expanded(child: AnimatedSwitcher(duration: const Duration(milliseconds: 260), child: pages[selected])),
+              Expanded(
+                  child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 260),
+                      child: pages[selected])),
             ],
           ),
         );
       }
       return Scaffold(
-        body: AnimatedSwitcher(duration: const Duration(milliseconds: 220), child: pages[selected]),
+        body: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 220),
+            child: pages[selected]),
         bottomNavigationBar: NavigationBar(
           height: 70,
           labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
           selectedIndex: selected,
-          destinations: items.map((e) => NavigationDestination(icon: Icon(e.icon), selectedIcon: Icon(e.selectedIcon), label: e.label)).toList(),
+          destinations: items
+              .map((e) => NavigationDestination(
+                  icon: Icon(e.icon),
+                  selectedIcon: Icon(e.selectedIcon),
+                  label: e.label))
+              .toList(),
           onDestinationSelected: (value) => setState(() => selected = value),
         ),
       );
@@ -677,7 +1083,8 @@ class _Sidebar extends StatelessWidget {
   final List<_NavItem> items;
   final ValueChanged<int> onSelected;
 
-  const _Sidebar({required this.selected, required this.items, required this.onSelected});
+  const _Sidebar(
+      {required this.selected, required this.items, required this.onSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -710,14 +1117,27 @@ class _Sidebar extends StatelessWidget {
                       width: 44,
                       height: 44,
                       decoration: BoxDecoration(
-                        color: Colors.white,
                         borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withValues(alpha: .10),
+                              blurRadius: 12,
+                              offset: const Offset(0, 5)),
+                        ],
                       ),
-                      child: const Icon(Icons.auto_stories_rounded, color: AppStyle.ink),
+                      clipBehavior: Clip.antiAlias,
+                      child: Image.asset(
+                          'assets/branding/studyplanner_logo_1024.png',
+                          fit: BoxFit.cover),
                     ),
                     const SizedBox(width: 12),
                     const Expanded(
-                      child: Text('StudyPlanner', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18, letterSpacing: -.3)),
+                      child: Text('StudyPlanner',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900,
+                              fontSize: 18,
+                              letterSpacing: 0)),
                     ),
                   ],
                 ),
@@ -725,7 +1145,12 @@ class _Sidebar extends StatelessWidget {
               const SizedBox(height: 26),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Text('NAVIGAZIONE', style: TextStyle(color: AppStyle.muted, fontWeight: FontWeight.w900, letterSpacing: 1.3, fontSize: 11)),
+                child: Text('NAVIGAZIONE',
+                    style: TextStyle(
+                        color: AppStyle.muted,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0,
+                        fontSize: 11)),
               ),
               const SizedBox(height: 12),
               ...List.generate(items.length, (index) {
@@ -739,11 +1164,14 @@ class _Sidebar extends StatelessWidget {
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 180),
                       curve: Curves.easeOutCubic,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
                       decoration: BoxDecoration(
-                        color: active ? AppStyle.ink : Colors.transparent,
+                        color: active ? AppStyle.primary : Colors.transparent,
                         borderRadius: BorderRadius.circular(18),
-                        border: Border.all(color: active ? AppStyle.ink : Colors.transparent),
+                        border: Border.all(
+                            color:
+                                active ? AppStyle.primary : Colors.transparent),
                       ),
                       child: Row(
                         children: [
@@ -751,22 +1179,29 @@ class _Sidebar extends StatelessWidget {
                             width: 34,
                             height: 34,
                             decoration: BoxDecoration(
-                              color: active ? Colors.white.withOpacity(.12) : AppStyle.surfaceAlt,
+                              color: active
+                                  ? Colors.white.withValues(alpha: .12)
+                                  : AppStyle.surfaceAlt,
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Icon(active ? item.selectedIcon : item.icon, color: active ? Colors.white : AppStyle.subtle, size: 19),
+                            child: Icon(active ? item.selectedIcon : item.icon,
+                                color: active ? Colors.white : AppStyle.subtle,
+                                size: 19),
                           ),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
                               item.label,
-                              style: TextStyle(fontWeight: FontWeight.w900, color: active ? Colors.white : AppStyle.ink),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  color: active ? Colors.white : AppStyle.ink),
                             ),
                           ),
                           AnimatedOpacity(
                             opacity: active ? 1 : 0,
                             duration: const Duration(milliseconds: 150),
-                            child: const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 18),
+                            child: const Icon(Icons.arrow_forward_rounded,
+                                color: Colors.white, size: 18),
                           ),
                         ],
                       ),
@@ -789,7 +1224,12 @@ class PageFrame extends StatelessWidget {
   final Widget child;
   final List<Widget> actions;
 
-  const PageFrame({super.key, required this.title, required this.subtitle, required this.child, this.actions = const []});
+  const PageFrame(
+      {super.key,
+      required this.title,
+      required this.subtitle,
+      required this.child,
+      this.actions = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -801,11 +1241,13 @@ class PageFrame extends StatelessWidget {
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: AppStyle.maxPageWidth),
             child: Padding(
-              padding: EdgeInsets.fromLTRB(compact ? 14 : 28, compact ? 14 : 26, compact ? 14 : 28, compact ? 8 : 24),
+              padding: EdgeInsets.fromLTRB(compact ? 14 : 28, compact ? 14 : 26,
+                  compact ? 14 : 28, compact ? 8 : 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _PageHeader(title: title, subtitle: subtitle, actions: actions),
+                  _PageHeader(
+                      title: title, subtitle: subtitle, actions: actions),
                   SizedBox(height: compact ? 14 : 22),
                   Expanded(child: child),
                 ],
@@ -823,7 +1265,8 @@ class _PageHeader extends StatelessWidget {
   final String subtitle;
   final List<Widget> actions;
 
-  const _PageHeader({required this.title, required this.subtitle, required this.actions});
+  const _PageHeader(
+      {required this.title, required this.subtitle, required this.actions});
 
   @override
   Widget build(BuildContext context) {
@@ -833,10 +1276,13 @@ class _PageHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: (compact ? Theme.of(context).textTheme.headlineMedium : Theme.of(context).textTheme.displaySmall)?.copyWith(
+          style: (compact
+                  ? Theme.of(context).textTheme.headlineMedium
+                  : Theme.of(context).textTheme.displaySmall)
+              ?.copyWith(
             color: AppStyle.ink,
             fontWeight: FontWeight.w900,
-            letterSpacing: compact ? -0.8 : -1.2,
+            letterSpacing: 0,
           ),
         ),
         const SizedBox(height: 7),
@@ -844,7 +1290,10 @@ class _PageHeader extends StatelessWidget {
           subtitle,
           maxLines: compact ? 3 : 2,
           overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: AppStyle.subtle, fontWeight: FontWeight.w600, height: 1.35),
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: AppStyle.subtle,
+              fontWeight: FontWeight.w600,
+              height: 1.35),
         ),
       ],
     );
@@ -859,29 +1308,28 @@ class _PageHeader extends StatelessWidget {
         boxShadow: [AppStyle.softShadow],
       ),
       child: compact
-          ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [content, if (actions.isNotEmpty) ...[const SizedBox(height: 16), Wrap(spacing: 10, runSpacing: 10, children: actions)]])
+          ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              content,
+              if (actions.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                Wrap(spacing: 10, runSpacing: 10, children: actions)
+              ]
+            ])
           : Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(child: content),
                 if (actions.isNotEmpty) ...[
                   const SizedBox(width: 18),
-                  Wrap(spacing: 10, runSpacing: 10, alignment: WrapAlignment.end, children: actions),
+                  Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      alignment: WrapAlignment.end,
+                      children: actions),
                 ],
               ],
             ),
     );
-  }
-}
-
-class _GlowCircle extends StatelessWidget {
-  final double size;
-  final Color color;
-  const _GlowCircle({required this.size, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(width: size, height: size, decoration: BoxDecoration(shape: BoxShape.circle, color: color));
   }
 }
 
@@ -895,45 +1343,119 @@ class DashboardScreen extends StatelessWidget {
     final store = StudyScope.of(context);
     final planned = store.sessions.fold<int>(0, (a, b) => a + b.minutesPlanned);
     final done = store.sessions.fold<int>(0, (a, b) => a + b.minutesDone);
-    final completedTasks = store.tasks.where((e) => e.status == ItemStatus.completed).length;
-    final openTasks = store.tasks.where((e) => e.status != ItemStatus.completed).length;
-    final completedExams = store.exams.where((e) => e.status == ItemStatus.completed).length;
-    final activeCourses = store.courses.where((e) => e.status == CourseStatus.inProgress || e.status == CourseStatus.review).length;
-    final upcoming = [...store.exams.where((e) => e.status == ItemStatus.future && daysUntil(e.date) >= 0)]..sort((a, b) => a.date.compareTo(b.date));
+    final completedTasks =
+        store.tasks.where((e) => e.status == ItemStatus.completed).length;
+    final openTasks =
+        store.tasks.where((e) => e.status != ItemStatus.completed).length;
+    final completedExams =
+        store.exams.where((e) => e.status == ItemStatus.completed).length;
+    final activeCourses = store.courses
+        .where((e) =>
+            e.status == CourseStatus.inProgress ||
+            e.status == CourseStatus.review)
+        .length;
+    final upcoming = [
+      ...store.exams
+          .where((e) => e.status == ItemStatus.future && daysUntil(e.date) >= 0)
+    ]..sort((a, b) => a.date.compareTo(b.date));
     final nextExam = upcoming.firstOrNull;
     final nextDays = nextExam == null ? null : daysUntil(nextExam.date);
-    final progress = planned == 0 ? 0.0 : (done / planned).clamp(0.0, 1.0).toDouble();
-    final taskProgress = store.tasks.isEmpty ? 0.0 : (completedTasks / store.tasks.length).clamp(0.0, 1.0).toDouble();
-    final automaticSuggestions = buildAutomaticSuggestions(store: store, upcomingExams: upcoming);
+    final progress =
+        planned == 0 ? 0.0 : (done / planned).clamp(0.0, 1.0).toDouble();
+    final taskProgress = store.tasks.isEmpty
+        ? 0.0
+        : (completedTasks / store.tasks.length).clamp(0.0, 1.0).toDouble();
+    final automaticSuggestions =
+        buildAutomaticSuggestions(store: store, upcomingExams: upcoming);
 
     return PageFrame(
       title: 'Home',
-      subtitle: 'Riepilogo essenziale di corsi, scadenze, studio svolto e obiettivi.',
+      subtitle:
+          'Riepilogo essenziale di corsi, scadenze, studio svolto e obiettivi.',
       child: ListView(
         children: [
           _DashboardStatsGrid(
             children: [
-              StatCard(label: 'Corsi totali', value: '${store.courses.length}', icon: Icons.menu_book_rounded, color: const Color(0xFF5B5FEF), onTap: () => onNavigate(1)),
-              StatCard(label: 'Corsi attivi', value: '$activeCourses', icon: Icons.local_library_rounded, color: const Color(0xFF8B5CF6), onTap: () => onNavigate(1)),
-              StatCard(label: 'Esami futuri', value: '${upcoming.length}', icon: Icons.event_rounded, color: const Color(0xFF06B6D4), onTap: () => onNavigate(2)),
-              StatCard(label: 'Prossima scadenza', value: nextExam == null ? '—' : (nextDays == 0 ? 'Oggi' : '${nextDays}g'), icon: Icons.event_note_rounded, color: const Color(0xFFF97316), onTap: () => onNavigate(3)),
-              StatCard(label: 'Studio svolto', value: minutesLabel(done), icon: Icons.trending_up_rounded, color: const Color(0xFF10B981), onTap: () => onNavigate(3)),
-              StatCard(label: 'Studio pianificato', value: minutesLabel(planned), icon: Icons.schedule_rounded, color: const Color(0xFF14B8A6), onTap: () => onNavigate(3)),
-              StatCard(label: 'Obiettivi aperti', value: '$openTasks', icon: Icons.checklist_rounded, color: const Color(0xFFF59E0B), onTap: () => onNavigate(4)),
-              StatCard(label: 'Esami completati', value: '$completedExams', icon: Icons.verified_rounded, color: const Color(0xFF3B82F6), onTap: () => onNavigate(2)),
-              StatCard(label: 'Suggerimenti automatici', value: '${automaticSuggestions.length}', icon: Icons.tips_and_updates_rounded, color: AppStyle.ink, helper: 'Da esami imminenti', onTap: () => _showAutomaticSuggestionsSheet(context, automaticSuggestions, () => onNavigate(3))),
+              StatCard(
+                  label: 'Corsi totali',
+                  value: '${store.courses.length}',
+                  icon: Icons.menu_book_rounded,
+                  color: const Color(0xFF5B5FEF),
+                  onTap: () => onNavigate(1)),
+              StatCard(
+                  label: 'Corsi attivi',
+                  value: '$activeCourses',
+                  icon: Icons.local_library_rounded,
+                  color: const Color(0xFF8B5CF6),
+                  onTap: () => onNavigate(1)),
+              StatCard(
+                  label: 'Esami futuri',
+                  value: '${upcoming.length}',
+                  icon: Icons.event_rounded,
+                  color: const Color(0xFF06B6D4),
+                  onTap: () => onNavigate(2)),
+              StatCard(
+                  label: 'Esami completati',
+                  value: '$completedExams',
+                  icon: Icons.verified_rounded,
+                  color: const Color(0xFF3B82F6),
+                  onTap: () => onNavigate(2)),
+              StatCard(
+                  label: 'Studio svolto',
+                  value: minutesLabel(done),
+                  icon: Icons.trending_up_rounded,
+                  color: const Color(0xFF10B981),
+                  onTap: () => onNavigate(3)),
+              StatCard(
+                  label: 'Studio pianificato',
+                  value: minutesLabel(planned),
+                  icon: Icons.schedule_rounded,
+                  color: const Color(0xFF14B8A6),
+                  onTap: () => onNavigate(3)),
+              StatCard(
+                  label: 'Prossima scadenza',
+                  value: nextExam == null
+                      ? '—'
+                      : (nextDays == 0 ? 'Oggi' : '${nextDays}g'),
+                  icon: Icons.event_note_rounded,
+                  color: const Color(0xFFF97316),
+                  onTap: () => onNavigate(3)),
+              StatCard(
+                  label: 'Obiettivi aperti',
+                  value: '$openTasks',
+                  icon: Icons.checklist_rounded,
+                  color: const Color(0xFFF59E0B),
+                  onTap: () => onNavigate(4)),
             ],
           ),
+          const SizedBox(height: 12),
+          _AutomaticSuggestionsSummaryCard(
+              count: automaticSuggestions.length,
+              onTap: () => _showAutomaticSuggestionsSheet(
+                  context, automaticSuggestions, () => onNavigate(3))),
           const SizedBox(height: 16),
           LayoutBuilder(builder: (context, constraints) {
             final wide = constraints.maxWidth >= 980;
             final left = Column(
               children: [
-                _ProgressCard(title: 'Avanzamento studio', subtitle: '${minutesLabel(done)} svolti su ${minutesLabel(planned)} pianificati', value: progress, icon: Icons.auto_graph_rounded, color: const Color(0xFF5B5FEF)),
+                _ProgressCard(
+                    title: 'Avanzamento studio',
+                    subtitle:
+                        '${minutesLabel(done)} svolti su ${minutesLabel(planned)} pianificati',
+                    value: progress,
+                    icon: Icons.auto_graph_rounded,
+                    color: const Color(0xFF5B5FEF)),
                 const SizedBox(height: 16),
-                _ProgressCard(title: 'Obiettivi completati', subtitle: '$completedTasks attività completate su ${store.tasks.length}', value: taskProgress, icon: Icons.flag_rounded, color: const Color(0xFF10B981)),
+                _ProgressCard(
+                    title: 'Obiettivi completati',
+                    subtitle:
+                        '$completedTasks attività completate su ${store.tasks.length}',
+                    value: taskProgress,
+                    icon: Icons.flag_rounded,
+                    color: const Color(0xFF10B981)),
                 const SizedBox(height: 16),
-                _StudyDistribution(courses: store.courses, sessions: store.sessions),
+                _StudyDistribution(
+                    courses: store.courses, sessions: store.sessions),
               ],
             );
             final right = Column(
@@ -941,8 +1463,15 @@ class DashboardScreen extends StatelessWidget {
                 _UpcomingPanel(upcoming: upcoming, store: store),
               ],
             );
-            if (!wide) return Column(children: [left, const SizedBox(height: 16), right]);
-            return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [Expanded(flex: 6, child: left), const SizedBox(width: 16), Expanded(flex: 5, child: right)]);
+            if (!wide) {
+              return Column(
+                  children: [left, const SizedBox(height: 16), right]);
+            }
+            return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Expanded(flex: 6, child: left),
+              const SizedBox(width: 16),
+              Expanded(flex: 5, child: right)
+            ]);
           }),
         ],
       ),
@@ -959,18 +1488,107 @@ class _DashboardStatsGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       const spacing = 12.0;
-      final narrow = constraints.maxWidth < 520;
-      final cardHeight = narrow ? 116.0 : 148.0;
+      final columns = constraints.maxWidth >= 1100
+          ? 4
+          : constraints.maxWidth >= 720
+              ? 3
+              : constraints.maxWidth >= 380
+                  ? 2
+                  : 1;
+      final narrow = columns <= 2;
+      final cardHeight = narrow ? 132.0 : 156.0;
+      final tileWidth =
+          (constraints.maxWidth - (spacing * (columns - 1))) / columns;
       return GridView.count(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        crossAxisCount: 3,
+        crossAxisCount: columns,
         crossAxisSpacing: spacing,
         mainAxisSpacing: spacing,
-        childAspectRatio: (constraints.maxWidth - (spacing * 2)) / 3 / cardHeight,
-        children: children.take(9).toList(),
+        childAspectRatio: tileWidth / cardHeight,
+        children: children,
       );
     });
+  }
+}
+
+class _AutomaticSuggestionsSummaryCard extends StatelessWidget {
+  final int count;
+  final VoidCallback onTap;
+
+  const _AutomaticSuggestionsSummaryCard(
+      {required this.count, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    const color = AppStyle.primary;
+    final card = AppCard(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+      child: Row(
+        children: [
+          const _SoftIcon(icon: Icons.tips_and_updates_rounded, color: color),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Suggerimenti automatici',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(fontWeight: FontWeight.w900)),
+                const SizedBox(height: 4),
+                const Text('Da esami imminenti',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Color(0xFF64748B), fontWeight: FontWeight.w700)),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: .10),
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(color: color.withValues(alpha: .18)),
+            ),
+            child: Text('$count',
+                style: const TextStyle(
+                    color: color, fontWeight: FontWeight.w900, fontSize: 16)),
+          ),
+          const SizedBox(width: 10),
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: .10),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: color.withValues(alpha: .20)),
+            ),
+            child: Icon(Icons.north_east_rounded,
+                color: color.withValues(alpha: .88), size: 18),
+          ),
+        ],
+      ),
+    );
+
+    return Semantics(
+      button: true,
+      label: 'Suggerimenti automatici',
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: onTap,
+          child: card,
+        ),
+      ),
+    );
   }
 }
 
@@ -981,7 +1599,12 @@ class _ProgressCard extends StatelessWidget {
   final IconData icon;
   final Color color;
 
-  const _ProgressCard({required this.title, required this.subtitle, required this.value, required this.icon, required this.color});
+  const _ProgressCard(
+      {required this.title,
+      required this.subtitle,
+      required this.value,
+      required this.icon,
+      required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -994,14 +1617,30 @@ class _ProgressCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(children: [Expanded(child: Text(title, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900))), Text('${(value * 100).round()}%', style: TextStyle(color: color, fontWeight: FontWeight.w900))]),
+                Row(children: [
+                  Expanded(
+                      child: Text(title,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w900))),
+                  Text('${(value * 100).round()}%',
+                      style:
+                          TextStyle(color: color, fontWeight: FontWeight.w900))
+                ]),
                 const SizedBox(height: 8),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(999),
-                  child: LinearProgressIndicator(value: value, minHeight: 10, backgroundColor: color.withOpacity(.12), color: color),
+                  child: LinearProgressIndicator(
+                      value: value,
+                      minHeight: 10,
+                      backgroundColor: color.withValues(alpha: .12),
+                      color: color),
                 ),
                 const SizedBox(height: 8),
-                Text(subtitle, style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
+                Text(subtitle,
+                    style: const TextStyle(
+                        color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
               ],
             ),
           ),
@@ -1019,19 +1658,40 @@ class _StudyDistribution extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final values = courses.map((course) {
-      final minutes = sessions.where((session) => session.courseId == course.id).fold<int>(0, (sum, session) => sum + session.minutesPlanned);
-      return MapEntry(course, minutes);
-    }).where((entry) => entry.value > 0).toList()
+    final values = courses
+        .map((course) {
+          final minutes = sessions
+              .where((session) => session.courseId == course.id)
+              .fold<int>(0, (sum, session) => sum + session.minutesPlanned);
+          return MapEntry(course, minutes);
+        })
+        .where((entry) => entry.value > 0)
+        .toList()
       ..sort((a, b) => b.value.compareTo(a.value));
-    final maxMinutes = values.isEmpty ? 1 : values.map((e) => e.value).reduce((a, b) => a > b ? a : b);
+    final maxMinutes = values.isEmpty
+        ? 1
+        : values.map((e) => e.value).reduce((a, b) => a > b ? a : b);
     return AppCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(children: [const _SoftIcon(icon: Icons.donut_large_rounded, color: Color(0xFF8B5CF6)), const SizedBox(width: 12), Text('Distribuzione studio', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900))]),
+          Row(children: [
+            const _SoftIcon(
+                icon: Icons.donut_large_rounded, color: Color(0xFF8B5CF6)),
+            const SizedBox(width: 12),
+            Expanded(
+                child: Text('Distribuzione studio',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontWeight: FontWeight.w900)))
+          ]),
           const SizedBox(height: 16),
-          if (values.isEmpty) const Text('Pianifica una sessione per vedere la distribuzione per corso.'),
+          if (values.isEmpty)
+            const Text(
+                'Pianifica una sessione per vedere la distribuzione per corso.'),
           ...values.map((entry) {
             final color = courseAccent(entry.key.id);
             final value = entry.value / maxMinutes;
@@ -1040,9 +1700,24 @@ class _StudyDistribution extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(children: [Expanded(child: Text(entry.key.name, style: const TextStyle(fontWeight: FontWeight.w800))), Text(minutesLabel(entry.value), style: const TextStyle(fontWeight: FontWeight.w800, color: Color(0xFF64748B)))]),
+                  Row(children: [
+                    Expanded(
+                        child: Text(entry.key.name,
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w800))),
+                    Text(minutesLabel(entry.value),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF64748B)))
+                  ]),
                   const SizedBox(height: 7),
-                  ClipRRect(borderRadius: BorderRadius.circular(999), child: LinearProgressIndicator(value: value, minHeight: 9, backgroundColor: color.withOpacity(.12), color: color)),
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(999),
+                      child: LinearProgressIndicator(
+                          value: value,
+                          minHeight: 9,
+                          backgroundColor: color.withValues(alpha: .12),
+                          color: color)),
                 ],
               ),
             );
@@ -1065,7 +1740,17 @@ class _UpcomingPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(children: [const _SoftIcon(icon: Icons.event_available_rounded, color: Color(0xFF06B6D4)), const SizedBox(width: 12), Expanded(child: Text('Scadenze imminenti', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)))]),
+          Row(children: [
+            const _SoftIcon(
+                icon: Icons.event_available_rounded, color: Color(0xFF06B6D4)),
+            const SizedBox(width: 12),
+            Expanded(
+                child: Text('Scadenze imminenti',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontWeight: FontWeight.w900)))
+          ]),
           const SizedBox(height: 12),
           if (upcoming.isEmpty) const Text('Nessuna scadenza futura.'),
           ...upcoming.take(5).map((e) {
@@ -1074,24 +1759,44 @@ class _UpcomingPanel extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 10),
               child: Container(
                 padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(color: const Color(0xFFF8FAFC), borderRadius: BorderRadius.circular(22), border: Border.all(color: const Color(0xFFE4EAF3))),
+                decoration: BoxDecoration(
+                    color: const Color(0xFFF8FAFC),
+                    borderRadius: BorderRadius.circular(22),
+                    border: Border.all(color: const Color(0xFFE4EAF3))),
                 child: Row(
                   children: [
                     Container(
                       width: 54,
                       height: 54,
-                      decoration: BoxDecoration(color: priorityColor(e.priority).withOpacity(.12), borderRadius: BorderRadius.circular(18)),
-                      child: Icon(e.type == ExamType.deadline ? Icons.assignment_rounded : Icons.school_rounded, color: priorityColor(e.priority)),
+                      decoration: BoxDecoration(
+                          color:
+                              priorityColor(e.priority).withValues(alpha: .12),
+                          borderRadius: BorderRadius.circular(18)),
+                      child: Icon(
+                          e.type == ExamType.deadline
+                              ? Icons.assignment_rounded
+                              : Icons.school_rounded,
+                          color: priorityColor(e.priority)),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text(e.title, style: const TextStyle(fontWeight: FontWeight.w900)),
-                        const SizedBox(height: 3),
-                        Text('${store.courseName(e.courseId)} • ${dateLabel(e.date)}', style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
-                      ]),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(e.title,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w900)),
+                            const SizedBox(height: 3),
+                            Text(
+                                '${store.courseName(e.courseId)} • ${dateLabel(e.date)}',
+                                style: const TextStyle(
+                                    color: Color(0xFF64748B),
+                                    fontWeight: FontWeight.w600)),
+                          ]),
                     ),
-                    _Pill(text: days < 0 ? 'Passata' : '${days}g', color: priorityColor(e.priority)),
+                    _Pill(
+                        text: days < 0 ? 'Passata' : '${days}g',
+                        color: priorityColor(e.priority)),
                   ],
                 ),
               ),
@@ -1111,23 +1816,37 @@ class StatCard extends StatelessWidget {
   final String? helper;
   final VoidCallback? onTap;
 
-  const StatCard({super.key, required this.label, required this.value, required this.icon, this.color = AppStyle.ink, this.helper, this.onTap});
+  const StatCard(
+      {super.key,
+      required this.label,
+      required this.value,
+      required this.icon,
+      this.color = AppStyle.ink,
+      this.helper,
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 132;
-      final padding = compact ? const EdgeInsets.all(10) : const EdgeInsets.all(18);
-      final iconSize = compact ? 32.0 : 46.0;
+      final padding =
+          compact ? const EdgeInsets.all(8) : const EdgeInsets.all(18);
+      final iconSize = compact ? 30.0 : 46.0;
       final iconRadius = compact ? 12.0 : 16.0;
-      final arrowSize = compact ? 26.0 : 34.0;
+      final arrowSize = compact ? 24.0 : 34.0;
       final valueStyle = compact
-          ? Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900, letterSpacing: -.5)
-          : Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w900, letterSpacing: -.7);
+          ? Theme.of(context)
+              .textTheme
+              .titleMedium
+              ?.copyWith(fontWeight: FontWeight.w900, letterSpacing: 0)
+          : Theme.of(context)
+              .textTheme
+              .headlineSmall
+              ?.copyWith(fontWeight: FontWeight.w900, letterSpacing: 0);
       final labelStyle = TextStyle(
         color: AppStyle.subtle,
         fontWeight: FontWeight.w800,
-        fontSize: compact ? 11 : 14,
+        fontSize: compact ? 10 : 14,
         height: 1.05,
       );
 
@@ -1141,9 +1860,9 @@ class StatCard extends StatelessWidget {
                 width: iconSize,
                 height: iconSize,
                 decoration: BoxDecoration(
-                  color: color.withOpacity(.10),
+                  color: color.withValues(alpha: .10),
                   borderRadius: BorderRadius.circular(iconRadius),
-                  border: Border.all(color: color.withOpacity(.12)),
+                  border: Border.all(color: color.withValues(alpha: .12)),
                 ),
                 child: Icon(icon, color: color, size: compact ? 17 : 22),
               ),
@@ -1152,24 +1871,38 @@ class StatCard extends StatelessWidget {
                 width: arrowSize,
                 height: arrowSize,
                 decoration: BoxDecoration(
-                  color: color.withOpacity(onTap == null ? .05 : .10),
+                  color: color.withValues(alpha: onTap == null ? .05 : .10),
                   borderRadius: BorderRadius.circular(compact ? 10 : 14),
-                  border: Border.all(color: color.withOpacity(onTap == null ? .10 : .20)),
+                  border: Border.all(
+                      color:
+                          color.withValues(alpha: onTap == null ? .10 : .20)),
                 ),
-                child: Icon(Icons.north_east_rounded, size: compact ? 14 : 17, color: color.withOpacity(onTap == null ? .28 : .88)),
+                child: Icon(Icons.north_east_rounded,
+                    size: compact ? 14 : 17,
+                    color: color.withValues(alpha: onTap == null ? .28 : .88)),
               ),
             ]),
             const Spacer(),
-            Text(value, maxLines: 1, overflow: TextOverflow.ellipsis, style: valueStyle),
+            Text(value,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: valueStyle),
             const SizedBox(height: 4),
-            Text(label, maxLines: compact ? 2 : 1, overflow: TextOverflow.ellipsis, style: labelStyle),
+            Text(label,
+                maxLines: compact ? 2 : 1,
+                overflow: TextOverflow.ellipsis,
+                style: labelStyle),
             if (helper != null) ...[
               const SizedBox(height: 2),
               Text(
                 helper!,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(color: AppStyle.muted, fontWeight: FontWeight.w700, fontSize: compact ? 9 : 11, height: 1.05),
+                style: TextStyle(
+                    color: AppStyle.muted,
+                    fontWeight: FontWeight.w700,
+                    fontSize: compact ? 9 : 11,
+                    height: 1.05),
               ),
             ],
           ],
@@ -1194,32 +1927,48 @@ class StatCard extends StatelessWidget {
   }
 }
 
-void _showAutomaticSuggestionsSheet(BuildContext context, List<AutomaticStudySuggestion> suggestions, VoidCallback openCalendar) {
+void _showAutomaticSuggestionsSheet(BuildContext context,
+    List<AutomaticStudySuggestion> suggestions, VoidCallback openCalendar) {
   showModalBottomSheet<void>(
     context: context,
     showDragHandle: true,
     isScrollControlled: true,
-    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
     builder: (sheetContext) => SafeArea(
       child: Padding(
-        padding: EdgeInsets.fromLTRB(18, 4, 18, 18 + MediaQuery.of(sheetContext).viewInsets.bottom),
+        padding: EdgeInsets.fromLTRB(
+            18, 4, 18, 18 + MediaQuery.of(sheetContext).viewInsets.bottom),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Suggerimenti automatici', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
+            Text('Suggerimenti automatici',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontWeight: FontWeight.w900)),
             const SizedBox(height: 6),
             const Text(
-              'La statistica viene calcolata dagli esami e dalle scadenze nei prossimi 30 giorni, confrontando priorità, giorni rimanenti, sessioni già pianificate e obiettivi aperti.',
-              style: TextStyle(color: AppStyle.subtle, fontWeight: FontWeight.w600, height: 1.35),
+              'La statistica viene calcolata dagli esami e dalle scadenze nei prossimi 21 giorni, confrontando priorità, giorni rimanenti, sessioni già pianificate e obiettivi aperti.',
+              style: TextStyle(
+                  color: AppStyle.subtle,
+                  fontWeight: FontWeight.w600,
+                  height: 1.35),
             ),
             const SizedBox(height: 14),
             if (suggestions.isEmpty)
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(color: AppStyle.surfaceAlt, borderRadius: BorderRadius.circular(22), border: Border.all(color: AppStyle.line)),
-                child: const Text('Nessun suggerimento necessario: le attività risultano già ben pianificate rispetto alle scadenze imminenti.', style: TextStyle(fontWeight: FontWeight.w700, height: 1.35)),
+                decoration: BoxDecoration(
+                    color: AppStyle.surfaceAlt,
+                    borderRadius: BorderRadius.circular(22),
+                    border: Border.all(color: AppStyle.line)),
+                child: const Text(
+                    'Nessun suggerimento necessario: le attività risultano già ben pianificate rispetto alle scadenze imminenti.',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w700, height: 1.35)),
               )
             else
               Flexible(
@@ -1227,7 +1976,29 @@ void _showAutomaticSuggestionsSheet(BuildContext context, List<AutomaticStudySug
                   shrinkWrap: true,
                   itemCount: suggestions.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 10),
-                  itemBuilder: (_, index) => _AutomaticSuggestionTile(suggestion: suggestions[index]),
+                  itemBuilder: (_, index) => _AutomaticSuggestionTile(
+                    suggestion: suggestions[index],
+                    onCreate: () async {
+                      final suggestion = suggestions[index];
+                      final store = StudyScope.of(context);
+                      await store.upsertSession(StudySession(
+                        id: id(),
+                        title: '${suggestion.title} - ${suggestion.examTitle}',
+                        courseId: suggestion.courseId,
+                        date: suggestion.suggestedDate,
+                        minutesPlanned: suggestion.recommendedMinutes,
+                        minutesDone: 0,
+                        kind: StudyKind.review,
+                        completed: false,
+                      ));
+                      if (sheetContext.mounted) Navigator.pop(sheetContext);
+                      if (context.mounted) {
+                        showAppMessage(context,
+                            'Sessione consigliata creata per ${dateLabel(suggestion.suggestedDate)}.');
+                        openCalendar();
+                      }
+                    },
+                  ),
                 ),
               ),
             const SizedBox(height: 14),
@@ -1251,8 +2022,10 @@ void _showAutomaticSuggestionsSheet(BuildContext context, List<AutomaticStudySug
 
 class _AutomaticSuggestionTile extends StatelessWidget {
   final AutomaticStudySuggestion suggestion;
+  final VoidCallback onCreate;
 
-  const _AutomaticSuggestionTile({required this.suggestion});
+  const _AutomaticSuggestionTile(
+      {required this.suggestion, required this.onCreate});
 
   @override
   Widget build(BuildContext context) {
@@ -1260,14 +2033,19 @@ class _AutomaticSuggestionTile extends StatelessWidget {
     final days = suggestion.daysLeft == 0 ? 'oggi' : '${suggestion.daysLeft}g';
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(color: AppStyle.surfaceAlt, borderRadius: BorderRadius.circular(22), border: Border.all(color: AppStyle.line)),
+      decoration: BoxDecoration(
+          color: AppStyle.surfaceAlt,
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: AppStyle.line)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: 46,
             height: 46,
-            decoration: BoxDecoration(color: color.withOpacity(.12), borderRadius: BorderRadius.circular(16)),
+            decoration: BoxDecoration(
+                color: color.withValues(alpha: .12),
+                borderRadius: BorderRadius.circular(16)),
             child: Icon(Icons.tips_and_updates_rounded, color: color, size: 21),
           ),
           const SizedBox(width: 12),
@@ -1277,16 +2055,42 @@ class _AutomaticSuggestionTile extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Expanded(child: Text(suggestion.title, style: const TextStyle(fontWeight: FontWeight.w900))),
+                    Expanded(
+                        child: Text(suggestion.title,
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w900))),
                     _Pill(text: days, color: color),
                   ],
                 ),
                 const SizedBox(height: 4),
-                Text(suggestion.courseName, style: const TextStyle(fontWeight: FontWeight.w800, color: AppStyle.ink)),
+                Text(suggestion.courseName,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w800, color: AppStyle.ink)),
                 const SizedBox(height: 4),
-                Text(suggestion.reason, style: const TextStyle(color: AppStyle.subtle, fontWeight: FontWeight.w600, height: 1.3)),
+                Text(suggestion.reason,
+                    style: const TextStyle(
+                        color: AppStyle.subtle,
+                        fontWeight: FontWeight.w600,
+                        height: 1.3)),
                 const SizedBox(height: 8),
-                Text('Attività suggerita: ${minutesLabel(suggestion.recommendedMinutes)}', style: TextStyle(color: color, fontWeight: FontWeight.w900)),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    _Pill(
+                        text: minutesLabel(suggestion.recommendedMinutes),
+                        color: color),
+                    _Pill(
+                        text: dateLabel(suggestion.suggestedDate),
+                        color: const Color(0xFF06B6D4)),
+                    TextButton.icon(
+                      onPressed: onCreate,
+                      icon: const Icon(Icons.add_task_rounded, size: 18),
+                      label: const Text('Crea sessione'),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -1308,9 +2112,9 @@ class _SoftIcon extends StatelessWidget {
       width: 46,
       height: 46,
       decoration: BoxDecoration(
-        color: color.withOpacity(.10),
+        color: color.withValues(alpha: .10),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: color.withOpacity(.12)),
+        border: Border.all(color: color.withValues(alpha: .12)),
       ),
       child: Icon(icon, color: color, size: 22),
     );
@@ -1328,11 +2132,16 @@ class _Pill extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
-        color: color.withOpacity(.08),
+        color: color.withValues(alpha: .08),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: color.withOpacity(.18)),
+        border: Border.all(color: color.withValues(alpha: .18)),
       ),
-      child: Text(text, style: TextStyle(color: color, fontWeight: FontWeight.w900, fontSize: 12, letterSpacing: -.1)),
+      child: Text(text,
+          style: TextStyle(
+              color: color,
+              fontWeight: FontWeight.w900,
+              fontSize: 12,
+              letterSpacing: 0)),
     );
   }
 }
@@ -1340,7 +2149,10 @@ class _Pill extends StatelessWidget {
 class AppCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
-  const AppCard({super.key, required this.child, this.padding = const EdgeInsets.all(20)});
+  const AppCard(
+      {super.key,
+      required this.child,
+      this.padding = const EdgeInsets.all(20)});
 
   @override
   Widget build(BuildContext context) {
@@ -1365,15 +2177,24 @@ class AppButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget child;
   final IconData? icon;
+  final bool destructive;
 
-  const AppButton({super.key, required this.onPressed, required this.child, this.icon});
+  const AppButton(
+      {super.key,
+      required this.onPressed,
+      required this.child,
+      this.icon,
+      this.destructive = false});
 
   @override
   Widget build(BuildContext context) {
     final style = FilledButton.styleFrom(
       minimumSize: const Size(0, AppStyle.buttonHeight),
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
+      backgroundColor: destructive ? AppStyle.danger : AppStyle.primary,
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
       textStyle: const TextStyle(fontWeight: FontWeight.w800),
     );
 
@@ -1394,19 +2215,33 @@ class AppIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final IconData icon;
   final String? tooltip;
+  final bool destructive;
+  final Color? color;
 
-  const AppIconButton({super.key, required this.onPressed, required this.icon, this.tooltip});
+  const AppIconButton(
+      {super.key,
+      required this.onPressed,
+      required this.icon,
+      this.tooltip,
+      this.destructive = false,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
+    final isDanger = destructive || icon == Icons.delete_outline_rounded;
+    final tone = isDanger ? AppStyle.danger : (color ?? AppStyle.primary);
     final button = SizedBox(
       width: AppStyle.buttonHeight,
       height: AppStyle.buttonHeight,
-      child: FilledButton(
+      child: OutlinedButton(
         onPressed: onPressed,
-        style: FilledButton.styleFrom(
+        style: OutlinedButton.styleFrom(
           padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
+          backgroundColor: tone.withValues(alpha: .08),
+          foregroundColor: tone,
+          side: BorderSide(color: tone.withValues(alpha: .22)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppStyle.buttonRadius)),
         ),
         child: Icon(icon, size: 19),
       ),
@@ -1429,26 +2264,48 @@ class _CoursesScreenState extends State<CoursesScreen> {
   @override
   Widget build(BuildContext context) {
     final store = StudyScope.of(context);
-    final filtered = store.courses.where((c) => c.name.toLowerCase().contains(query.toLowerCase()) && (status == null || c.status == status)).toList();
+    final filtered = store.courses
+        .where((c) =>
+            c.name.toLowerCase().contains(query.toLowerCase()) &&
+            (status == null || c.status == status))
+        .toList();
     return PageFrame(
       title: 'Corsi',
       subtitle: 'Gestione insegnamenti, CFU, docente, stato e voti.',
-      actions: [AppButton(onPressed: () => _openForm(context), icon: Icons.add, child: const Text('Nuovo'))],
+      actions: [
+        AppButton(
+            onPressed: () => _openForm(context),
+            icon: Icons.add,
+            child: const Text('Nuovo'))
+      ],
       child: Column(children: [
         LayoutBuilder(builder: (context, constraints) {
           final compact = constraints.maxWidth < 620;
           final search = TextField(
-            decoration: const InputDecoration(prefixIcon: Icon(Icons.search_rounded), hintText: 'Cerca per nome'),
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.search_rounded),
+                hintText: 'Cerca per nome'),
             onChanged: (value) => setState(() => query = value),
           );
           final dropdown = DropdownButtonFormField<CourseStatus?>(
-            value: status,
+            initialValue: status,
             decoration: const InputDecoration(labelText: 'Stato'),
-            items: [const DropdownMenuItem(value: null, child: Text('Tutti')), ...CourseStatus.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label)))],
+            items: [
+              const DropdownMenuItem(value: null, child: Text('Tutti')),
+              ...CourseStatus.values
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e.label)))
+            ],
             onChanged: (value) => setState(() => status = value),
           );
-          if (compact) return Column(children: [search, const SizedBox(height: 10), dropdown]);
-          return Row(children: [Expanded(child: search), const SizedBox(width: 12), SizedBox(width: 220, child: dropdown)]);
+          if (compact) {
+            return Column(
+                children: [search, const SizedBox(height: 10), dropdown]);
+          }
+          return Row(children: [
+            Expanded(child: search),
+            const SizedBox(width: 12),
+            SizedBox(width: 220, child: dropdown)
+          ]);
         }),
         const SizedBox(height: 12),
         Expanded(
@@ -1460,7 +2317,15 @@ class _CoursesScreenState extends State<CoursesScreen> {
               return CourseCard(
                 course: c,
                 onEdit: () => _openForm(context, c),
-                onDelete: () => store.deleteCourse(c.id),
+                onDelete: () async {
+                  final confirmed = await confirmDestructiveAction(
+                    context,
+                    title: 'Eliminare il corso?',
+                    message:
+                        'Verranno eliminati anche esami, sessioni e obiettivi collegati a "${c.name}".',
+                  );
+                  if (confirmed) store.deleteCourse(c.id);
+                },
               );
             },
           ),
@@ -1474,13 +2339,16 @@ class _CoursesScreenState extends State<CoursesScreen> {
   }
 }
 
-
 class CourseCard extends StatelessWidget {
   final Course course;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
-  const CourseCard({super.key, required this.course, required this.onEdit, required this.onDelete});
+  const CourseCard(
+      {super.key,
+      required this.course,
+      required this.onEdit,
+      required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -1490,7 +2358,12 @@ class CourseCard extends StatelessWidget {
       child: IntrinsicHeight(
         child: Row(
           children: [
-            Container(width: 8, decoration: BoxDecoration(color: color, borderRadius: const BorderRadius.horizontal(left: Radius.circular(28)))),
+            Container(
+                width: 8,
+                decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: const BorderRadius.horizontal(
+                        left: Radius.circular(28)))),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(18),
@@ -1503,17 +2376,34 @@ class CourseCard extends StatelessWidget {
                         _SoftIcon(icon: Icons.menu_book_rounded, color: color),
                         const SizedBox(width: 12),
                         Expanded(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            Text(course.name, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
-                            const SizedBox(height: 4),
-                            Text('${course.teacher} • ${course.semester}', style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w700)),
-                          ]),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(course.name,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.w900)),
+                                const SizedBox(height: 4),
+                                Text('${course.teacher} • ${course.semester}',
+                                    style: const TextStyle(
+                                        color: Color(0xFF64748B),
+                                        fontWeight: FontWeight.w700)),
+                              ]),
                         ),
-                        _Pill(text: course.status.label, color: statusColor(course.status)),
+                        _Pill(
+                            text: course.status.label,
+                            color: statusColor(course.status)),
                       ],
                     ),
                     const SizedBox(height: 14),
-                    Text(course.notes.isEmpty ? 'Nessuna nota inserita.' : course.notes, style: const TextStyle(color: Color(0xFF475569), height: 1.35)),
+                    Text(
+                        course.notes.isEmpty
+                            ? 'Nessuna nota inserita.'
+                            : course.notes,
+                        style: const TextStyle(
+                            color: Color(0xFF475569), height: 1.35)),
                     const SizedBox(height: 14),
                     Wrap(
                       spacing: 8,
@@ -1521,10 +2411,22 @@ class CourseCard extends StatelessWidget {
                       crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         _Pill(text: '${course.cfu} CFU', color: color),
-                        if (course.desiredGrade != null) _Pill(text: 'Obiettivo ${course.desiredGrade}', color: const Color(0xFF8B5CF6)),
-                        if (course.finalGrade != null) _Pill(text: 'Voto ${course.finalGrade}', color: const Color(0xFF10B981)),
-                        AppIconButton(onPressed: onEdit, icon: Icons.edit_rounded, tooltip: 'Modifica'),
-                        AppIconButton(onPressed: onDelete, icon: Icons.delete_outline_rounded, tooltip: 'Elimina'),
+                        if (course.desiredGrade != null)
+                          _Pill(
+                              text: 'Obiettivo ${course.desiredGrade}',
+                              color: const Color(0xFF8B5CF6)),
+                        if (course.finalGrade != null)
+                          _Pill(
+                              text: 'Voto ${course.finalGrade}',
+                              color: const Color(0xFF10B981)),
+                        AppIconButton(
+                            onPressed: onEdit,
+                            icon: Icons.edit_rounded,
+                            tooltip: 'Modifica'),
+                        AppIconButton(
+                            onPressed: onDelete,
+                            icon: Icons.delete_outline_rounded,
+                            tooltip: 'Elimina'),
                       ],
                     ),
                   ],
@@ -1547,22 +2449,56 @@ class CourseDialog extends StatefulWidget {
 }
 
 class _CourseDialogState extends State<CourseDialog> {
+  static const _semesterOptions = ['1° semestre', '2° semestre'];
+
   final name = TextEditingController();
   final teacher = TextEditingController();
-  final semester = TextEditingController();
   final cfu = TextEditingController();
+  final desiredGrade = TextEditingController();
+  final finalGrade = TextEditingController();
   final notes = TextEditingController();
+  String? semester;
   CourseStatus status = CourseStatus.toStart;
+
+  static String? _semesterOptionFromText(String? value) {
+    final normalized = value?.trim().toLowerCase();
+    return switch (normalized) {
+      '1' ||
+      '1 semestre' ||
+      '1° semestre' ||
+      'i semestre' =>
+        _semesterOptions.first,
+      '2' ||
+      '2 semestre' ||
+      '2° semestre' ||
+      'ii semestre' =>
+        _semesterOptions.last,
+      _ => null,
+    };
+  }
 
   @override
   void initState() {
     super.initState();
     name.text = widget.course?.name ?? '';
     teacher.text = widget.course?.teacher ?? '';
-    semester.text = widget.course?.semester ?? '';
+    semester = _semesterOptionFromText(widget.course?.semester);
     cfu.text = '${widget.course?.cfu ?? 6}';
+    desiredGrade.text = widget.course?.desiredGrade?.toString() ?? '';
+    finalGrade.text = widget.course?.finalGrade?.toString() ?? '';
     notes.text = widget.course?.notes ?? '';
     status = widget.course?.status ?? CourseStatus.toStart;
+  }
+
+  @override
+  void dispose() {
+    name.dispose();
+    teacher.dispose();
+    cfu.dispose();
+    desiredGrade.dispose();
+    finalGrade.dispose();
+    notes.dispose();
+    super.dispose();
   }
 
   @override
@@ -1572,26 +2508,99 @@ class _CourseDialogState extends State<CourseDialog> {
       title: Text(widget.course == null ? 'Nuovo corso' : 'Modifica corso'),
       content: SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          TextField(controller: name, decoration: const InputDecoration(labelText: 'Nome corso')),
+          TextField(
+              controller: name,
+              decoration: const InputDecoration(labelText: 'Nome corso')),
           const SizedBox(height: 10),
-          TextField(controller: teacher, decoration: const InputDecoration(labelText: 'Docente')),
+          TextField(
+              controller: teacher,
+              decoration: const InputDecoration(labelText: 'Docente')),
           const SizedBox(height: 10),
-          TextField(controller: semester, decoration: const InputDecoration(labelText: 'Semestre')),
+          DropdownButtonFormField<String>(
+              initialValue: semester,
+              decoration: const InputDecoration(
+                  labelText: 'Semestre', hintText: 'Seleziona semestre'),
+              items: _semesterOptions
+                  .map((value) =>
+                      DropdownMenuItem(value: value, child: Text(value)))
+                  .toList(),
+              onChanged: (value) => setState(() => semester = value)),
           const SizedBox(height: 10),
-          TextField(controller: cfu, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'CFU')),
+          TextField(
+              controller: cfu,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(labelText: 'CFU')),
           const SizedBox(height: 10),
-          DropdownButtonFormField(value: status, decoration: const InputDecoration(labelText: 'Stato'), items: CourseStatus.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label))).toList(), onChanged: (value) => status = value!),
+          TextField(
+              controller: desiredGrade,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                  labelText: 'Voto obiettivo', hintText: '18-30')),
           const SizedBox(height: 10),
-          TextField(controller: notes, maxLines: 3, decoration: const InputDecoration(labelText: 'Note')),
+          TextField(
+              controller: finalGrade,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                  labelText: 'Voto finale', hintText: '18-30')),
+          const SizedBox(height: 10),
+          DropdownButtonFormField(
+              initialValue: status,
+              decoration: const InputDecoration(labelText: 'Stato'),
+              items: CourseStatus.values
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e.label)))
+                  .toList(),
+              onChanged: (value) => setState(() => status = value!)),
+          const SizedBox(height: 10),
+          TextField(
+              controller: notes,
+              maxLines: 3,
+              decoration: const InputDecoration(labelText: 'Note')),
         ]),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Annulla')),
-        AppButton(onPressed: () {
-          final item = Course(id: widget.course?.id ?? id(), name: name.text.trim(), teacher: teacher.text.trim(), semester: semester.text.trim(), cfu: int.tryParse(cfu.text) ?? 6, status: status, notes: notes.text.trim());
-          store.upsertCourse(item);
-          Navigator.pop(context);
-        }, child: const Text('Salva')),
+        TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Annulla')),
+        AppButton(
+            onPressed: () {
+              final courseName = name.text.trim();
+              final cfuValue = int.tryParse(cfu.text.trim());
+              final desired = optionalInt(desiredGrade.text);
+              final finalValue = optionalInt(finalGrade.text);
+              if (courseName.isEmpty) {
+                showAppMessage(context, 'Inserisci il nome del corso.');
+                return;
+              }
+              if (cfuValue == null || cfuValue <= 0) {
+                showAppMessage(context, 'Inserisci un numero di CFU valido.');
+                return;
+              }
+              if (semester == null) {
+                showAppMessage(context, 'Seleziona il semestre del corso.');
+                return;
+              }
+              if ((desired != null && (desired < 18 || desired > 30)) ||
+                  (finalValue != null &&
+                      (finalValue < 18 || finalValue > 30))) {
+                showAppMessage(
+                    context, 'I voti devono essere compresi tra 18 e 30.');
+                return;
+              }
+              final item = Course(
+                id: widget.course?.id ?? id(),
+                name: courseName,
+                teacher: teacher.text.trim(),
+                semester: semester!,
+                cfu: cfuValue,
+                status: status,
+                desiredGrade: desired,
+                finalGrade: finalValue,
+                notes: notes.text.trim(),
+              );
+              store.upsertCourse(item);
+              Navigator.pop(context);
+            },
+            child: const Text('Salva')),
       ],
     );
   }
@@ -1606,28 +2615,78 @@ class ExamsScreen extends StatefulWidget {
 
 class _ExamsScreenState extends State<ExamsScreen> {
   ItemStatus? status;
+  Priority? priority;
+  String query = '';
 
   @override
   Widget build(BuildContext context) {
     final store = StudyScope.of(context);
-    final list = store.exams.where((e) => status == null || e.status == status).toList()..sort((a, b) => a.date.compareTo(b.date));
+    final list = store.exams.where((e) {
+      final text =
+          '${e.title} ${e.notes} ${store.courseName(e.courseId)}'.toLowerCase();
+      return (status == null || e.status == status) &&
+          (priority == null || e.priority == priority) &&
+          text.contains(query.toLowerCase());
+    }).toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
     return PageFrame(
       title: 'Esami e scadenze',
       subtitle: 'Appelli, consegne, priorità, stato e risultati.',
-      actions: [AppButton(onPressed: () => showDialog(context: context, builder: (_) => ExamDialog()), icon: Icons.add, child: const Text('Nuovo'))],
+      actions: [
+        AppButton(
+            onPressed: () => showDialog(
+                context: context, builder: (_) => const ExamDialog()),
+            icon: Icons.add,
+            child: const Text('Nuovo'))
+      ],
       child: Column(children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: SizedBox(
-            width: Responsive.mobile(context) ? double.infinity : 230,
-            child: DropdownButtonFormField<ItemStatus?>(
-              value: status,
-              decoration: const InputDecoration(labelText: 'Stato'),
-              items: [const DropdownMenuItem(value: null, child: Text('Tutti')), ...ItemStatus.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label)))],
-              onChanged: (value) => setState(() => status = value),
-            ),
-          ),
-        ),
+        LayoutBuilder(builder: (context, constraints) {
+          final compact = constraints.maxWidth < 760;
+          final search = TextField(
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.search_rounded),
+                hintText: 'Cerca esame, corso o note'),
+            onChanged: (value) => setState(() => query = value),
+          );
+          final statusField = DropdownButtonFormField<ItemStatus?>(
+            initialValue: status,
+            decoration: const InputDecoration(labelText: 'Stato'),
+            items: [
+              const DropdownMenuItem(value: null, child: Text('Tutti')),
+              ...ItemStatus.values
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e.label)))
+            ],
+            onChanged: (value) => setState(() => status = value),
+          );
+          final priorityField = DropdownButtonFormField<Priority?>(
+            initialValue: priority,
+            decoration: const InputDecoration(labelText: 'Priorità'),
+            items: [
+              const DropdownMenuItem(value: null, child: Text('Tutte')),
+              ...Priority.values
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e.label)))
+            ],
+            onChanged: (value) => setState(() => priority = value),
+          );
+          if (compact) {
+            return Column(children: [
+              search,
+              const SizedBox(height: 10),
+              Row(children: [
+                Expanded(child: statusField),
+                const SizedBox(width: 10),
+                Expanded(child: priorityField)
+              ]),
+            ]);
+          }
+          return Row(children: [
+            Expanded(child: search),
+            const SizedBox(width: 10),
+            SizedBox(width: 190, child: statusField),
+            const SizedBox(width: 10),
+            SizedBox(width: 190, child: priorityField),
+          ]);
+        }),
         const SizedBox(height: 12),
         Expanded(
           child: ListView.separated(
@@ -1638,8 +2697,17 @@ class _ExamsScreenState extends State<ExamsScreen> {
               return ExamCard(
                 exam: e,
                 courseName: store.courseName(e.courseId),
-                onEdit: () => showDialog(context: context, builder: (_) => ExamDialog(item: e)),
-                onDelete: () => store.deleteExam(e.id),
+                onEdit: () => showDialog(
+                    context: context, builder: (_) => ExamDialog(item: e)),
+                onDelete: () async {
+                  final confirmed = await confirmDestructiveAction(
+                    context,
+                    title: 'Eliminare la scadenza?',
+                    message:
+                        'L\'elemento "${e.title}" verrà rimosso definitivamente.',
+                  );
+                  if (confirmed) store.deleteExam(e.id);
+                },
               );
             },
           ),
@@ -1649,14 +2717,18 @@ class _ExamsScreenState extends State<ExamsScreen> {
   }
 }
 
-
 class ExamCard extends StatelessWidget {
   final ExamItem exam;
   final String courseName;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
-  const ExamCard({super.key, required this.exam, required this.courseName, required this.onEdit, required this.onDelete});
+  const ExamCard(
+      {super.key,
+      required this.exam,
+      required this.courseName,
+      required this.onEdit,
+      required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -1670,10 +2742,18 @@ class ExamCard extends StatelessWidget {
             width: 60,
             height: 60,
             decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [color.withOpacity(.18), color.withOpacity(.08)]),
+              gradient: LinearGradient(colors: [
+                color.withValues(alpha: .18),
+                color.withValues(alpha: .08)
+              ]),
               borderRadius: BorderRadius.circular(22),
             ),
-            child: Icon(exam.type == ExamType.deadline ? Icons.assignment_rounded : Icons.school_rounded, color: color, size: 30),
+            child: Icon(
+                exam.type == ExamType.deadline
+                    ? Icons.assignment_rounded
+                    : Icons.school_rounded,
+                color: color,
+                size: 30),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -1681,20 +2761,44 @@ class ExamCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Expanded(child: Text(exam.title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900))),
-                  _Pill(text: days < 0 ? 'Passata' : '${days} giorni', color: color),
+                  Expanded(
+                      child: Text(exam.title,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontWeight: FontWeight.w900))),
+                  _Pill(
+                      text: days < 0 ? 'Passata' : '$days giorni',
+                      color: color),
                 ]),
                 const SizedBox(height: 6),
-                Text('$courseName • ${exam.type.label} • ${dateLabel(exam.date)}', style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w700)),
+                Text(
+                    '$courseName • ${exam.type.label} • ${dateLabel(exam.date)}',
+                    style: const TextStyle(
+                        color: Color(0xFF64748B), fontWeight: FontWeight.w700)),
                 const SizedBox(height: 10),
-                Text(exam.notes.isEmpty ? 'Nessuna nota inserita.' : exam.notes, style: const TextStyle(color: Color(0xFF475569), height: 1.35)),
+                Text(exam.notes.isEmpty ? 'Nessuna nota inserita.' : exam.notes,
+                    style: const TextStyle(
+                        color: Color(0xFF475569), height: 1.35)),
                 const SizedBox(height: 12),
-                Wrap(spacing: 8, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
-                  PriorityChip(exam.priority),
-                  _Pill(text: exam.status.label, color: statusColor(exam.status)),
-                  AppIconButton(onPressed: onEdit, icon: Icons.edit_rounded, tooltip: 'Modifica'),
-                  AppIconButton(onPressed: onDelete, icon: Icons.delete_outline_rounded, tooltip: 'Elimina'),
-                ]),
+                Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      PriorityChip(exam.priority),
+                      _Pill(
+                          text: exam.status.label,
+                          color: statusColor(exam.status)),
+                      AppIconButton(
+                          onPressed: onEdit,
+                          icon: Icons.edit_rounded,
+                          tooltip: 'Modifica'),
+                      AppIconButton(
+                          onPressed: onDelete,
+                          icon: Icons.delete_outline_rounded,
+                          tooltip: 'Elimina'),
+                    ]),
               ],
             ),
           ),
@@ -1717,7 +2821,7 @@ class _ExamDialogState extends State<ExamDialog> {
   final title = TextEditingController();
   final notes = TextEditingController();
   final result = TextEditingController();
-  late DateTime date;
+  DateTime? date;
   ExamType type = ExamType.exam;
   Priority priority = Priority.medium;
   ItemStatus status = ItemStatus.future;
@@ -1729,7 +2833,7 @@ class _ExamDialogState extends State<ExamDialog> {
     title.text = widget.item?.title ?? '';
     notes.text = widget.item?.notes ?? '';
     result.text = widget.item?.result?.toString() ?? '';
-    date = widget.item?.date ?? widget.initialDate ?? DateTime.now().add(const Duration(days: 7));
+    date = widget.item?.date ?? widget.initialDate;
     type = widget.item?.type ?? ExamType.exam;
     priority = widget.item?.priority ?? Priority.medium;
     status = widget.item?.status ?? ItemStatus.future;
@@ -1748,49 +2852,139 @@ class _ExamDialogState extends State<ExamDialog> {
   Widget build(BuildContext context) {
     final store = StudyScope.of(context);
     courseId ??= store.courses.firstOrNull?.id;
+    final size = MediaQuery.sizeOf(context);
+    final dialogWidth = (size.width - 48).clamp(280.0, 520.0);
+    final dialogHeight = (size.height * .56).clamp(260.0, 460.0);
     return AlertDialog(
-      title: Text(widget.item == null ? 'Nuovo esame/scadenza' : 'Modifica esame/scadenza'),
-      content: SingleChildScrollView(child: Column(mainAxisSize: MainAxisSize.min, children: [
-        TextField(controller: title, decoration: const InputDecoration(labelText: 'Titolo')),
-        const SizedBox(height: 10),
-        DropdownButtonFormField(value: courseId, decoration: const InputDecoration(labelText: 'Corso'), items: store.courses.map((c) => DropdownMenuItem(value: c.id, child: Text(c.name))).toList(), onChanged: (value) => courseId = value),
-        const SizedBox(height: 10),
-        Row(children: [
-          Expanded(child: Text('Data: ${dateLabel(date)}', style: const TextStyle(fontWeight: FontWeight.w700))),
-          TextButton(onPressed: () async {
-            final picked = await showDatePicker(context: context, firstDate: DateTime(2020), lastDate: DateTime(2035), initialDate: date);
-            if (picked != null) setState(() => date = DateTime(picked.year, picked.month, picked.day, date.hour, date.minute));
-          }, child: const Text('Scegli')),
-        ]),
-        DropdownButtonFormField(value: type, decoration: const InputDecoration(labelText: 'Tipologia'), items: ExamType.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label))).toList(), onChanged: (value) => setState(() => type = value!)),
-        const SizedBox(height: 10),
-        DropdownButtonFormField(value: priority, decoration: const InputDecoration(labelText: 'Priorità'), items: Priority.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label))).toList(), onChanged: (value) => setState(() => priority = value!)),
-        const SizedBox(height: 10),
-        DropdownButtonFormField(value: status, decoration: const InputDecoration(labelText: 'Stato'), items: ItemStatus.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label))).toList(), onChanged: (value) => setState(() => status = value!)),
-        if (status == ItemStatus.completed) ...[
-          const SizedBox(height: 10),
-          TextField(controller: result, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Voto/risultato')),
-        ],
-        const SizedBox(height: 10),
-        TextField(controller: notes, maxLines: 3, decoration: const InputDecoration(labelText: 'Note')),
-      ])),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      title: Text(widget.item == null
+          ? 'Nuovo esame/scadenza'
+          : 'Modifica esame/scadenza'),
+      content: SizedBox(
+        width: dialogWidth,
+        height: dialogHeight,
+        child: SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            TextField(
+                controller: title,
+                decoration: const InputDecoration(labelText: 'Titolo')),
+            const SizedBox(height: 10),
+            DropdownButtonFormField(
+                initialValue: courseId,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Corso'),
+                items: store.courses
+                    .map((c) =>
+                        DropdownMenuItem(value: c.id, child: Text(c.name)))
+                    .toList(),
+                onChanged: (value) => setState(() => courseId = value)),
+            const SizedBox(height: 10),
+            Row(children: [
+              Expanded(
+                  child: Text(
+                      date == null
+                          ? 'Data: nessuna data selezionata'
+                          : 'Data: ${dateLabel(date!)}',
+                      style: const TextStyle(fontWeight: FontWeight.w700))),
+              TextButton(
+                  onPressed: () async {
+                    final currentDate = date ?? dayOnly(DateTime.now());
+                    final picked = await showAppDatePicker(context,
+                        initialDate: currentDate);
+                    if (picked != null) {
+                      setState(() => date =
+                          DateTime(picked.year, picked.month, picked.day));
+                    }
+                  },
+                  child: const Text('Scegli')),
+            ]),
+            DropdownButtonFormField(
+                initialValue: type,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Tipologia'),
+                items: ExamType.values
+                    .map(
+                        (e) => DropdownMenuItem(value: e, child: Text(e.label)))
+                    .toList(),
+                onChanged: (value) => setState(() => type = value!)),
+            const SizedBox(height: 10),
+            DropdownButtonFormField(
+                initialValue: priority,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Priorità'),
+                items: Priority.values
+                    .map(
+                        (e) => DropdownMenuItem(value: e, child: Text(e.label)))
+                    .toList(),
+                onChanged: (value) => setState(() => priority = value!)),
+            const SizedBox(height: 10),
+            DropdownButtonFormField(
+                initialValue: status,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Stato'),
+                items: ItemStatus.values
+                    .map(
+                        (e) => DropdownMenuItem(value: e, child: Text(e.label)))
+                    .toList(),
+                onChanged: (value) => setState(() => status = value!)),
+            if (status == ItemStatus.completed) ...[
+              const SizedBox(height: 10),
+              TextField(
+                  controller: result,
+                  keyboardType: TextInputType.number,
+                  decoration:
+                      const InputDecoration(labelText: 'Voto/risultato')),
+            ],
+            const SizedBox(height: 10),
+            TextField(
+                controller: notes,
+                maxLines: 3,
+                decoration: const InputDecoration(labelText: 'Note')),
+          ]),
+        ),
+      ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Annulla')),
-        AppButton(onPressed: () {
-          if (courseId == null || title.text.trim().isEmpty) return;
-          store.upsertExam(ExamItem(
-            id: widget.item?.id ?? id(),
-            title: title.text.trim(),
-            courseId: courseId!,
-            date: date,
-            type: type,
-            priority: priority,
-            status: status,
-            notes: notes.text.trim(),
-            result: int.tryParse(result.text),
-          ));
-          Navigator.pop(context);
-        }, child: const Text('Salva')),
+        TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Annulla')),
+        AppButton(
+            onPressed: () {
+              final trimmedTitle = title.text.trim();
+              final parsedResult = optionalInt(result.text);
+              if (trimmedTitle.isEmpty) {
+                showAppMessage(context,
+                    'Inserisci il titolo dell\'esame o della scadenza.');
+                return;
+              }
+              if (courseId == null) {
+                showAppMessage(
+                    context, 'Crea o seleziona un corso prima di salvare.');
+                return;
+              }
+              if (date == null) {
+                showAppMessage(
+                    context, 'Scegli la data dell\'esame o della scadenza.');
+                return;
+              }
+              if (result.text.trim().isNotEmpty && parsedResult == null) {
+                showAppMessage(
+                    context, 'Inserisci un risultato numerico valido.');
+                return;
+              }
+              store.upsertExam(ExamItem(
+                id: widget.item?.id ?? id(),
+                title: trimmedTitle,
+                courseId: courseId!,
+                date: date!,
+                type: type,
+                priority: priority,
+                status: status,
+                notes: notes.text.trim(),
+                result: status == ItemStatus.completed ? parsedResult : null,
+              ));
+              Navigator.pop(context);
+            },
+            child: const Text('Salva')),
       ],
     );
   }
@@ -1831,13 +3025,23 @@ class _PlannerScreenState extends State<PlannerScreen> {
     final store = StudyScope.of(context);
     final selectedEntries = _entriesForDay(store, selectedDate);
     final monthEntries = _entriesForMonth(store, visibleMonth);
-    final plannedMinutes = monthEntries.where((e) => e.type == CalendarFilter.study).fold<int>(0, (sum, e) => sum + e.minutes);
-    final completedStudy = store.sessions.where((s) => sameMonth(s.date, visibleMonth) && s.completed).length;
-    final upcomingCritical = store.exams.where((e) => sameMonth(e.date, visibleMonth) && e.status == ItemStatus.future && e.priority == Priority.high).length;
+    final plannedMinutes = monthEntries
+        .where((e) => e.type == CalendarFilter.study)
+        .fold<int>(0, (sum, e) => sum + e.minutes);
+    final completedStudy = store.sessions
+        .where((s) => sameMonth(s.date, visibleMonth) && s.completed)
+        .length;
+    final upcomingCritical = store.exams
+        .where((e) =>
+            sameMonth(e.date, visibleMonth) &&
+            e.status == ItemStatus.future &&
+            e.priority == Priority.high)
+        .length;
 
     return PageFrame(
       title: 'Calendario',
-      subtitle: 'Pianifica sessioni, esami e obiettivi direttamente sui giorni del mese.',
+      subtitle:
+          'Pianifica sessioni, esami e obiettivi direttamente sui giorni del mese.',
       actions: [
         OutlinedButton.icon(
           onPressed: _goToday,
@@ -1856,8 +3060,10 @@ class _PlannerScreenState extends State<PlannerScreen> {
           selectedDate: selectedDate,
           filter: filter,
           onFilterChanged: (value) => setState(() => filter = value),
-          onPreviousMonth: () => setState(() => visibleMonth = DateTime(visibleMonth.year, visibleMonth.month - 1)),
-          onNextMonth: () => setState(() => visibleMonth = DateTime(visibleMonth.year, visibleMonth.month + 1)),
+          onPreviousMonth: () => setState(() => visibleMonth =
+              DateTime(visibleMonth.year, visibleMonth.month - 1)),
+          onNextMonth: () => setState(() => visibleMonth =
+              DateTime(visibleMonth.year, visibleMonth.month + 1)),
           onSelectDate: (date) => setState(() {
             selectedDate = dayOnly(date);
             visibleMonth = monthOnly(date);
@@ -1908,13 +3114,16 @@ class _PlannerScreenState extends State<PlannerScreen> {
     final result = <CalendarEntry>[];
     final start = DateTime(month.year, month.month, 1);
     final end = DateTime(month.year, month.month + 1, 1);
-    for (final session in store.sessions.where((s) => !s.date.isBefore(start) && s.date.isBefore(end))) {
+    for (final session in store.sessions
+        .where((s) => !s.date.isBefore(start) && s.date.isBefore(end))) {
       result.add(CalendarEntry.fromSession(session, store));
     }
-    for (final exam in store.exams.where((e) => !e.date.isBefore(start) && e.date.isBefore(end))) {
+    for (final exam in store.exams
+        .where((e) => !e.date.isBefore(start) && e.date.isBefore(end))) {
       result.add(CalendarEntry.fromExam(exam, store));
     }
-    for (final task in store.tasks.where((t) => !t.dueDate.isBefore(start) && t.dueDate.isBefore(end))) {
+    for (final task in store.tasks
+        .where((t) => !t.dueDate.isBefore(start) && t.dueDate.isBefore(end))) {
       result.add(CalendarEntry.fromTask(task, store));
     }
     return _applyFilter(result)..sort((a, b) => a.date.compareTo(b.date));
@@ -1931,11 +3140,12 @@ class _PlannerScreenState extends State<PlannerScreen> {
     for (final task in store.tasks.where((t) => sameDay(t.dueDate, day))) {
       result.add(CalendarEntry.fromTask(task, store));
     }
-    return _applyFilter(result)..sort((a, b) {
-      final typeOrder = a.type.index.compareTo(b.type.index);
-      if (typeOrder != 0) return typeOrder;
-      return a.date.compareTo(b.date);
-    });
+    return _applyFilter(result)
+      ..sort((a, b) {
+        final typeOrder = a.type.index.compareTo(b.type.index);
+        if (typeOrder != 0) return typeOrder;
+        return a.date.compareTo(b.date);
+      });
   }
 
   List<CalendarEntry> _applyFilter(List<CalendarEntry> entries) {
@@ -1947,7 +3157,8 @@ class _PlannerScreenState extends State<PlannerScreen> {
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(28))),
       builder: (sheetContext) => SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(18, 4, 18, 24),
@@ -1955,36 +3166,49 @@ class _PlannerScreenState extends State<PlannerScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Crea elemento per ${dateLabel(date)}', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
+              Text('Crea elemento per ${dateLabel(date)}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: FontWeight.w900)),
               const SizedBox(height: 12),
               _CreateOption(
                 icon: Icons.auto_stories_rounded,
                 color: const Color(0xFF5B5FEF),
                 title: 'Sessione di studio',
-                subtitle: 'Studio, ripasso, esercizi o lettura con durata pianificata.',
+                subtitle:
+                    'Studio, ripasso, esercizi o lettura con durata pianificata.',
                 onTap: () {
                   Navigator.pop(sheetContext);
-                  showDialog(context: context, builder: (_) => SessionDialog(initialDate: date));
+                  showDialog(
+                      context: context,
+                      builder: (_) => SessionDialog(initialDate: date));
                 },
               ),
               _CreateOption(
                 icon: Icons.school_rounded,
                 color: const Color(0xFFF59E0B),
                 title: 'Esame o scadenza',
-                subtitle: 'Appello, consegna, progetto o altra data importante.',
+                subtitle:
+                    'Appello, consegna, progetto o altra data importante.',
                 onTap: () {
                   Navigator.pop(sheetContext);
-                  showDialog(context: context, builder: (_) => ExamDialog(initialDate: date));
+                  showDialog(
+                      context: context,
+                      builder: (_) => ExamDialog(initialDate: date));
                 },
               ),
               _CreateOption(
                 icon: Icons.task_alt_rounded,
                 color: const Color(0xFF10B981),
                 title: 'Obiettivo',
-                subtitle: 'Obiettivo collegato a un corso con priorità e tempo stimato.',
+                subtitle:
+                    'Obiettivo collegato a un corso con priorità e tempo stimato.',
                 onTap: () {
                   Navigator.pop(sheetContext);
-                  showDialog(context: context, builder: (_) => TaskDialog(initialDate: date));
+                  showDialog(
+                      context: context,
+                      builder: (_) => TaskDialog(initialDate: date));
                 },
               ),
             ],
@@ -2009,12 +3233,26 @@ class CalendarEntry {
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
 
-  CalendarEntry({required this.id, required this.title, required this.subtitle, required this.date, required this.type, required this.icon, required this.color, this.minutes = 0, this.completed = false, this.onToggle, this.onEdit, this.onDelete});
+  CalendarEntry(
+      {required this.id,
+      required this.title,
+      required this.subtitle,
+      required this.date,
+      required this.type,
+      required this.icon,
+      required this.color,
+      this.minutes = 0,
+      this.completed = false,
+      this.onToggle,
+      this.onEdit,
+      this.onDelete});
 
-  factory CalendarEntry.fromSession(StudySession session, StudyStore store) => CalendarEntry(
+  factory CalendarEntry.fromSession(StudySession session, StudyStore store) =>
+      CalendarEntry(
         id: session.id,
         title: session.title,
-        subtitle: '${store.courseName(session.courseId)} • ${session.kind.label} • ${timeLabel(session.date)} • ${minutesLabel(session.minutesPlanned)}',
+        subtitle:
+            '${store.courseName(session.courseId)} • ${session.kind.label} • ${timeLabel(session.date)} • ${minutesLabel(session.minutesPlanned)}',
         date: session.date,
         type: CalendarFilter.study,
         icon: Icons.auto_stories_rounded,
@@ -2023,21 +3261,27 @@ class CalendarEntry {
         completed: session.completed,
       );
 
-  factory CalendarEntry.fromExam(ExamItem exam, StudyStore store) => CalendarEntry(
+  factory CalendarEntry.fromExam(ExamItem exam, StudyStore store) =>
+      CalendarEntry(
         id: exam.id,
         title: exam.title,
-        subtitle: '${store.courseName(exam.courseId)} • ${exam.type.label} • priorità ${exam.priority.label.toLowerCase()}',
+        subtitle:
+            '${store.courseName(exam.courseId)} • ${exam.type.label} • priorità ${exam.priority.label.toLowerCase()}',
         date: exam.date,
         type: CalendarFilter.exams,
-        icon: exam.type == ExamType.deadline ? Icons.assignment_rounded : Icons.school_rounded,
+        icon: exam.type == ExamType.deadline
+            ? Icons.assignment_rounded
+            : Icons.school_rounded,
         color: priorityColor(exam.priority),
         completed: exam.status == ItemStatus.completed,
       );
 
-  factory CalendarEntry.fromTask(TaskGoal task, StudyStore store) => CalendarEntry(
+  factory CalendarEntry.fromTask(TaskGoal task, StudyStore store) =>
+      CalendarEntry(
         id: task.id,
         title: task.title,
-        subtitle: '${store.courseName(task.courseId)} • entro ${dateLabel(task.dueDate)} • stimato ${minutesLabel(task.estimatedMinutes)}',
+        subtitle:
+            '${store.courseName(task.courseId)} • entro ${dateLabel(task.dueDate)} • stimato ${minutesLabel(task.estimatedMinutes)}',
         date: task.dueDate,
         type: CalendarFilter.tasks,
         icon: Icons.task_alt_rounded,
@@ -2057,7 +3301,15 @@ class _CalendarMonthCard extends StatelessWidget {
   final ValueChanged<DateTime> onSelectDate;
   final List<CalendarEntry> Function(DateTime date) entriesForDay;
 
-  const _CalendarMonthCard({required this.visibleMonth, required this.selectedDate, required this.filter, required this.onFilterChanged, required this.onPreviousMonth, required this.onNextMonth, required this.onSelectDate, required this.entriesForDay});
+  const _CalendarMonthCard(
+      {required this.visibleMonth,
+      required this.selectedDate,
+      required this.filter,
+      required this.onFilterChanged,
+      required this.onPreviousMonth,
+      required this.onNextMonth,
+      required this.onSelectDate,
+      required this.entriesForDay});
 
   @override
   Widget build(BuildContext context) {
@@ -2068,11 +3320,23 @@ class _CalendarMonthCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            _SoftIcon(icon: Icons.calendar_month_rounded, color: const Color(0xFF5B5FEF)),
+            const _SoftIcon(
+                icon: Icons.calendar_month_rounded, color: Color(0xFF5B5FEF)),
             const SizedBox(width: 12),
-            Expanded(child: Text(monthLabel(visibleMonth), style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w900))),
-            AppIconButton(onPressed: onPreviousMonth, icon: Icons.chevron_left_rounded, tooltip: 'Mese precedente'),
-            AppIconButton(onPressed: onNextMonth, icon: Icons.chevron_right_rounded, tooltip: 'Mese successivo'),
+            Expanded(
+                child: Text(monthLabel(visibleMonth),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall
+                        ?.copyWith(fontWeight: FontWeight.w900))),
+            AppIconButton(
+                onPressed: onPreviousMonth,
+                icon: Icons.chevron_left_rounded,
+                tooltip: 'Mese precedente'),
+            AppIconButton(
+                onPressed: onNextMonth,
+                icon: Icons.chevron_right_rounded,
+                tooltip: 'Mese successivo'),
           ]),
           const SizedBox(height: 10),
           SingleChildScrollView(
@@ -2081,12 +3345,23 @@ class _CalendarMonthCard extends StatelessWidget {
               selected: {filter},
               showSelectedIcon: false,
               onSelectionChanged: (values) => onFilterChanged(values.first),
-              segments: CalendarFilter.values.map((e) => ButtonSegment(value: e, icon: Icon(e.icon, size: 18), label: Text(e.label))).toList(),
+              segments: CalendarFilter.values
+                  .map((e) => ButtonSegment(
+                      value: e,
+                      icon: Icon(e.icon, size: 18),
+                      label: Text(e.label)))
+                  .toList(),
             ),
           ),
           const SizedBox(height: 12),
-          Row(children: const [
-            _WeekdayHeader('Lun'), _WeekdayHeader('Mar'), _WeekdayHeader('Mer'), _WeekdayHeader('Gio'), _WeekdayHeader('Ven'), _WeekdayHeader('Sab'), _WeekdayHeader('Dom'),
+          const Row(children: [
+            _WeekdayHeader('Lun'),
+            _WeekdayHeader('Mar'),
+            _WeekdayHeader('Mer'),
+            _WeekdayHeader('Gio'),
+            _WeekdayHeader('Ven'),
+            _WeekdayHeader('Sab'),
+            _WeekdayHeader('Dom'),
           ]),
           const SizedBox(height: 6),
           LayoutBuilder(builder: (context, constraints) {
@@ -2098,7 +3373,11 @@ class _CalendarMonthCard extends StatelessWidget {
               itemCount: days.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 7,
-                mainAxisExtent: veryCompact ? 72 : compact ? 78 : 108,
+                mainAxisExtent: veryCompact
+                    ? 72
+                    : compact
+                        ? 78
+                        : 108,
                 crossAxisSpacing: compact ? 4 : 8,
                 mainAxisSpacing: compact ? 4 : 8,
               ),
@@ -2131,7 +3410,13 @@ class _WeekdayHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: Center(child: Text(text, style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w900, fontSize: 12))));
+    return Expanded(
+        child: Center(
+            child: Text(text,
+                style: const TextStyle(
+                    color: Color(0xFF64748B),
+                    fontWeight: FontWeight.w900,
+                    fontSize: 12))));
   }
 }
 
@@ -2144,14 +3429,23 @@ class _CalendarDayCell extends StatelessWidget {
   final List<CalendarEntry> entries;
   final VoidCallback onTap;
 
-  const _CalendarDayCell({required this.date, required this.currentMonth, required this.selected, required this.today, required this.compact, required this.entries, required this.onTap});
+  const _CalendarDayCell(
+      {required this.date,
+      required this.currentMonth,
+      required this.selected,
+      required this.today,
+      required this.compact,
+      required this.entries,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final study = entries.where((e) => e.type == CalendarFilter.study).length;
     final exams = entries.where((e) => e.type == CalendarFilter.exams).length;
     final tasks = entries.where((e) => e.type == CalendarFilter.tasks).length;
-    final plannedMinutes = entries.where((e) => e.type == CalendarFilter.study).fold<int>(0, (sum, e) => sum + e.minutes);
+    final plannedMinutes = entries
+        .where((e) => e.type == CalendarFilter.study)
+        .fold<int>(0, (sum, e) => sum + e.minutes);
 
     return InkWell(
       borderRadius: BorderRadius.circular(compact ? 14 : 20),
@@ -2160,10 +3454,27 @@ class _CalendarDayCell extends StatelessWidget {
         duration: const Duration(milliseconds: 180),
         padding: EdgeInsets.all(compact ? 5 : 10),
         decoration: BoxDecoration(
-          color: selected ? const Color(0xFF5B5FEF) : currentMonth ? const Color(0xFFF8FAFC) : const Color(0xFFF1F5F9),
+          color: selected
+              ? const Color(0xFF5B5FEF)
+              : currentMonth
+                  ? const Color(0xFFF8FAFC)
+                  : const Color(0xFFF1F5F9),
           borderRadius: BorderRadius.circular(compact ? 14 : 20),
-          border: Border.all(color: selected ? const Color(0xFF5B5FEF) : today ? const Color(0xFF06B6D4) : const Color(0xFFE4EAF3), width: today || selected ? 1.6 : 1),
-          boxShadow: selected ? [BoxShadow(color: const Color(0xFF5B5FEF).withOpacity(.28), blurRadius: 16, offset: const Offset(0, 10))] : null,
+          border: Border.all(
+              color: selected
+                  ? const Color(0xFF5B5FEF)
+                  : today
+                      ? const Color(0xFF06B6D4)
+                      : const Color(0xFFE4EAF3),
+              width: today || selected ? 1.6 : 1),
+          boxShadow: selected
+              ? [
+                  BoxShadow(
+                      color: const Color(0xFF5B5FEF).withValues(alpha: .28),
+                      blurRadius: 16,
+                      offset: const Offset(0, 10))
+                ]
+              : null,
         ),
         child: compact
             ? Stack(
@@ -2175,7 +3486,11 @@ class _CalendarDayCell extends StatelessWidget {
                       width: 22,
                       height: 22,
                       decoration: BoxDecoration(
-                        color: today && !selected ? const Color(0xFFE0F2FE) : selected ? Colors.white.withOpacity(.18) : Colors.transparent,
+                        color: today && !selected
+                            ? const Color(0xFFE0F2FE)
+                            : selected
+                                ? Colors.white.withValues(alpha: .18)
+                                : Colors.transparent,
                         shape: BoxShape.circle,
                       ),
                       alignment: Alignment.center,
@@ -2184,7 +3499,11 @@ class _CalendarDayCell extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w900,
-                          color: selected ? Colors.white : currentMonth ? const Color(0xFF111827) : const Color(0xFF94A3B8),
+                          color: selected
+                              ? Colors.white
+                              : currentMonth
+                                  ? const Color(0xFF111827)
+                                  : const Color(0xFF94A3B8),
                         ),
                       ),
                     ),
@@ -2194,9 +3513,12 @@ class _CalendarDayCell extends StatelessWidget {
                       right: 0,
                       top: 1,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
                         decoration: BoxDecoration(
-                          color: selected ? Colors.white.withOpacity(.18) : const Color(0xFFEFF6FF),
+                          color: selected
+                              ? Colors.white.withValues(alpha: .18)
+                              : const Color(0xFFEFF6FF),
                           borderRadius: BorderRadius.circular(999),
                         ),
                         child: Text(
@@ -2204,7 +3526,9 @@ class _CalendarDayCell extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w900,
-                            color: selected ? Colors.white : const Color(0xFF2563EB),
+                            color: selected
+                                ? Colors.white
+                                : const Color(0xFF2563EB),
                           ),
                         ),
                       ),
@@ -2219,11 +3543,27 @@ class _CalendarDayCell extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (study > 0) _TinyDot(color: selected ? Colors.white : const Color(0xFF5B5FEF), count: 1),
-                          if (study > 0 && (exams > 0 || tasks > 0)) const SizedBox(width: 3),
-                          if (exams > 0) _TinyDot(color: selected ? Colors.white : const Color(0xFFF59E0B), count: 1),
+                          if (study > 0)
+                            _TinyDot(
+                                color: selected
+                                    ? Colors.white
+                                    : const Color(0xFF5B5FEF),
+                                count: 1),
+                          if (study > 0 && (exams > 0 || tasks > 0))
+                            const SizedBox(width: 3),
+                          if (exams > 0)
+                            _TinyDot(
+                                color: selected
+                                    ? Colors.white
+                                    : const Color(0xFFF59E0B),
+                                count: 1),
                           if (exams > 0 && tasks > 0) const SizedBox(width: 3),
-                          if (tasks > 0) _TinyDot(color: selected ? Colors.white : const Color(0xFF10B981), count: 1),
+                          if (tasks > 0)
+                            _TinyDot(
+                                color: selected
+                                    ? Colors.white
+                                    : const Color(0xFF10B981),
+                                count: 1),
                         ],
                       ),
                     ),
@@ -2237,26 +3577,71 @@ class _CalendarDayCell extends StatelessWidget {
                     Container(
                       width: 30,
                       height: 30,
-                      decoration: BoxDecoration(color: today && !selected ? const Color(0xFFE0F2FE) : selected ? Colors.white.withOpacity(.18) : Colors.transparent, shape: BoxShape.circle),
+                      decoration: BoxDecoration(
+                          color: today && !selected
+                              ? const Color(0xFFE0F2FE)
+                              : selected
+                                  ? Colors.white.withValues(alpha: .18)
+                                  : Colors.transparent,
+                          shape: BoxShape.circle),
                       alignment: Alignment.center,
-                      child: Text('${date.day}', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: selected ? Colors.white : currentMonth ? const Color(0xFF111827) : const Color(0xFF94A3B8))),
+                      child: Text('${date.day}',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w900,
+                              color: selected
+                                  ? Colors.white
+                                  : currentMonth
+                                      ? const Color(0xFF111827)
+                                      : const Color(0xFF94A3B8))),
                     ),
                     const Spacer(),
                     if (entries.isNotEmpty)
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-                        decoration: BoxDecoration(color: selected ? Colors.white.withOpacity(.18) : const Color(0xFFEFF6FF), borderRadius: BorderRadius.circular(999)),
-                        child: Text('${entries.length}', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: selected ? Colors.white : const Color(0xFF2563EB))),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 3),
+                        decoration: BoxDecoration(
+                            color: selected
+                                ? Colors.white.withValues(alpha: .18)
+                                : const Color(0xFFEFF6FF),
+                            borderRadius: BorderRadius.circular(999)),
+                        child: Text('${entries.length}',
+                            style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w900,
+                                color: selected
+                                    ? Colors.white
+                                    : const Color(0xFF2563EB))),
                       ),
                   ]),
                   const Spacer(),
                   if (plannedMinutes > 0)
-                    Text(minutesLabel(plannedMinutes), maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 11, color: selected ? Colors.white70 : const Color(0xFF64748B), fontWeight: FontWeight.w800)),
+                    Text(minutesLabel(plannedMinutes),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 11,
+                            color: selected
+                                ? Colors.white70
+                                : const Color(0xFF64748B),
+                            fontWeight: FontWeight.w800)),
                   const SizedBox(height: 5),
                   Wrap(spacing: 4, runSpacing: 4, children: [
-                    if (study > 0) _TinyDot(color: selected ? Colors.white : const Color(0xFF5B5FEF), count: study),
-                    if (exams > 0) _TinyDot(color: selected ? Colors.white : const Color(0xFFF59E0B), count: exams),
-                    if (tasks > 0) _TinyDot(color: selected ? Colors.white : const Color(0xFF10B981), count: tasks),
+                    if (study > 0)
+                      _TinyDot(
+                          color:
+                              selected ? Colors.white : const Color(0xFF5B5FEF),
+                          count: study),
+                    if (exams > 0)
+                      _TinyDot(
+                          color:
+                              selected ? Colors.white : const Color(0xFFF59E0B),
+                          count: exams),
+                    if (tasks > 0)
+                      _TinyDot(
+                          color:
+                              selected ? Colors.white : const Color(0xFF10B981),
+                          count: tasks),
                   ]),
                 ],
               ),
@@ -2275,7 +3660,8 @@ class _TinyDot extends StatelessWidget {
     return Container(
       height: 8,
       width: count > 1 ? 18 : 8,
-      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(999)),
+      decoration:
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(999)),
     );
   }
 }
@@ -2285,7 +3671,7 @@ class _CalendarLegend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(spacing: 10, runSpacing: 8, children: const [
+    return const Wrap(spacing: 10, runSpacing: 8, children: [
       _LegendItem(color: Color(0xFF5B5FEF), text: 'Sessioni studio'),
       _LegendItem(color: Color(0xFFF59E0B), text: 'Esami/scadenze'),
       _LegendItem(color: Color(0xFF10B981), text: 'Obiettivi'),
@@ -2301,9 +3687,16 @@ class _LegendItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisSize: MainAxisSize.min, children: [
-      Container(width: 10, height: 10, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+      Container(
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
       const SizedBox(width: 6),
-      Text(text, style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w800, fontSize: 12)),
+      Text(text,
+          style: const TextStyle(
+              color: Color(0xFF64748B),
+              fontWeight: FontWeight.w800,
+              fontSize: 12)),
     ]);
   }
 }
@@ -2317,55 +3710,141 @@ class _DayAgendaPanel extends StatelessWidget {
   final int highPriorityExamsInMonth;
   final VoidCallback onCreate;
 
-  const _DayAgendaPanel({required this.selectedDate, required this.entries, required this.monthLabel, required this.plannedMinutesInMonth, required this.completedStudyInMonth, required this.highPriorityExamsInMonth, required this.onCreate});
+  const _DayAgendaPanel(
+      {required this.selectedDate,
+      required this.entries,
+      required this.monthLabel,
+      required this.plannedMinutesInMonth,
+      required this.completedStudyInMonth,
+      required this.highPriorityExamsInMonth,
+      required this.onCreate});
 
   @override
   Widget build(BuildContext context) {
     final store = StudyScope.of(context);
-    final selectedPlanned = entries.where((e) => e.type == CalendarFilter.study).fold<int>(0, (sum, e) => sum + e.minutes);
+    final selectedPlanned = entries
+        .where((e) => e.type == CalendarFilter.study)
+        .fold<int>(0, (sum, e) => sum + e.minutes);
     return Column(
       children: [
         AppCard(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              _SoftIcon(icon: Icons.view_agenda_rounded, color: const Color(0xFF06B6D4)),
+              const _SoftIcon(
+                  icon: Icons.view_agenda_rounded, color: Color(0xFF06B6D4)),
               const SizedBox(width: 12),
-              Expanded(child: Text(sameDay(selectedDate, DateTime.now()) ? 'Agenda di oggi' : 'Agenda ${dateLabel(selectedDate)}', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900))),
-              AppIconButton(onPressed: onCreate, icon: Icons.add_circle_rounded, tooltip: 'Aggiungi elemento'),
+              Expanded(
+                  child: Text(
+                      sameDay(selectedDate, DateTime.now())
+                          ? 'Agenda di oggi'
+                          : 'Agenda ${dateLabel(selectedDate)}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge
+                          ?.copyWith(fontWeight: FontWeight.w900))),
+              AppIconButton(
+                  onPressed: onCreate,
+                  icon: Icons.add_circle_rounded,
+                  tooltip: 'Aggiungi elemento'),
             ]),
             const SizedBox(height: 12),
             Wrap(spacing: 8, runSpacing: 8, children: [
-              _Pill(text: '${entries.length} elementi', color: const Color(0xFF5B5FEF)),
-              _Pill(text: minutesLabel(selectedPlanned), color: const Color(0xFF06B6D4)),
-              if (entries.any((e) => !e.completed)) _Pill(text: 'Da completare', color: const Color(0xFFF59E0B)),
+              _Pill(
+                  text: '${entries.length} elementi',
+                  color: const Color(0xFF5B5FEF)),
+              _Pill(
+                  text: minutesLabel(selectedPlanned),
+                  color: const Color(0xFF06B6D4)),
+              if (entries.any((e) => !e.completed))
+                const _Pill(text: 'Da completare', color: Color(0xFFF59E0B)),
             ]),
             const SizedBox(height: 14),
             if (entries.isEmpty)
               _EmptyAgenda(onCreate: onCreate)
             else
               ...entries.map((entry) {
-                final session = entry.type == CalendarFilter.study ? store.sessions.where((s) => s.id == entry.id).firstOrNull : null;
-                final exam = entry.type == CalendarFilter.exams ? store.exams.where((e) => e.id == entry.id).firstOrNull : null;
-                final task = entry.type == CalendarFilter.tasks ? store.tasks.where((t) => t.id == entry.id).firstOrNull : null;
+                final session = entry.type == CalendarFilter.study
+                    ? store.sessions.where((s) => s.id == entry.id).firstOrNull
+                    : null;
+                final exam = entry.type == CalendarFilter.exams
+                    ? store.exams.where((e) => e.id == entry.id).firstOrNull
+                    : null;
+                final task = entry.type == CalendarFilter.tasks
+                    ? store.tasks.where((t) => t.id == entry.id).firstOrNull
+                    : null;
                 return _AgendaItemCard(
                   entry: entry,
                   onToggle: () {
                     if (session != null) {
-                      store.upsertSession(StudySession(id: session.id, title: session.title, courseId: session.courseId, date: session.date, minutesPlanned: session.minutesPlanned, minutesDone: session.completed ? session.minutesDone : session.minutesPlanned, kind: session.kind, completed: !session.completed));
+                      store.upsertSession(StudySession(
+                          id: session.id,
+                          title: session.title,
+                          courseId: session.courseId,
+                          date: session.date,
+                          minutesPlanned: session.minutesPlanned,
+                          minutesDone: session.completed
+                              ? session.minutesDone
+                              : session.minutesPlanned,
+                          kind: session.kind,
+                          completed: !session.completed));
                     } else if (task != null) {
                       final completed = task.status == ItemStatus.completed;
-                      store.upsertTask(TaskGoal(id: task.id, title: task.title, description: task.description, courseId: task.courseId, dueDate: task.dueDate, priority: task.priority, status: completed ? ItemStatus.future : ItemStatus.completed, estimatedMinutes: task.estimatedMinutes, actualMinutes: completed ? task.actualMinutes : task.estimatedMinutes));
+                      store.upsertTask(TaskGoal(
+                          id: task.id,
+                          title: task.title,
+                          description: task.description,
+                          courseId: task.courseId,
+                          dueDate: task.dueDate,
+                          priority: task.priority,
+                          status: completed
+                              ? ItemStatus.future
+                              : ItemStatus.completed,
+                          estimatedMinutes: task.estimatedMinutes,
+                          actualMinutes: completed
+                              ? task.actualMinutes
+                              : task.estimatedMinutes));
                     } else if (exam != null) {
                       final completed = exam.status == ItemStatus.completed;
-                      store.upsertExam(ExamItem(id: exam.id, title: exam.title, courseId: exam.courseId, date: exam.date, type: exam.type, priority: exam.priority, status: completed ? ItemStatus.future : ItemStatus.completed, notes: exam.notes, result: exam.result));
+                      store.upsertExam(ExamItem(
+                          id: exam.id,
+                          title: exam.title,
+                          courseId: exam.courseId,
+                          date: exam.date,
+                          type: exam.type,
+                          priority: exam.priority,
+                          status: completed
+                              ? ItemStatus.future
+                              : ItemStatus.completed,
+                          notes: exam.notes,
+                          result: exam.result));
                     }
                   },
                   onEdit: () {
-                    if (session != null) showDialog(context: context, builder: (_) => SessionDialog(item: session));
-                    if (exam != null) showDialog(context: context, builder: (_) => ExamDialog(item: exam));
-                    if (task != null) showDialog(context: context, builder: (_) => TaskDialog(item: task));
+                    if (session != null) {
+                      showDialog(
+                          context: context,
+                          builder: (_) => SessionDialog(item: session));
+                    }
+                    if (exam != null) {
+                      showDialog(
+                          context: context,
+                          builder: (_) => ExamDialog(item: exam));
+                    }
+                    if (task != null) {
+                      showDialog(
+                          context: context,
+                          builder: (_) => TaskDialog(item: task));
+                    }
                   },
-                  onDelete: () {
+                  onDelete: () async {
+                    final confirmed = await confirmDestructiveAction(
+                      context,
+                      title: 'Eliminare l\'elemento?',
+                      message:
+                          'L\'elemento "${entry.title}" verrà rimosso dal calendario.',
+                    );
+                    if (!confirmed) return;
                     if (session != null) store.deleteSession(session.id);
                     if (exam != null) store.deleteExam(exam.id);
                     if (task != null) store.deleteTask(task.id);
@@ -2376,12 +3855,32 @@ class _DayAgendaPanel extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         AppCard(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(children: [const _SoftIcon(icon: Icons.insights_rounded, color: Color(0xFF8B5CF6)), const SizedBox(width: 12), Expanded(child: Text('Sintesi $monthLabel', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)))]),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              const _SoftIcon(
+                  icon: Icons.insights_rounded, color: Color(0xFF8B5CF6)),
+              const SizedBox(width: 12),
+              Expanded(
+                  child: Text('Sintesi $monthLabel',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge
+                          ?.copyWith(fontWeight: FontWeight.w900)))
+            ]),
             const SizedBox(height: 14),
-            _MiniMetric(label: 'Ore pianificate', value: minutesLabel(plannedMinutesInMonth), icon: Icons.schedule_rounded),
-            _MiniMetric(label: 'Sessioni completate', value: '$completedStudyInMonth', icon: Icons.check_circle_rounded),
-            _MiniMetric(label: 'Esami ad alta priorità', value: '$highPriorityExamsInMonth', icon: Icons.priority_high_rounded),
+            _MiniMetric(
+                label: 'Ore pianificate',
+                value: minutesLabel(plannedMinutesInMonth),
+                icon: Icons.schedule_rounded),
+            _MiniMetric(
+                label: 'Sessioni completate',
+                value: '$completedStudyInMonth',
+                icon: Icons.check_circle_rounded),
+            _MiniMetric(
+                label: 'Esami ad alta priorità',
+                value: '$highPriorityExamsInMonth',
+                icon: Icons.priority_high_rounded),
           ]),
         ),
       ],
@@ -2395,29 +3894,66 @@ class _AgendaItemCard extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
-  const _AgendaItemCard({required this.entry, required this.onToggle, required this.onEdit, required this.onDelete});
+  const _AgendaItemCard(
+      {required this.entry,
+      required this.onToggle,
+      required this.onEdit,
+      required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(color: entry.color.withOpacity(.08), borderRadius: BorderRadius.circular(22), border: Border.all(color: entry.color.withOpacity(.18))),
+      decoration: BoxDecoration(
+          color: entry.color.withValues(alpha: .08),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(color: entry.color.withValues(alpha: .18))),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Container(width: 44, height: 44, decoration: BoxDecoration(color: entry.color.withOpacity(.14), borderRadius: BorderRadius.circular(16)), child: Icon(entry.icon, color: entry.color)),
+        Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+                color: entry.color.withValues(alpha: .14),
+                borderRadius: BorderRadius.circular(16)),
+            child: Icon(entry.icon, color: entry.color)),
         const SizedBox(width: 12),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Expanded(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Expanded(child: Text(entry.title, style: TextStyle(fontWeight: FontWeight.w900, decoration: entry.completed ? TextDecoration.lineThrough : null))),
+            Expanded(
+                child: Text(entry.title,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        decoration: entry.completed
+                            ? TextDecoration.lineThrough
+                            : null))),
             _Pill(text: entry.type.label, color: entry.color),
           ]),
           const SizedBox(height: 5),
-          Text(entry.subtitle, style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w700, height: 1.25)),
+          Text(entry.subtitle,
+              style: const TextStyle(
+                  color: Color(0xFF64748B),
+                  fontWeight: FontWeight.w700,
+                  height: 1.25)),
           const SizedBox(height: 8),
           Wrap(spacing: 4, children: [
-            TextButton.icon(onPressed: onToggle, icon: Icon(entry.completed ? Icons.undo_rounded : Icons.done_rounded, size: 18), label: Text(entry.completed ? 'Riapri' : 'Completa')),
-            TextButton.icon(onPressed: onEdit, icon: const Icon(Icons.edit_rounded, size: 18), label: const Text('Modifica')),
-            TextButton.icon(onPressed: onDelete, icon: const Icon(Icons.delete_outline_rounded, size: 18), label: const Text('Elimina')),
+            TextButton.icon(
+                onPressed: onToggle,
+                icon: Icon(
+                    entry.completed ? Icons.undo_rounded : Icons.done_rounded,
+                    size: 18),
+                label: Text(entry.completed ? 'Riapri' : 'Completa')),
+            TextButton.icon(
+                onPressed: onEdit,
+                icon: const Icon(Icons.edit_rounded, size: 18),
+                label: const Text('Modifica')),
+            TextButton.icon(
+                onPressed: onDelete,
+                style: TextButton.styleFrom(foregroundColor: AppStyle.danger),
+                icon: const Icon(Icons.delete_outline_rounded, size: 18),
+                label: const Text('Elimina')),
           ]),
         ])),
       ]),
@@ -2434,15 +3970,27 @@ class _EmptyAgenda extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(color: const Color(0xFFF8FAFC), borderRadius: BorderRadius.circular(24), border: Border.all(color: const Color(0xFFE4EAF3))),
+      decoration: BoxDecoration(
+          color: const Color(0xFFF8FAFC),
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(color: const Color(0xFFE4EAF3))),
       child: Column(children: [
-        Icon(Icons.event_busy_rounded, size: 46, color: const Color(0xFF64748B).withOpacity(.75)),
+        Icon(Icons.event_busy_rounded,
+            size: 46, color: const Color(0xFF64748B).withValues(alpha: .75)),
         const SizedBox(height: 8),
-        const Text('Nessun elemento in questa data', style: TextStyle(fontWeight: FontWeight.w900)),
+        const Text('Nessun elemento in questa data',
+            style: TextStyle(fontWeight: FontWeight.w900)),
         const SizedBox(height: 4),
-        const Text('Aggiungi una sessione, un esame o un obiettivo direttamente dal calendario.', textAlign: TextAlign.center, style: TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
+        const Text(
+            'Aggiungi una sessione, un esame o un obiettivo direttamente dal calendario.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
         const SizedBox(height: 12),
-        AppButton(onPressed: onCreate, icon: Icons.add_rounded, child: const Text('Aggiungi elemento')),
+        AppButton(
+            onPressed: onCreate,
+            icon: Icons.add_rounded,
+            child: const Text('Aggiungi elemento')),
       ]),
     );
   }
@@ -2452,16 +4000,26 @@ class _MiniMetric extends StatelessWidget {
   final String label;
   final String value;
   final IconData icon;
-  const _MiniMetric({required this.label, required this.value, required this.icon});
+  const _MiniMetric(
+      {required this.label, required this.value, required this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(children: [
-        Container(width: 36, height: 36, decoration: BoxDecoration(color: const Color(0xFFF1F5F9), borderRadius: BorderRadius.circular(14)), child: Icon(icon, size: 19, color: const Color(0xFF5B5FEF))),
+        Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+                color: const Color(0xFFF1F5F9),
+                borderRadius: BorderRadius.circular(14)),
+            child: Icon(icon, size: 19, color: const Color(0xFF5B5FEF))),
         const SizedBox(width: 10),
-        Expanded(child: Text(label, style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w800))),
+        Expanded(
+            child: Text(label,
+                style: const TextStyle(
+                    color: Color(0xFF64748B), fontWeight: FontWeight.w800))),
         Text(value, style: const TextStyle(fontWeight: FontWeight.w900)),
       ]),
     );
@@ -2475,7 +4033,12 @@ class _CreateOption extends StatelessWidget {
   final String subtitle;
   final VoidCallback onTap;
 
-  const _CreateOption({required this.icon, required this.color, required this.title, required this.subtitle, required this.onTap});
+  const _CreateOption(
+      {required this.icon,
+      required this.color,
+      required this.title,
+      required this.subtitle,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -2486,15 +4049,31 @@ class _CreateOption extends StatelessWidget {
         onTap: onTap,
         child: Container(
           padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(color: color.withOpacity(.08), borderRadius: BorderRadius.circular(22), border: Border.all(color: color.withOpacity(.16))),
+          decoration: BoxDecoration(
+              color: color.withValues(alpha: .08),
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: color.withValues(alpha: .16))),
           child: Row(children: [
-            Container(width: 48, height: 48, decoration: BoxDecoration(color: color.withOpacity(.13), borderRadius: BorderRadius.circular(18)), child: Icon(icon, color: color)),
+            Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                    color: color.withValues(alpha: .13),
+                    borderRadius: BorderRadius.circular(18)),
+                child: Icon(icon, color: color)),
             const SizedBox(width: 12),
-            Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(title, style: const TextStyle(fontWeight: FontWeight.w900)),
-              const SizedBox(height: 2),
-              Text(subtitle, style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
-            ])),
+            Expanded(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  Text(title,
+                      style: const TextStyle(fontWeight: FontWeight.w900)),
+                  const SizedBox(height: 2),
+                  Text(subtitle,
+                      style: const TextStyle(
+                          color: Color(0xFF64748B),
+                          fontWeight: FontWeight.w600)),
+                ])),
             const Icon(Icons.chevron_right_rounded),
           ]),
         ),
@@ -2506,7 +4085,16 @@ class _CreateOption extends StatelessWidget {
 class SessionDialog extends StatefulWidget {
   final StudySession? item;
   final DateTime? initialDate;
-  const SessionDialog({super.key, this.item, this.initialDate});
+  final String? initialCourseId;
+  final String? initialTitle;
+  final int? initialMinutes;
+  const SessionDialog(
+      {super.key,
+      this.item,
+      this.initialDate,
+      this.initialCourseId,
+      this.initialTitle,
+      this.initialMinutes});
 
   @override
   State<SessionDialog> createState() => _SessionDialogState();
@@ -2515,26 +4103,33 @@ class SessionDialog extends StatefulWidget {
 class _SessionDialogState extends State<SessionDialog> {
   final title = TextEditingController();
   final minutes = TextEditingController();
+  final actualMinutes = TextEditingController();
   DateTime date = DateTime.now();
   StudyKind kind = StudyKind.study;
+  bool completed = false;
   String? courseId;
 
   @override
   void initState() {
     super.initState();
-    title.text = widget.item?.title ?? '';
-    minutes.text = '${widget.item?.minutesPlanned ?? 60}';
+    title.text = widget.item?.title ?? widget.initialTitle ?? '';
+    minutes.text =
+        '${widget.item?.minutesPlanned ?? widget.initialMinutes ?? 60}';
+    actualMinutes.text = '${widget.item?.minutesDone ?? 0}';
     final base = widget.item?.date ?? widget.initialDate ?? DateTime.now();
     final now = DateTime.now();
-    date = DateTime(base.year, base.month, base.day, widget.item?.date.hour ?? now.hour, widget.item?.date.minute ?? 0);
+    date = DateTime(base.year, base.month, base.day,
+        widget.item?.date.hour ?? now.hour, widget.item?.date.minute ?? 0);
     kind = widget.item?.kind ?? StudyKind.study;
-    courseId = widget.item?.courseId;
+    completed = widget.item?.completed ?? false;
+    courseId = widget.item?.courseId ?? widget.initialCourseId;
   }
 
   @override
   void dispose() {
     title.dispose();
     minutes.dispose();
+    actualMinutes.dispose();
     super.dispose();
   }
 
@@ -2543,46 +4138,124 @@ class _SessionDialogState extends State<SessionDialog> {
     final store = StudyScope.of(context);
     courseId ??= store.courses.firstOrNull?.id;
     return AlertDialog(
-      title: Text(widget.item == null ? 'Nuova sessione di studio' : 'Modifica sessione'),
-      content: SingleChildScrollView(child: Column(mainAxisSize: MainAxisSize.min, children: [
-        TextField(controller: title, decoration: const InputDecoration(labelText: 'Titolo')),
+      title: Text(widget.item == null
+          ? 'Nuova sessione di studio'
+          : 'Modifica sessione'),
+      content: SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+        TextField(
+            controller: title,
+            decoration: const InputDecoration(labelText: 'Titolo')),
         const SizedBox(height: 10),
-        DropdownButtonFormField(value: courseId, decoration: const InputDecoration(labelText: 'Corso'), items: store.courses.map((c) => DropdownMenuItem(value: c.id, child: Text(c.name))).toList(), onChanged: (value) => setState(() => courseId = value)),
+        DropdownButtonFormField(
+            initialValue: courseId,
+            decoration: const InputDecoration(labelText: 'Corso'),
+            items: store.courses
+                .map((c) => DropdownMenuItem(value: c.id, child: Text(c.name)))
+                .toList(),
+            onChanged: (value) => setState(() => courseId = value)),
         const SizedBox(height: 10),
         Row(children: [
-          Expanded(child: Text('Data: ${dateLabel(date)}', style: const TextStyle(fontWeight: FontWeight.w700))),
-          TextButton(onPressed: () async {
-            final picked = await showDatePicker(context: context, firstDate: DateTime(2020), lastDate: DateTime(2035), initialDate: date);
-            if (picked != null) setState(() => date = DateTime(picked.year, picked.month, picked.day, date.hour, date.minute));
-          }, child: const Text('Scegli')),
+          Expanded(
+              child: Text('Data: ${dateLabel(date)}',
+                  style: const TextStyle(fontWeight: FontWeight.w700))),
+          TextButton(
+              onPressed: () async {
+                final picked =
+                    await showAppDatePicker(context, initialDate: date);
+                if (picked != null) {
+                  setState(() => date = DateTime(picked.year, picked.month,
+                      picked.day, date.hour, date.minute));
+                }
+              },
+              child: const Text('Scegli')),
         ]),
         Row(children: [
-          Expanded(child: Text('Ora inizio: ${timeLabel(date)}', style: const TextStyle(fontWeight: FontWeight.w700))),
-          TextButton(onPressed: () async {
-            final picked = await showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(date));
-            if (picked != null) setState(() => date = DateTime(date.year, date.month, date.day, picked.hour, picked.minute));
-          }, child: const Text('Scegli')),
+          Expanded(
+              child: Text('Ora inizio: ${timeLabel(date)}',
+                  style: const TextStyle(fontWeight: FontWeight.w700))),
+          TextButton(
+              onPressed: () async {
+                final picked = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.fromDateTime(date));
+                if (picked != null) {
+                  setState(() => date = DateTime(date.year, date.month,
+                      date.day, picked.hour, picked.minute));
+                }
+              },
+              child: const Text('Scegli')),
         ]),
-        TextField(controller: minutes, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Minuti pianificati')),
+        TextField(
+            controller: minutes,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(labelText: 'Minuti pianificati')),
         const SizedBox(height: 10),
-        DropdownButtonFormField(value: kind, decoration: const InputDecoration(labelText: 'Tipo'), items: StudyKind.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label))).toList(), onChanged: (value) => setState(() => kind = value!)),
+        TextField(
+            controller: actualMinutes,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(labelText: 'Minuti svolti')),
+        const SizedBox(height: 10),
+        DropdownButtonFormField(
+            initialValue: kind,
+            decoration: const InputDecoration(labelText: 'Tipo'),
+            items: StudyKind.values
+                .map((e) => DropdownMenuItem(value: e, child: Text(e.label)))
+                .toList(),
+            onChanged: (value) => setState(() => kind = value!)),
+        const SizedBox(height: 10),
+        SwitchListTile(
+          value: completed,
+          contentPadding: EdgeInsets.zero,
+          title: const Text('Sessione completata',
+              style: TextStyle(fontWeight: FontWeight.w800)),
+          onChanged: (value) => setState(() {
+            completed = value;
+            if (value && (int.tryParse(actualMinutes.text) ?? 0) == 0) {
+              actualMinutes.text = minutes.text;
+            }
+          }),
+        ),
       ])),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Annulla')),
-        AppButton(onPressed: () {
-          if (courseId == null || title.text.trim().isEmpty) return;
-          store.upsertSession(StudySession(
-            id: widget.item?.id ?? id(),
-            title: title.text.trim(),
-            courseId: courseId!,
-            date: date,
-            minutesPlanned: int.tryParse(minutes.text) ?? 60,
-            minutesDone: widget.item?.minutesDone ?? 0,
-            kind: kind,
-            completed: widget.item?.completed ?? false,
-          ));
-          Navigator.pop(context);
-        }, child: const Text('Salva')),
+        TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Annulla')),
+        AppButton(
+            onPressed: () {
+              final trimmedTitle = title.text.trim();
+              final planned = int.tryParse(minutes.text.trim());
+              final done = int.tryParse(actualMinutes.text.trim());
+              if (trimmedTitle.isEmpty) {
+                showAppMessage(context, 'Inserisci il titolo della sessione.');
+                return;
+              }
+              if (courseId == null) {
+                showAppMessage(
+                    context, 'Crea o seleziona un corso prima di salvare.');
+                return;
+              }
+              if (planned == null || planned <= 0) {
+                showAppMessage(context, 'Inserisci minuti pianificati validi.');
+                return;
+              }
+              if (done == null || done < 0) {
+                showAppMessage(context, 'Inserisci minuti svolti validi.');
+                return;
+              }
+              store.upsertSession(StudySession(
+                id: widget.item?.id ?? id(),
+                title: trimmedTitle,
+                courseId: courseId!,
+                date: date,
+                minutesPlanned: planned,
+                minutesDone: done,
+                kind: kind,
+                completed: completed,
+              ));
+              Navigator.pop(context);
+            },
+            child: const Text('Salva')),
       ],
     );
   }
@@ -2606,93 +4279,244 @@ class _TasksScreenState extends State<TasksScreen> {
     final list = store.tasks.where((e) {
       final matchesPriority = priority == null || e.priority == priority;
       final matchesStatus = status == null || e.status == status;
-      final text = '${e.title} ${e.description} ${store.courseName(e.courseId)}'.toLowerCase();
+      final text = '${e.title} ${e.description} ${store.courseName(e.courseId)}'
+          .toLowerCase();
       final matchesQuery = text.contains(query.toLowerCase());
       return matchesPriority && matchesStatus && matchesQuery;
-    }).toList()..sort((a, b) => a.dueDate.compareTo(b.dueDate));
+    }).toList()
+      ..sort((a, b) => a.dueDate.compareTo(b.dueDate));
 
-    final completed = store.tasks.where((t) => t.status == ItemStatus.completed).length;
+    final completed =
+        store.tasks.where((t) => t.status == ItemStatus.completed).length;
     final progress = store.tasks.isEmpty ? 0.0 : completed / store.tasks.length;
 
     return PageFrame(
       title: 'Obiettivi',
-      subtitle: 'Organizza attività, priorità, tempi stimati e avanzamento dei corsi.',
-      actions: [AppButton(onPressed: () => showDialog(context: context, builder: (_) => const TaskDialog()), icon: Icons.add, child: const Text('Nuovo'))],
+      subtitle:
+          'Organizza attività, priorità, tempi stimati e avanzamento dei corsi.',
+      actions: [
+        AppButton(
+            onPressed: () => showDialog(
+                context: context, builder: (_) => const TaskDialog()),
+            icon: Icons.add,
+            child: const Text('Nuovo'))
+      ],
       child: Column(children: [
         AppCard(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              const _SoftIcon(icon: Icons.flag_rounded, color: Color(0xFF10B981)),
+              const _SoftIcon(
+                  icon: Icons.flag_rounded, color: Color(0xFF10B981)),
               const SizedBox(width: 12),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Progresso obiettivi', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
-                const SizedBox(height: 4),
-                Text('$completed completati su ${store.tasks.length}', style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w700)),
-              ])),
-              Text('${(progress * 100).round()}%', style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w900, color: const Color(0xFF10B981))),
+              Expanded(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                    Text('Progresso obiettivi',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge
+                            ?.copyWith(fontWeight: FontWeight.w900)),
+                    const SizedBox(height: 4),
+                    Text('$completed completati su ${store.tasks.length}',
+                        style: const TextStyle(
+                            color: Color(0xFF64748B),
+                            fontWeight: FontWeight.w700)),
+                  ])),
+              Text('${(progress * 100).round()}%',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      color: const Color(0xFF10B981))),
             ]),
             const SizedBox(height: 14),
-            ClipRRect(borderRadius: BorderRadius.circular(999), child: LinearProgressIndicator(value: progress, minHeight: 10, backgroundColor: const Color(0xFFE2E8F0), color: const Color(0xFF10B981))),
+            ClipRRect(
+                borderRadius: BorderRadius.circular(999),
+                child: LinearProgressIndicator(
+                    value: progress,
+                    minHeight: 10,
+                    backgroundColor: const Color(0xFFE2E8F0),
+                    color: const Color(0xFF10B981))),
           ]),
         ),
         const SizedBox(height: 12),
         LayoutBuilder(builder: (context, constraints) {
           final compact = constraints.maxWidth < 760;
           final search = TextField(
-            decoration: const InputDecoration(prefixIcon: Icon(Icons.search_rounded), hintText: 'Cerca task, corso o descrizione'),
+            decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.search_rounded),
+                hintText: 'Cerca task, corso o descrizione'),
             onChanged: (value) => setState(() => query = value),
           );
           final priorityField = DropdownButtonFormField<Priority?>(
-            value: priority,
+            initialValue: priority,
             decoration: const InputDecoration(labelText: 'Priorità'),
-            items: [const DropdownMenuItem(value: null, child: Text('Tutte')), ...Priority.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label)))],
+            items: [
+              const DropdownMenuItem(value: null, child: Text('Tutte')),
+              ...Priority.values
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e.label)))
+            ],
             onChanged: (value) => setState(() => priority = value),
           );
           final statusField = DropdownButtonFormField<ItemStatus?>(
-            value: status,
+            initialValue: status,
             decoration: const InputDecoration(labelText: 'Stato'),
-            items: [const DropdownMenuItem(value: null, child: Text('Tutti')), ...ItemStatus.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label)))],
+            items: [
+              const DropdownMenuItem(value: null, child: Text('Tutti')),
+              ...ItemStatus.values
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e.label)))
+            ],
             onChanged: (value) => setState(() => status = value),
           );
           if (compact) {
-            return Column(children: [search, const SizedBox(height: 10), Row(children: [Expanded(child: priorityField), const SizedBox(width: 10), Expanded(child: statusField)])]);
+            return Column(children: [
+              search,
+              const SizedBox(height: 10),
+              Row(children: [
+                Expanded(child: priorityField),
+                const SizedBox(width: 10),
+                Expanded(child: statusField)
+              ])
+            ]);
           }
-          return Row(children: [Expanded(child: search), const SizedBox(width: 10), SizedBox(width: 190, child: priorityField), const SizedBox(width: 10), SizedBox(width: 190, child: statusField)]);
+          return Row(children: [
+            Expanded(child: search),
+            const SizedBox(width: 10),
+            SizedBox(width: 190, child: priorityField),
+            const SizedBox(width: 10),
+            SizedBox(width: 190, child: statusField)
+          ]);
         }),
         const SizedBox(height: 12),
-        Expanded(child: list.isEmpty
-            ? AppCard(child: Center(child: Column(mainAxisSize: MainAxisSize.min, children: const [Icon(Icons.inbox_rounded, size: 54, color: Color(0xFF94A3B8)), SizedBox(height: 10), Text('Nessun obiettivo trovato', style: TextStyle(fontWeight: FontWeight.w900))])))
-            : ListView.separated(itemCount: list.length, separatorBuilder: (_, __) => const SizedBox(height: 10), itemBuilder: (context, index) {
-                final t = list[index];
-                final color = priorityColor(t.priority);
-                return AppCard(
-                  child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Checkbox(
-                      value: t.status == ItemStatus.completed,
-                      onChanged: (value) => store.upsertTask(TaskGoal(id: t.id, title: t.title, description: t.description, courseId: t.courseId, dueDate: t.dueDate, priority: t.priority, status: value == true ? ItemStatus.completed : ItemStatus.future, estimatedMinutes: t.estimatedMinutes, actualMinutes: value == true ? t.estimatedMinutes : t.actualMinutes)),
-                    ),
-                    const SizedBox(width: 6),
-                    Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Expanded(child: Text(t.title, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900, decoration: t.status == ItemStatus.completed ? TextDecoration.lineThrough : null))),
-                        _Pill(text: t.priority.label, color: color),
-                      ]),
-                      const SizedBox(height: 5),
-                      Text('${store.courseName(t.courseId)} • entro ${dateLabel(t.dueDate)}', style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.w800)),
-                      const SizedBox(height: 6),
-                      Text(t.description.isEmpty ? 'Nessuna descrizione.' : t.description, style: const TextStyle(color: Color(0xFF475569), height: 1.3)),
-                      const SizedBox(height: 10),
-                      Wrap(spacing: 8, runSpacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [
-                        _Pill(text: 'Stimato ${minutesLabel(t.estimatedMinutes)}', color: const Color(0xFF5B5FEF)),
-                        _Pill(text: 'Effettivo ${minutesLabel(t.actualMinutes)}', color: const Color(0xFF06B6D4)),
-                        _Pill(text: t.status.label, color: statusColor(t.status)),
-                        AppIconButton(onPressed: () => showDialog(context: context, builder: (_) => TaskDialog(item: t)), icon: Icons.edit_rounded, tooltip: 'Modifica'),
-                        AppIconButton(onPressed: () => store.deleteTask(t.id), icon: Icons.delete_outline_rounded, tooltip: 'Elimina'),
-                      ]),
-                    ])),
-                  ]),
-                );
-              })),
+        Expanded(
+            child: list.isEmpty
+                ? const AppCard(
+                    child: Center(
+                        child:
+                            Column(mainAxisSize: MainAxisSize.min, children: [
+                    Icon(Icons.inbox_rounded,
+                        size: 54, color: Color(0xFF94A3B8)),
+                    SizedBox(height: 10),
+                    Text('Nessun obiettivo trovato',
+                        style: TextStyle(fontWeight: FontWeight.w900))
+                  ])))
+                : ListView.separated(
+                    itemCount: list.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 10),
+                    itemBuilder: (context, index) {
+                      final t = list[index];
+                      final color = priorityColor(t.priority);
+                      return AppCard(
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Checkbox(
+                                value: t.status == ItemStatus.completed,
+                                onChanged: (value) => store.upsertTask(TaskGoal(
+                                    id: t.id,
+                                    title: t.title,
+                                    description: t.description,
+                                    courseId: t.courseId,
+                                    dueDate: t.dueDate,
+                                    priority: t.priority,
+                                    status: value == true
+                                        ? ItemStatus.completed
+                                        : ItemStatus.future,
+                                    estimatedMinutes: t.estimatedMinutes,
+                                    actualMinutes: value == true
+                                        ? t.estimatedMinutes
+                                        : t.actualMinutes)),
+                              ),
+                              const SizedBox(width: 6),
+                              Expanded(
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                    Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                              child: Text(t.title,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium
+                                                      ?.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.w900,
+                                                          decoration: t
+                                                                      .status ==
+                                                                  ItemStatus
+                                                                      .completed
+                                                              ? TextDecoration
+                                                                  .lineThrough
+                                                              : null))),
+                                          _Pill(
+                                              text: t.priority.label,
+                                              color: color),
+                                        ]),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                        '${store.courseName(t.courseId)} • entro ${dateLabel(t.dueDate)}',
+                                        style: const TextStyle(
+                                            color: Color(0xFF64748B),
+                                            fontWeight: FontWeight.w800)),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                        t.description.isEmpty
+                                            ? 'Nessuna descrizione.'
+                                            : t.description,
+                                        style: const TextStyle(
+                                            color: Color(0xFF475569),
+                                            height: 1.3)),
+                                    const SizedBox(height: 10),
+                                    Wrap(
+                                        spacing: 8,
+                                        runSpacing: 8,
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
+                                        children: [
+                                          _Pill(
+                                              text:
+                                                  'Stimato ${minutesLabel(t.estimatedMinutes)}',
+                                              color: const Color(0xFF5B5FEF)),
+                                          _Pill(
+                                              text:
+                                                  'Effettivo ${minutesLabel(t.actualMinutes)}',
+                                              color: const Color(0xFF06B6D4)),
+                                          _Pill(
+                                              text: t.status.label,
+                                              color: statusColor(t.status)),
+                                          AppIconButton(
+                                              onPressed: () => showDialog(
+                                                  context: context,
+                                                  builder: (_) =>
+                                                      TaskDialog(item: t)),
+                                              icon: Icons.edit_rounded,
+                                              tooltip: 'Modifica'),
+                                          AppIconButton(
+                                            onPressed: () async {
+                                              final confirmed =
+                                                  await confirmDestructiveAction(
+                                                context,
+                                                title:
+                                                    'Eliminare l\'obiettivo?',
+                                                message:
+                                                    'L\'obiettivo "${t.title}" verrà rimosso definitivamente.',
+                                              );
+                                              if (confirmed) {
+                                                store.deleteTask(t.id);
+                                              }
+                                            },
+                                            icon: Icons.delete_outline_rounded,
+                                            tooltip: 'Elimina',
+                                          ),
+                                        ]),
+                                  ])),
+                            ]),
+                      );
+                    })),
       ]),
     );
   }
@@ -2724,7 +4548,9 @@ class _TaskDialogState extends State<TaskDialog> {
     description.text = widget.item?.description ?? '';
     estimate.text = '${widget.item?.estimatedMinutes ?? 60}';
     actual.text = '${widget.item?.actualMinutes ?? 0}';
-    dueDate = widget.item?.dueDate ?? widget.initialDate ?? DateTime.now().add(const Duration(days: 5));
+    dueDate = widget.item?.dueDate ??
+        widget.initialDate ??
+        DateTime.now().add(const Duration(days: 5));
     priority = widget.item?.priority ?? Priority.medium;
     status = widget.item?.status ?? ItemStatus.future;
     courseId = widget.item?.courseId;
@@ -2743,31 +4569,125 @@ class _TaskDialogState extends State<TaskDialog> {
   Widget build(BuildContext context) {
     final store = StudyScope.of(context);
     courseId ??= store.courses.firstOrNull?.id;
+    final size = MediaQuery.sizeOf(context);
+    final dialogWidth = (size.width - 48).clamp(280.0, 520.0);
+    final dialogHeight = (size.height * .56).clamp(260.0, 460.0);
     return AlertDialog(
-      title: Text(widget.item == null ? 'Nuova attività/obiettivo' : 'Modifica attività/obiettivo'),
-      content: SingleChildScrollView(child: Column(mainAxisSize: MainAxisSize.min, children: [
-        TextField(controller: title, decoration: const InputDecoration(labelText: 'Titolo')),
-        const SizedBox(height: 10),
-        TextField(controller: description, maxLines: 2, decoration: const InputDecoration(labelText: 'Descrizione')),
-        const SizedBox(height: 10),
-        DropdownButtonFormField(value: courseId, decoration: const InputDecoration(labelText: 'Corso'), items: store.courses.map((c) => DropdownMenuItem(value: c.id, child: Text(c.name))).toList(), onChanged: (value) => setState(() => courseId = value)),
-        const SizedBox(height: 10),
-        Row(children: [Expanded(child: Text('Scadenza: ${dateLabel(dueDate)}', style: const TextStyle(fontWeight: FontWeight.w700))), TextButton(onPressed: () async { final picked = await showDatePicker(context: context, firstDate: DateTime(2020), lastDate: DateTime(2035), initialDate: dueDate); if (picked != null) setState(() => dueDate = picked); }, child: const Text('Scegli'))]),
-        TextField(controller: estimate, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Tempo stimato in minuti')),
-        const SizedBox(height: 10),
-        TextField(controller: actual, keyboardType: TextInputType.number, decoration: const InputDecoration(labelText: 'Tempo effettivo in minuti')),
-        const SizedBox(height: 10),
-        DropdownButtonFormField(value: priority, decoration: const InputDecoration(labelText: 'Priorità'), items: Priority.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label))).toList(), onChanged: (value) => setState(() => priority = value!)),
-        const SizedBox(height: 10),
-        DropdownButtonFormField(value: status, decoration: const InputDecoration(labelText: 'Stato'), items: ItemStatus.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label))).toList(), onChanged: (value) => setState(() => status = value!)),
-      ])),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      title: Text(widget.item == null
+          ? 'Nuova attività/obiettivo'
+          : 'Modifica attività/obiettivo'),
+      content: SizedBox(
+        width: dialogWidth,
+        height: dialogHeight,
+        child: SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            TextField(
+                controller: title,
+                decoration: const InputDecoration(labelText: 'Titolo')),
+            const SizedBox(height: 10),
+            TextField(
+                controller: description,
+                maxLines: 2,
+                decoration: const InputDecoration(labelText: 'Descrizione')),
+            const SizedBox(height: 10),
+            DropdownButtonFormField(
+                initialValue: courseId,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Corso'),
+                items: store.courses
+                    .map((c) =>
+                        DropdownMenuItem(value: c.id, child: Text(c.name)))
+                    .toList(),
+                onChanged: (value) => setState(() => courseId = value)),
+            const SizedBox(height: 10),
+            Row(children: [
+              Expanded(
+                  child: Text('Scadenza: ${dateLabel(dueDate)}',
+                      style: const TextStyle(fontWeight: FontWeight.w700))),
+              TextButton(
+                  onPressed: () async {
+                    final picked =
+                        await showAppDatePicker(context, initialDate: dueDate);
+                    if (picked != null) {
+                      setState(() => dueDate = picked);
+                    }
+                  },
+                  child: const Text('Scegli'))
+            ]),
+            TextField(
+                controller: estimate,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                    labelText: 'Tempo stimato in minuti')),
+            const SizedBox(height: 10),
+            TextField(
+                controller: actual,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                    labelText: 'Tempo effettivo in minuti')),
+            const SizedBox(height: 10),
+            DropdownButtonFormField(
+                initialValue: priority,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Priorità'),
+                items: Priority.values
+                    .map(
+                        (e) => DropdownMenuItem(value: e, child: Text(e.label)))
+                    .toList(),
+                onChanged: (value) => setState(() => priority = value!)),
+            const SizedBox(height: 10),
+            DropdownButtonFormField(
+                initialValue: status,
+                isExpanded: true,
+                decoration: const InputDecoration(labelText: 'Stato'),
+                items: ItemStatus.values
+                    .map(
+                        (e) => DropdownMenuItem(value: e, child: Text(e.label)))
+                    .toList(),
+                onChanged: (value) => setState(() => status = value!)),
+          ]),
+        ),
+      ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Annulla')),
-        AppButton(onPressed: () {
-          if (courseId == null || title.text.trim().isEmpty) return;
-          store.upsertTask(TaskGoal(id: widget.item?.id ?? id(), title: title.text.trim(), description: description.text.trim(), courseId: courseId!, dueDate: dueDate, priority: priority, status: status, estimatedMinutes: int.tryParse(estimate.text) ?? 60, actualMinutes: int.tryParse(actual.text) ?? 0));
-          Navigator.pop(context);
-        }, child: const Text('Salva')),
+        TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Annulla')),
+        AppButton(
+            onPressed: () {
+              final trimmedTitle = title.text.trim();
+              final estimated = int.tryParse(estimate.text.trim());
+              final done = int.tryParse(actual.text.trim());
+              if (trimmedTitle.isEmpty) {
+                showAppMessage(context, 'Inserisci il titolo dell\'obiettivo.');
+                return;
+              }
+              if (courseId == null) {
+                showAppMessage(
+                    context, 'Crea o seleziona un corso prima di salvare.');
+                return;
+              }
+              if (estimated == null || estimated <= 0) {
+                showAppMessage(context, 'Inserisci un tempo stimato valido.');
+                return;
+              }
+              if (done == null || done < 0) {
+                showAppMessage(context, 'Inserisci un tempo effettivo valido.');
+                return;
+              }
+              store.upsertTask(TaskGoal(
+                  id: widget.item?.id ?? id(),
+                  title: trimmedTitle,
+                  description: description.text.trim(),
+                  courseId: courseId!,
+                  dueDate: dueDate,
+                  priority: priority,
+                  status: status,
+                  estimatedMinutes: estimated,
+                  actualMinutes: done));
+              Navigator.pop(context);
+            },
+            child: const Text('Salva')),
       ],
     );
   }
@@ -2784,8 +4704,10 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
   static const workSeconds = 25 * 60;
   static const pauseSeconds = 5 * 60;
   int remaining = workSeconds;
+  int studiedSeconds = 0;
   bool running = false;
   bool pause = false;
+  String? selectedCourseId;
   Timer? timer;
 
   @override
@@ -2803,11 +4725,19 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (remaining <= 1) {
         setState(() {
+          if (!pause) {
+            studiedSeconds += 1;
+          }
           pause = !pause;
           remaining = pause ? pauseSeconds : workSeconds;
         });
       } else {
-        setState(() => remaining--);
+        setState(() {
+          if (!pause) {
+            studiedSeconds += 1;
+          }
+          remaining--;
+        });
       }
     });
     setState(() => running = true);
@@ -2822,90 +4752,155 @@ class _PomodoroScreenState extends State<PomodoroScreen> {
     });
   }
 
+  Future<void> recordStudy(StudyStore store) async {
+    if (selectedCourseId == null) {
+      showAppMessage(
+          context, 'Seleziona un corso prima di registrare il Pomodoro.');
+      return;
+    }
+    final minutes = (studiedSeconds / 60).ceil();
+    if (minutes <= 0) {
+      showAppMessage(
+          context, 'Avvia il timer prima di registrare una sessione.');
+      return;
+    }
+    await store.upsertSession(StudySession(
+      id: id(),
+      title: 'Pomodoro - ${store.courseName(selectedCourseId)}',
+      courseId: selectedCourseId!,
+      date: DateTime.now().subtract(Duration(minutes: minutes)),
+      minutesPlanned: minutes,
+      minutesDone: minutes,
+      kind: StudyKind.study,
+      completed: true,
+    ));
+    if (!mounted) {
+      return;
+    }
+    setState(() => studiedSeconds = 0);
+    showAppMessage(
+        context, 'Sessione Pomodoro registrata: ${minutesLabel(minutes)}.');
+  }
+
   @override
   Widget build(BuildContext context) {
+    final store = StudyScope.of(context);
+    if (selectedCourseId == null ||
+        !store.courses.any((course) => course.id == selectedCourseId)) {
+      selectedCourseId = store.courses.firstOrNull?.id;
+    }
     final compact = Responsive.mobile(context);
     final totalSeconds = pause ? pauseSeconds : workSeconds;
-    final progress = totalSeconds == 0 ? 0.0 : (1 - remaining / totalSeconds).clamp(0.0, 1.0).toDouble();
+    final progress = totalSeconds == 0
+        ? 0.0
+        : (1 - remaining / totalSeconds).clamp(0.0, 1.0).toDouble();
     final mm = (remaining ~/ 60).toString().padLeft(2, '0');
     final ss = (remaining % 60).toString().padLeft(2, '0');
-    final timerSize = compact ? 268.0 : 360.0;
-    final timerFont = compact ? 64.0 : 96.0;
+    final timerSize = compact ? 214.0 : 250.0;
+    final timerFont = compact ? 52.0 : 66.0;
+    final studiedMinutes = (studiedSeconds / 60).ceil();
 
     return PageFrame(
-      title: 'Pomodoro',
-      subtitle: 'Timer per alternare studio concentrato e pause brevi.',
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 720),
-          child: AppCard(
-            padding: EdgeInsets.all(compact ? 24 : 38),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                decoration: BoxDecoration(
-                  color: (pause ? const Color(0xFFF59E0B) : const Color(0xFF5B5FEF)).withOpacity(.09),
-                  borderRadius: BorderRadius.circular(999),
-                  border: Border.all(color: (pause ? const Color(0xFFF59E0B) : const Color(0xFF5B5FEF)).withOpacity(.18)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(pause ? '☕' : '🍅', style: const TextStyle(fontSize: 20)),
-                    const SizedBox(width: 8),
-                    Text(
-                      pause ? 'Pausa breve' : 'Studio concentrato',
-                      style: TextStyle(color: pause ? const Color(0xFFF59E0B) : const Color(0xFF5B5FEF), fontWeight: FontWeight.w900),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: compact ? 22 : 30),
-              SizedBox(
-                width: timerSize,
-                height: timerSize,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SizedBox(
-                      width: timerSize,
-                      height: timerSize,
-                      child: CircularProgressIndicator(
-                        value: progress,
-                        strokeWidth: compact ? 12 : 16,
-                        strokeCap: StrokeCap.round,
-                        backgroundColor: AppStyle.surfaceAlt,
-                        valueColor: AlwaysStoppedAnimation<Color>(pause ? const Color(0xFFF59E0B) : const Color(0xFF5B5FEF)),
-                      ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
+      title: 'Pomodoro 🍅',
+      subtitle: 'Timer 25/5 per alternare studio concentrato e pause brevi.',
+      child: LayoutBuilder(builder: (context, constraints) {
+        return SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 24),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 720),
+              child: AppCard(
+                padding: EdgeInsets.all(compact ? 18 : 24),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  DropdownButtonFormField<String>(
+                    initialValue: selectedCourseId,
+                    decoration:
+                        const InputDecoration(labelText: 'Corso collegato'),
+                    items: store.courses
+                        .map((course) => DropdownMenuItem(
+                            value: course.id, child: Text(course.name)))
+                        .toList(),
+                    onChanged: running
+                        ? null
+                        : (value) => setState(() => selectedCourseId = value),
+                  ),
+                  SizedBox(height: compact ? 18 : 22),
+                  SizedBox(
+                    width: timerSize,
+                    height: timerSize,
+                    child: Stack(
+                      alignment: Alignment.center,
                       children: [
-                        Text('$mm:$ss', style: TextStyle(fontSize: timerFont, height: .95, fontWeight: FontWeight.w900, letterSpacing: compact ? -2.0 : -4.0, color: AppStyle.ink)),
-                        const SizedBox(height: 10),
-                        Text(
-                          running ? 'Timer in corso' : 'Pronto per iniziare',
-                          style: const TextStyle(color: AppStyle.subtle, fontWeight: FontWeight.w800),
+                        SizedBox(
+                          width: timerSize,
+                          height: timerSize,
+                          child: CircularProgressIndicator(
+                            value: progress,
+                            strokeWidth: compact ? 12 : 16,
+                            strokeCap: StrokeCap.round,
+                            backgroundColor: AppStyle.surfaceAlt,
+                            valueColor: AlwaysStoppedAnimation<Color>(pause
+                                ? const Color(0xFFF59E0B)
+                                : const Color(0xFF5B5FEF)),
+                          ),
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text('$mm:$ss',
+                                style: TextStyle(
+                                    fontSize: timerFont,
+                                    height: .95,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 0,
+                                    color: AppStyle.ink)),
+                            const SizedBox(height: 10),
+                            Text(
+                              running
+                                  ? 'Timer in corso'
+                                  : 'Pronto per iniziare',
+                              style: const TextStyle(
+                                  color: AppStyle.subtle,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(height: compact ? 18 : 22),
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: [
+                      AppButton(
+                          onPressed: toggle,
+                          icon: running
+                              ? Icons.pause_rounded
+                              : Icons.play_arrow_rounded,
+                          child: Text(running ? 'Pausa' : 'Avvia')),
+                      OutlinedButton.icon(
+                          onPressed: reset,
+                          icon: const Icon(Icons.restart_alt_rounded),
+                          label: const Text('Reset')),
+                      OutlinedButton.icon(
+                        onPressed: studiedMinutes > 0
+                            ? () => recordStudy(store)
+                            : null,
+                        icon: const Icon(Icons.add_task_rounded),
+                        label: Text(studiedMinutes > 0
+                            ? 'Registra ${minutesLabel(studiedMinutes)}'
+                            : 'Registra'),
+                      ),
+                    ],
+                  ),
+                ]),
               ),
-              SizedBox(height: compact ? 24 : 34),
-              Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  AppButton(onPressed: toggle, icon: running ? Icons.pause_rounded : Icons.play_arrow_rounded, child: Text(running ? 'Pausa' : 'Avvia')),
-                  OutlinedButton.icon(onPressed: reset, icon: const Icon(Icons.restart_alt_rounded), label: const Text('Reset')),
-                ],
-              ),
-            ]),
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
@@ -2921,6 +4916,9 @@ class PriorityChip extends StatelessWidget {
       Priority.medium => Colors.orange,
       Priority.low => Colors.green,
     };
-    return Chip(label: Text(priority.label), side: BorderSide(color: color.withOpacity(.35)), backgroundColor: color.withOpacity(.08));
+    return Chip(
+        label: Text(priority.label),
+        side: BorderSide(color: color.withValues(alpha: .35)),
+        backgroundColor: color.withValues(alpha: .08));
   }
 }
