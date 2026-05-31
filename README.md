@@ -36,7 +36,14 @@ StudyPlannerFinale/
     ├── web/
     ├── assets/
     ├── lib/
-    │   └── main.dart
+    │   ├── main.dart
+    │   ├── app/
+    │   ├── data/
+    │   ├── models/
+    │   ├── screens/
+    │   ├── theme/
+    │   ├── utils/
+    │   └── widgets/
     ├── test/
     ├── pubspec.yaml
     └── pubspec.lock

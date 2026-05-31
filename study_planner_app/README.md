@@ -33,9 +33,16 @@ Il progetto usa una struttura leggera adatta alla consegna didattica:
 - `StudyScope`: accesso allo stato tramite `InheritedNotifier`.
 - Modelli dati: `Course`, `ExamItem`, `StudySession`, `TaskGoal`.
 - Persistenza: serializzazione JSON salvata in `shared_preferences`.
-- UI: schermate, dialog e componenti riutilizzabili in `lib/main.dart`.
+- `lib/main.dart`: bootstrap dell'app e collegamento dei file Dart.
+- `lib/app/`: configurazione dell'app e scope globale.
+- `lib/data/`: store e gestione della persistenza.
+- `lib/models/`: enum e modelli dati.
+- `lib/screens/`: schermate e dialog collegati alle sezioni principali.
+- `lib/theme/`: costanti grafiche e regole responsive.
+- `lib/utils/`: funzioni di supporto per date, validazioni, messaggi e suggerimenti.
+- `lib/widgets/`: componenti UI riutilizzabili.
 
-In una versione piu ampia, il file principale puo essere separato in cartelle come `models/`, `store/`, `screens/`, `widgets/` e `dialogs/`.
+La divisione e realizzata con part file Dart per mantenere il refactor semplice e senza cambiare il comportamento dell'app.
 
 ## Requisiti
 
